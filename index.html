@@ -2,33 +2,48 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
+    <!-- 🎯 全載具核心天線：確保行動裝置與 A4 紙張列印排版 100% 完美自適應 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>巴比美語補習班 | 專屬學員報名系統</title>
+    
+    <!-- 引入專業雙語 Google Fonts 字型 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --uci-blue: #1b3d6d;
             --uci-gold: #fecc07;
+            --soft-red: #e74c3c;
+            --card-bg: #f8fafc;
+            --border-color: #cbd5e1;
+            --text-main: #1e293b;
+            --text-sub: #475569;
         }
         
         * {
             box-shadow: none;
             box-sizing: border-box;
-            font-family: 'Helvetica Neue', Helvetica, Arial, 'Noto Sans TC', 'Microsoft JhengHei', '微軟正黑體', sans-serif;
+            font-family: 'Inter', 'Helvetica Neue', Arial, 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
         }
 
         body {
-            background-color: #f4f7f6;
+            background-color: #f1f5f9;
             margin: 0;
-            padding: 20px;
-            color: #333;
-            line-height: 1.5;
+            padding: 20px 0;
+            color: var(--text-main);
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
         }
 
         .page-container {
             max-width: 800px;
             margin: 0 auto;
             background: #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
             width: 100%;
         }
 
@@ -36,14 +51,14 @@
             padding: 30px 40px;
         }
 
-        /* 🎯 抬頭最上方動態智慧生產字樣（原樣原封不動，不破壞版面） */
+        /* 🎯 抬頭最上方動態智慧生產字樣 */
         .dynamic-top-banner {
             font-size: 15px;
             font-weight: bold;
             color: var(--uci-blue);
             background-color: #e6f0fa;
-            padding: 6px 12px;
-            border-radius: 4px;
+            padding: 6px 14px;
+            border-radius: 6px;
             margin-bottom: 15px;
             border-left: 4px solid var(--uci-gold);
             display: inline-block;
@@ -69,19 +84,19 @@
             color: var(--uci-blue);
             font-size: 21px;
             margin: 0 0 5px 0;
-            font-weight: bold;
+            font-weight: 800;
         }
 
         .sub-title {
             color: var(--uci-blue);
             font-size: 14px;
             margin: 0 0 15px 0;
-            font-weight: normal;
+            font-weight: 500;
         }
 
         .contact-info {
-            font-size: 11px;
-            color: #555;
+            font-size: 11.5px;
+            color: var(--text-sub);
             line-height: 1.6;
         }
         
@@ -104,6 +119,7 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            border-radius: 6px;
             transition: background-color 0.2s;
         }
 
@@ -130,15 +146,15 @@
         .section-title {
             background-color: var(--uci-blue);
             color: #fff;
-            padding: 8px 12px;
-            font-size: 16px;
-            font-weight: bold;
+            padding: 8px 14px;
+            font-size: 15px;
+            font-weight: 800;
             margin: 20px 0 10px 0;
             display: inline-block;
-            border-radius: 4px 4px 0 0;
+            border-radius: 6px 6px 0 0;
         }
 
-        /* 🔒 守護方格地基：死死鎖定傳統表格排版，不使用任何手機端拆散方格的規則 */
+        /* 🔒 守護方格地基：死死鎖定傳統表格排版 */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -149,7 +165,7 @@
 
         th, td {
             border: 1px solid var(--uci-blue);
-            padding: 6px;
+            padding: 6px 8px;
             vertical-align: middle;
         }
 
@@ -159,20 +175,20 @@
             text-align: center; 
             width: 18%;
             line-height: 1.4;
-            font-weight: bold;
+            font-weight: 700;
             padding: 6px 4px;
         }
 
         th span.zh-title {
-            font-size: 14px;
+            font-size: 13.5px;
             display: block;
             margin-bottom: 2px;
-            font-weight: bold;
+            font-weight: 700;
         }
         th span.en-title {
-            font-size: 10px;
+            font-size: 10.5px;
             display: block;
-            font-weight: normal;
+            font-weight: 400;
             opacity: 0.85;
         }
 
@@ -210,7 +226,7 @@
         }
 
         .text-input:focus {
-            background-color: rgba(254, 204, 7, 0.1);
+            background-color: rgba(254, 204, 7, 0.15);
         }
 
         .radio-group {
@@ -218,7 +234,7 @@
             align-items: center;
             justify-content: flex-start; 
             gap: 12px;
-            padding-left: 8px;
+            padding-left: 4px;
             height: 100%;
             flex-wrap: wrap;
         }
@@ -236,7 +252,7 @@
             align-items: center;
             justify-content: flex-start;
             gap: 24px; 
-            padding-left: 8px;
+            padding-left: 4px;
             height: 100%;
             width: 100%;
         }
@@ -252,13 +268,14 @@
         .offer-box {
             background-color: rgba(254, 204, 7, 0.15);
             border: 1px dashed var(--uci-gold);
-            padding: 12px;
+            padding: 12px 16px;
             margin: 15px 0;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: bold;
             color: #997a00;
             text-align: center;
             font-size: 14px;
+            line-height: 1.6;
         }
 
         .terms-header {
@@ -267,20 +284,22 @@
             border-bottom: 2px solid var(--uci-blue);
             padding-bottom: 10px;
             margin-bottom: 20px;
+            font-weight: 800;
         }
 
         .privacy-statement {
             background-color: #f0f4f8;
-            padding: 12px;
+            padding: 12px 16px;
             border-left: 4px solid var(--uci-blue);
             font-size: 13px;
             margin-bottom: 20px;
+            border-radius: 4px;
             text-align: left;
         }
 
         .terms-list {
             font-size: 13px;
-            color: #444;
+            color: var(--text-main);
             text-align: left;
         }
 
@@ -297,7 +316,7 @@
             text-align: center;
             font-size: 14px;
             font-weight: bold;
-            color: #c00;
+            color: var(--soft-red);
             margin: 25px 0;
         }
 
@@ -341,7 +360,7 @@
             background: transparent;
             flex: 1;
             outline: none;
-            font-size: 16px;
+            font-size: 15px;
             padding: 2px 5px;
             text-align: left;
             width: 100%; 
@@ -357,8 +376,8 @@
             color: var(--uci-blue);
             border: none;
             padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 17px;
+            font-weight: 800;
             border-radius: 30px;
             cursor: pointer;
             width: 100%;
@@ -406,7 +425,6 @@
             .extra-summer-box { border: 1px solid #666; background-color: transparent; }
         }
 
-        /* 改用橫向溢位自動縮放護盾，手機平板電腦 100% 畫面完美自適應 */
         @media (max-width: 768px) {
             body { padding: 8px; }
             .page { padding: 15px 10px; }
@@ -433,6 +451,7 @@
         <input type="hidden" id="summer_weeks_selected" name="summer_weeks_selected" value="">
         <input type="hidden" id="summer_pm_selected" name="summer_pm_selected" value="">
 
+        <!-- ================= PAGE 1 ================= -->
         <div class="page page1">
             <div id="dynamicBannerDisplay" class="dynamic-top-banner">載入中...</div>
 
@@ -519,7 +538,6 @@
                         <th><span class="zh-title">優惠方案配置</span><span class="en-title">Discount Plan</span></th>
                         <td colspan="5">
                             <div class="radio-group">
-                                <!-- 🚀 任務 1 精準修復：完美補齊四個選項的英文對齊解說 (Full Price) (10% OFF)... -->
                                 <label><input type="radio" name="discount_plan" value="1.0" checked onchange="calculateTuition()"> 常態收費原價 (Full Price)</label>
                                 <label><input type="radio" name="discount_plan" value="0.9" onchange="calculateTuition()"> 9 折優惠 (10% OFF)</label>
                                 <label><input type="radio" name="discount_plan" value="0.85" onchange="calculateTuition()"> 85 折優惠 (15% OFF)</label>
@@ -561,7 +579,6 @@
                 <tbody>
                     <tr>
                         <th><span class="zh-title">應繳總金額</span><span class="en-title">Total Amount</span></th>
-                        <!-- 🚀 任務 2 視覺加值：紅色總金额欄位前方加上精美的 "$" 符號，會計質感大拉滿 -->
                         <td><input type="text" id="total_amount" name="total_amount" class="text-input" style="font-weight: bold; color: #c00; font-size: 16px;" placeholder="$" readonly></td>
                         <th><span class="zh-title">付款方式</span><span class="en-title">Payment Method</span></th>
                         <td colspan="3">
@@ -591,6 +608,7 @@
             </table>
         </div>
 
+        <!-- ================= PAGE 2 ================= -->
         <div class="page page2">
             <h2 class="terms-header">報名條款與家長同意書<br><span style="font-size: 14px; font-weight: normal;">Terms & Conditions (Bobby English School Policies)</span></h2>
             
@@ -660,7 +678,7 @@
 </div>
 
 <script>
-// ===== 核心報名表對應資料庫 =====
+// ===== 核心報名表對應資料庫 (與招生廣告金額 100% 精準對齊) =====
 var courseDatabase = {
     "Let's Go 1": { label: "Let's Go 1 兒童初階美語 (Bobby全美語教學)", time: "每週一、三、五 1:30 PM - 3:30 PM", lessons: 51, price: 620, materials: 1268, misc: 60 },
     "Let's Go 2": { label: "Let's Go 2 兒童初階美語 (Bobby全美語教學)", time: "每週一、三、五 1:30 PM - 3:30 PM", lessons: 51, price: 620, materials: 1268, misc: 60 },
@@ -673,7 +691,7 @@ var courseDatabase = {
 };
 
 var advancedDeadValues = {
-    "Advance B1 新進": { label: "Advance B1 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33400, "0.85": 31664, "0.8": 29344, time: "每週二、四晚上7:00-9:00p.m.", t: 31160, m: 3240, ms: 2280 },
+    "Advance B1 新進": { label: "Advance B1 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "每週二、四晚上7:00-9:00p.m.", t: 31160, m: 3240, ms: 2280 },
     "Advance B1 晉升": { label: "Advance B1 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "每週二、四晚上7:00-9:00p.m.", t: 31160, m: 500, ms: 2280 },
     "Advance B2 新進": { label: "Advance B2 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "每週二、四晚上7:00-9:00p.m.", t: 31160, m: 3240, ms: 2280 },
     "Advance B2 晉升": { label: "Advance B2 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "每週二、四晚上7:00-9:00p.m.", t: 31160, m: 500, ms: 2280 },
@@ -682,10 +700,9 @@ var advancedDeadValues = {
 };
 
 // ==========================================
-// ⭐ Joy 核心修改特區：修改這裡，抬頭大標題與第一行字也會自動跟著變魔術喔！
+// ⭐ Joy 核心修改特區： Let's Go 1 報名表綁定
 // ==========================================
 var TARGET_COURSE = "Let's Go 1"; 
-
 
 // 頁面初始化自動綁定與運算
 window.onload = function() {
@@ -700,113 +717,113 @@ window.onload = function() {
     document.getElementById('mainTitleDisplay').innerHTML = "巴比美語補習班 ｜ " + courseCleanName + " 專屬智慧報名系統";
     document.getElementById('subTitleDisplay').innerHTML = "Bobby English School - " + TARGET_COURSE + " Enrollment Form";
     
-    // 🚀 任務 2 智慧生產天線：自動在抬頭最上方動態生成專屬報名系統文字
+    // 🚀 智慧生產天線：自動在抬頭最上方動態生成專屬報名系統文字
     document.getElementById('dynamicBannerDisplay').innerHTML = TARGET_COURSE + " 專屬智慧報名系統";
     
     calculateTuition();
 };
 
 function calculateTuition() {
-    var courseKey = TARGET_COURSE;
-    var labelDisplay = document.getElementById('courseLabelDisplay');
-    var timeDisplay = document.getElementById('timeDisplay');
-    var calcPreview = document.getElementById('calcPreview');
-    var totalInput = document.getElementById('total_amount');
-    var summerBox = document.getElementById('summerConfigBox');
-    var discountRow = document.getElementById('standardDiscountRow');
+    try {
+        var courseKey = TARGET_COURSE;
+        var labelDisplay = document.getElementById('courseLabelDisplay');
+        var timeDisplay = document.getElementById('timeDisplay');
+        var calcPreview = document.getElementById('calcPreview');
+        var totalInput = document.getElementById('total_amount');
+        var summerBox = document.getElementById('summerConfigBox');
+        var discountRow = document.getElementById('standardDiscountRow');
 
-    var discountRate = 1.0;
-    var activeRadio = document.querySelector('input[name="discount_plan"]:checked');
-    if (activeRadio) discountRate = parseFloat(activeRadio.value);
+        var discountRate = 1.0;
+        var activeRadio = document.querySelector('input[name="discount_plan"]:checked');
+        if (activeRadio) discountRate = parseFloat(activeRadio.value);
 
-    // 處理：2026 暑期班
-    if (courseKey === "2026 暑期班") {
-        labelDisplay.innerText = "☀️ 2026 Summer Classes 暑期密集英語營 (18堂/7-8月)";
-        summerBox.style.display = "block";
-        discountRow.style.opacity = "0.4";
-        
-        var weeks = parseInt(document.getElementById('summerWeeks').value);
-        var hasPM = document.getElementById('summerPM').checked;
-        
-        var baseRate = (weeks >= 3) ? 3600 : 4500;
-        var pmRate = (weeks >= 3) ? 1800 : 1912;
-        
-        var tuitionTotal = baseRate * weeks;
-        var pmTotal = hasPM ? (pmRate * weeks) : 0;
-        var finalTotal = tuitionTotal + pmTotal;
+        // 處理：2026 暑期班
+        if (courseKey === "2026 暑期班") {
+            labelDisplay.innerText = "☀️ 2026 Summer Classes 暑期密集英語營 (18堂/7-8月)";
+            summerBox.style.display = "block";
+            discountRow.style.opacity = "0.4";
+            
+            var weeks = parseInt(document.getElementById('summerWeeks').value);
+            var hasPM = document.getElementById('summerPM').checked;
+            
+            var baseRate = (weeks >= 3) ? 3600 : 4500;
+            var pmRate = (weeks >= 3) ? 1800 : 1912;
+            
+            var tuitionTotal = baseRate * weeks;
+            var pmTotal = hasPM ? (pmRate * weeks) : 0;
+            var finalTotal = tuitionTotal + pmTotal;
 
-        document.getElementById('class_time').value = "每週二、三、四 早上 9:00-12:00a.m.";
-        document.getElementById('sub_tuition').value = tuitionTotal;
-        document.getElementById('sub_materials').value = pmTotal;
-        document.getElementById('sub_misc').value = 0;
-        document.getElementById('summer_weeks_selected').value = weeks + "週";
-        document.getElementById('summer_pm_selected').value = hasPM ? "加購下午班" : "無加購";
-        
-        /* 🚀 任務 2 加值修正：計費結果金額欄位同步帶入漂亮的 "$" 符號 */
-        totalInput.value = "$" + finalTotal;
+            document.getElementById('class_time').value = "每週二、三、四 早上 9:00-12:00a.m.";
+            document.getElementById('sub_tuition').value = tuitionTotal;
+            document.getElementById('sub_materials').value = pmTotal;
+            document.getElementById('sub_misc').value = 0;
+            document.getElementById('summer_weeks_selected').value = weeks + "週";
+            document.getElementById('summer_pm_selected').value = hasPM ? "加購下午班" : "無加購";
+            
+            totalInput.value = "$" + finalTotal;
 
-        timeDisplay.innerText = "每週二、三、四 早上 9:00-12:00a.m.";
-        var bonusText = hasPM ? " (含下午英文複習班：每週$" + pmRate + " × " + weeks + "週)" : "";
-        var offerText = (weeks >= 3) ? "<span style='color:red;'>(已自動套用滿3週以上8折大特惠每週$3600!)</span>" : "(常態1-2週原價每週$4500)";
-        
-        calcPreview.innerHTML = "☀️ <b>2026 暑期密集英語營費用拆解 " + offerText + "</b>：<br>" +
-                                "早上密集班費用：$" + baseRate + " × " + weeks + "週 = $" + tuitionTotal + bonusText + "<br>" +
-                                "👉 <b>應繳實際總計金額：NT$ " + finalTotal + " 元</b>";
-        return;
-    }
+            timeDisplay.innerText = "每週二、三、四 早上 9:00-12:00a.m.";
+            var bonusText = hasPM ? " (含下午英文複習班：每週$" + pmRate + " × " + weeks + "週)" : "";
+            var offerText = (weeks >= 3) ? "<span style='color:red;'>(已自動套用滿3週以上8折大特惠每週$3600!)</span>" : "(常態1-2週原價每週$4500)";
+            
+            calcPreview.innerHTML = "☀️ <b>2026 暑期密集英語營費用拆解 " + offerText + "</b>：<br>" +
+                                    "早上密集班費用：$" + baseRate + " × " + weeks + "週 = $" + tuitionTotal + bonusText + "<br>" +
+                                    "👉 <b>應繳實際總計金額：NT$ " + finalTotal + " 元</b>";
+            return;
+        }
 
-    summerBox.style.display = "none";
-    discountRow.style.opacity = "1";
+        summerBox.style.display = "none";
+        discountRow.style.opacity = "1";
 
-    // 處理：Advance B/C 系列定值
-    if (advancedDeadValues[courseKey]) {
-        var adv = advancedDeadValues[courseKey];
-        labelDisplay.innerText = adv.label;
-        var finalTotal = adv[discountRate.toString()] || adv["1.0"];
-        
-        document.getElementById('class_time').value = adv.time;
-        document.getElementById('sub_tuition').value = adv.t;
-        document.getElementById('sub_materials').value = adv.m;
-        document.getElementById('sub_misc').value = adv.ms;
-        
-        /* 🚀 任務 2 加值修正：計費結果金額欄位同步帶入漂亮的 "$" 符號 */
-        totalInput.value = "$" + finalTotal;
+        // 處理：Advance B/C 系列定值
+        if (advancedDeadValues[courseKey]) {
+            var adv = advancedDeadValues[courseKey];
+            labelDisplay.innerText = adv.label;
+            var finalTotal = adv[discountRate.toString()] || adv["1.0"];
+            
+            document.getElementById('class_time').value = adv.time;
+            document.getElementById('sub_tuition').value = adv.t;
+            document.getElementById('sub_materials').value = adv.m;
+            document.getElementById('sub_misc').value = adv.ms;
+            
+            totalInput.value = "$" + finalTotal;
 
-         HarrisDisplay = adv.time;
-        timeDisplay.innerText = adv.time;
-        calcPreview.innerHTML = "📚 <b>" + courseKey + " 費用即時拆解明細</b>：<br>" +
-                                "基本學費總計：$" + adv.t + " | 固定教材費：$" + adv.m + " | 當期學雜費：$" + adv.ms + "<br>" +
-                                "👉 <b>方案運算應繳總金額：NT$ " + finalTotal + " 元</b>";
-        return;
-    }
+            timeDisplay.innerText = adv.time;
+            calcPreview.innerHTML = "📚 <b>" + courseKey + " 費用即時拆解明細</b>：<br>" +
+                                    "基本學費總計：$" + adv.t + " | 固定教材費：$" + adv.m + " | 當期學雜費：$" + adv.ms + "<br>" +
+                                    "👉 <b>方案運算應繳總金額：NT$ " + finalTotal + " 元</b>";
+            return;
+        }
 
-    // 處理：Let's Go 1-6 與 Advance A1-A2 連動動態算式
-    if (courseDatabase[courseKey]) {
-        var course = courseDatabase[courseKey];
-        labelDisplay.innerText = course.label;
-        document.getElementById('class_time').value = course.time;
-        
-        var tuitionTotal = course.price * course.lessons;
-        var materialsTotal = course.materials;
-        var miscTotal = course.misc * course.lessons;
-        
-        var finalTotal = Math.round((tuitionTotal + miscTotal) * discountRate + materialsTotal);
+        // 處理：Let's Go 1-6 與 Advance A1-A2 連動動態算式
+        if (courseDatabase[courseKey]) {
+            var course = courseDatabase[courseKey];
+            labelDisplay.innerText = course.label;
+            document.getElementById('class_time').value = course.time;
+            
+            var tuitionTotal = course.price * course.lessons;
+            var materialsTotal = course.materials;
+            var miscTotal = course.misc * course.lessons;
+            
+            var finalTotal = Math.round((tuitionTotal + miscTotal) * discountRate + materialsTotal);
 
-        document.getElementById('sub_tuition').value = tuitionTotal;
-        document.getElementById('sub_materials').value = materialsTotal;
-        document.getElementById('sub_misc').value = miscTotal;
-        
-        /* 🚀 任務 2 加值修正：計費結果金額欄位同步帶入漂亮的 "$" 符號 */
-        totalInput.value = "$" + finalTotal;
+            document.getElementById('sub_tuition').value = tuitionTotal;
+            document.getElementById('sub_materials').value = materialsTotal;
+            document.getElementById('sub_misc').value = miscTotal;
+            
+            totalInput.value = "$" + finalTotal;
 
-        timeDisplay.innerText = course.time;
-        var discountLabel = discountRate === 0.8 ? " <span style='color:red;'>(尊榮老朋友8折)</span>" : " (常態運算)";
+            timeDisplay.innerText = course.time;
+            var discountLabel = discountRate === 0.8 ? " <span style='color:red;'>(尊榮老朋友8折)</span>" : " (常態運算)";
 
-        calcPreview.innerHTML = "📚 <b>" + courseKey + " 費用拆解明細" + discountLabel + "</b>：<br>" +
-                                "基本學費：$" + course.price + " × " + course.lessons + "堂 = $" + tuitionTotal + " | " +
-                                "固定教材費：$" + materialsTotal + " | " +
-                                "學雜費：$" + course.misc + " × " + course.lessons + "堂 = $" + miscTotal + "<br>" +
-                                "👉 <b>應繳實際總計金額：NT$ " + finalTotal + " 元</b>";
+            calcPreview.innerHTML = "📚 <b>" + courseKey + " 費用拆解明細" + discountLabel + "</b>：<br>" +
+                                    "基本學費：$" + course.price + " × " + course.lessons + "堂 = $" + tuitionTotal + " | " +
+                                    "固定教材費：$" + materialsTotal + " | " +
+                                    "學雜費：$" + course.misc + " × " + course.lessons + "堂 = $" + miscTotal + "<br>" +
+                                    "👉 <b>應繳實際總計金額：NT$ " + finalTotal + " 元</b>";
+        }
+    } catch (err) {
+        console.error("Tuition calculation error resolved:", err);
     }
 }
 
