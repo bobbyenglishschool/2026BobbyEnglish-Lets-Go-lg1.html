@@ -154,7 +154,7 @@
             border-radius: 6px 6px 0 0;
         }
 
-        /* 🔒 守護方格地基：死死鎖定傳統表格排版 */
+        /* 🔒 守護方格地基：傳統表格獨立外框與彈性自適應 */
         table {
             width: 100%;
             border-collapse: separate;
@@ -260,14 +260,14 @@
             white-space: nowrap;
         }
 
-        /* 🎯 核心修復：轉帳後五碼彈性佈局，徹底解決底線與文字超出右側框線問題 */
+        /* 🎯 核心修復：轉帳後五碼底線向左縮短，右側預留至少 12px 安全距離，絕不觸碰右邊框線！ */
         .payment-inline-row {
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            gap: 12px; 
+            gap: 8px; 
             padding-left: 4px;
-            padding-right: 8px;
+            padding-right: 12px; /* 增加右側內距，防止碰撞邊框 */
             height: 100%;
             width: 100%;
             flex-wrap: nowrap;
@@ -458,13 +458,15 @@
             .extra-summer-box { border: 1px solid #666; background-color: transparent; }
         }
 
+        /* 🎯 核心修復：全載具行動護盾！網頁縮小時表格平滑捲動，內容 100% 不跑版！ */
         @media (max-width: 768px) {
             body { padding: 8px; }
-            .page { padding: 15px 10px; }
-            .page-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-            .header-section { gap: 10px; }
+            .page { padding: 15px 12px; }
+            .page-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .header-section { flex-direction: row; gap: 10px; }
             .signature-section { flex-direction: column; gap: 15px; }
             .signature-box { width: 100%; }
+            table { min-width: 600px; } /* 確保手機端表格比例不變形，橫向平滑捲動 */
         }
     </style>
 </head>
@@ -541,14 +543,12 @@
                         <th><span class="zh-title">與學生關係</span><span class="en-title">Relationship</span></th>
                         <td><input type="text" name="relation" class="text-input" placeholder="" required></td>
                         <th><span class="zh-title">聯絡電話</span><span class="en-title">Phone Number</span></th>
-                        <!-- 🎯 核心修復：遵照指示，刪除 placeholder="主要聯絡手機" -->
                         <td><input type="tel" name="phone" class="text-input" placeholder="" required></td>
                     </tr>
                     <tr>
                         <th><span class="zh-title">電子信箱</span><span class="en-title">E-mail</span></th>
                         <td colspan="3"><input type="email" name="email" class="text-input" placeholder=""></td>
                         <th><span class="zh-title">LINE ID</span><span class="en-title">LINE ID</span></th>
-                        <!-- 🎯 核心修復：遵照指示，刪除 placeholder="LINE ID" -->
                         <td><input type="text" name="line_id" class="text-input" placeholder=""></td>
                     </tr>
                     <tr>
@@ -567,8 +567,8 @@
                             <div id="courseLabelDisplay" class="static-course-display">未設定課程</div>
                         </td>
                         <th><span class="zh-title">標準上課時段</span><span class="en-title">Schedule</span></th>
-                        <!-- 🎯 核心修復：調校字級與 Padding，解決時間文字溢出格線的問題 -->
-                        <td colspan="2" id="timeDisplay" style="font-weight: bold; color: var(--uci-blue); font-size: 11.5px; padding: 4px 6px; line-height: 1.35;">載入中...</td>
+                        <!-- 🎯 核心修復：上課時間分為上下兩排顯示（第一排：每週一、三、五 / 第二排：1:30 PM - 3:30 PM），清析明白！ -->
+                        <td colspan="2" id="timeDisplay" style="font-weight: bold; color: var(--uci-blue); font-size: 11.5px; padding: 4px 8px; line-height: 1.35;">載入中...</td>
                     </tr>
                     <tr id="standardDiscountRow">
                         <th><span class="zh-title">優惠方案配置</span><span class="en-title">Discount Plan</span></th>
@@ -620,10 +620,10 @@
                         <td colspan="3">
                             <div class="payment-inline-row">
                                 <label><input type="radio" name="payment_method" value="現金" checked> 現金 Cash</label>
-                                <!-- 🎯 核心修復：縮小轉帳底線寬度與 Gap，100% 絕不超出右側表格線！ -->
+                                <!-- 🎯 核心修復：縮短轉帳底線寬度（50px），右側預留 12px 距離，絕不觸碰右邊框線！ -->
                                 <label style="display: flex; align-items: center; gap: 2px;">
                                     <input type="radio" name="payment_method" value="銀行轉帳"> 銀行轉帳(後五碼)：
-                                    <input type="text" name="transfer_code" style="border: none; border-bottom: 1.5px solid #333; width: 60px; background: transparent; outline: none; text-align: center; font-size: 13px; height: 22px; padding: 0;">
+                                    <input type="text" name="transfer_code" style="border: none; border-bottom: 1.5px solid #333; width: 50px; background: transparent; outline: none; text-align: center; font-size: 13px; height: 22px; padding: 0; margin-right: 8px;">
                                 </label>
                             </div>
                         </td>
@@ -655,7 +655,6 @@
                 <span class="light-en-text" style="margin-top: 3px;">All personal data collected by Bobby English School is strictly used for course communication and administrative purposes in accordance with the Personal Data Protection Act of the R.O.C. and will never be disclosed to third parties.</span>
             </div>
 
-            <!-- 🎯 核心美化：在不變動任何文字前提下，提升雙語層級對比與行高 -->
             <div class="terms-list">
                 <div class="term-item">
                     <strong>1. 審閱權與退費規定 / Refund Policy：</strong><br>
@@ -716,25 +715,57 @@
 </div>
 
 <script>
-// ===== 核心報名表對應資料庫 (修正時段標點，與招生廣告金額 100% 精準對齊) =====
+// ===== 核心報名表對應資料庫 (時間分排展示，與招生廣告金額 100% 精準對齊) =====
 var courseDatabase = {
-    "Let's Go 1": { label: "Let's Go 1 兒童初階美語 (Bobby全美語教學)", time: "每週一、三、五 1:30 PM - 3:30 PM", lessons: 51, price: 620, materials: 1268, misc: 60 },
-    "Let's Go 2": { label: "Let's Go 2 兒童初階美語 (Bobby全美語教學)", time: "每週一、三、五 1:30 PM - 3:30 PM", lessons: 51, price: 620, materials: 1268, misc: 60 },
-    "Let's Go 3": { label: "Let's Go 3 兒童中階美語 (中英雙語教學)", time: "週一 4:30-6:30 PM & 週三、五 1:30-3:30 PM", lessons: 51, price: 620, materials: 1572, misc: 60 },
-    "Let's Go 4": { label: "Let's Go 4 兒童中階美語 (中英雙語教學)", time: "週一 4:30-6:30 PM & 週三、五 1:30-3:30 PM", lessons: 51, price: 620, materials: 1572, misc: 60 },
-    "Let's Go 5": { label: "Let's Go 5 兒童高階美語 (中英雙語教學)", time: "每週一、三、五 4:30 PM - 6:30 PM", lessons: 51, price: 620, materials: 1612, misc: 60 },
-    "Let's Go 6": { label: "Let's Go 6 兒童高階美語 (中英雙語教學)", time: "每週一、三、五 4:30 PM - 6:30 PM", lessons: 51, price: 620, materials: 1612, misc: 60 },
-    "Advance A1": { label: "Advance A1 兒童進階美語班", time: "每週三、五 4:30 PM - 6:30 PM (特調班)", lessons: 34, price: 770, materials: 2966, misc: 60 },
-    "Advance A2": { label: "Advance A2 兒童進階美語班", time: "每週二、四 4:30 PM - 6:30 PM", lessons: 38, price: 770, materials: 3826, misc: 60 }
+    "Let's Go 1": { 
+        label: "Let's Go 1 兒童初階美語 (Bobby全美語教學)", 
+        time: "<div>每週一、三、五</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>1:30 PM - 3:30 PM</div>", 
+        lessons: 51, price: 620, materials: 1268, misc: 60 
+    },
+    "Let's Go 2": { 
+        label: "Let's Go 2 兒童初階美語 (Bobby全美語教學)", 
+        time: "<div>每週一、三、五</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>1:30 PM - 3:30 PM</div>", 
+        lessons: 51, price: 620, materials: 1268, misc: 60 
+    },
+    "Let's Go 3": { 
+        label: "Let's Go 3 兒童中階美語 (中英雙語教學)", 
+        time: "<div>週一 4:30-6:30 PM</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>週三、五 1:30-3:30 PM</div>", 
+        lessons: 51, price: 620, materials: 1572, misc: 60 
+    },
+    "Let's Go 4": { 
+        label: "Let's Go 4 兒童中階美語 (中英雙語教學)", 
+        time: "<div>週一 4:30-6:30 PM</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>週三、五 1:30-3:30 PM</div>", 
+        lessons: 51, price: 620, materials: 1572, misc: 60 
+    },
+    "Let's Go 5": { 
+        label: "Let's Go 5 兒童高階美語 (中英雙語教學)", 
+        time: "<div>每週一、三、五</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>4:30 PM - 6:30 PM</div>", 
+        lessons: 51, price: 620, materials: 1612, misc: 60 
+    },
+    "Let's Go 6": { 
+        label: "Let's Go 6 兒童高階美語 (中英雙語教學)", 
+        time: "<div>每週一、三、五</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>4:30 PM - 6:30 PM</div>", 
+        lessons: 51, price: 620, materials: 1612, misc: 60 
+    },
+    "Advance A1": { 
+        label: "Advance A1 兒童進階美語班", 
+        time: "<div>每週三、五</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>4:30 PM - 6:30 PM</div>", 
+        lessons: 34, price: 770, materials: 2966, misc: 60 
+    },
+    "Advance A2": { 
+        label: "Advance A2 兒童進階美語班", 
+        time: "<div>每週二、四</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>4:30 PM - 6:30 PM</div>", 
+        lessons: 38, price: 770, materials: 3826, misc: 60 
+    }
 };
 
 var advancedDeadValues = {
-    "Advance B1 新進": { label: "Advance B1 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "每週二、四晚上7:00-9:00p.m.", t: 31160, m: 3240, ms: 2280 },
-    "Advance B1 晉升": { label: "Advance B1 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "每週二、四晚上7:00-9:00p.m.", t: 31160, m: 500, ms: 2280 },
-    "Advance B2 新進": { label: "Advance B2 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "每週二、四晚上7:00-9:00p.m.", t: 31160, m: 3240, ms: 2280 },
-    "Advance B2 晉升": { label: "Advance B2 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "每週二、四晚上7:00-9:00p.m.", t: 31160, m: 500, ms: 2280 },
-    "Advance C1 新進": { label: "Advance C1 青少年進階美語 (新進學生)", "1.0": 17140, "0.9": 15426, "0.85": 14569, "0.8": 13712, time: "每週星期一晚上 7:00-9:00p.m.", t: 14450, m: 1840, ms: 850 },
-    "Advance C1 晉升": { label: "Advance C1 青少年進階美語 (晉升學生)", "1.0": 15800, "0.9": 14220, "0.85": 13430, "0.8": 12640, time: "每週星期一晚上 7:00-9:00p.m.", t: 14450, m: 500, ms: 850 }
+    "Advance B1 新進": { label: "Advance B1 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "<div>每週二、四</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>7:00 PM - 9:00 PM</div>", t: 31160, m: 3240, ms: 2280 },
+    "Advance B1 晉升": { label: "Advance B1 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "<div>每週二、四</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>7:00 PM - 9:00 PM</div>", t: 31160, m: 500, ms: 2280 },
+    "Advance B2 新進": { label: "Advance B2 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "<div>每週二、四</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>7:00 PM - 9:00 PM</div>", t: 31160, m: 3240, ms: 2280 },
+    "Advance B2 晉升": { label: "Advance B2 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "<div>每週二、四</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>7:00 PM - 9:00 PM</div>", t: 31160, m: 500, ms: 2280 },
+    "Advance C1 新進": { label: "Advance C1 青少年進階美語 (新進學生)", "1.0": 17140, "0.9": 15426, "0.85": 14569, "0.8": 13712, time: "<div>每週一晚上</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>7:00 PM - 9:00 PM</div>", t: 14450, m: 1840, ms: 850 },
+    "Advance C1 晉升": { label: "Advance C1 青少年進階美語 (晉升學生)", "1.0": 15800, "0.9": 14220, "0.85": 13430, "0.8": 12640, time: "<div>每週一晚上</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>7:00 PM - 9:00 PM</div>", t: 14450, m: 500, ms: 850 }
 };
 
 // ==========================================
@@ -800,7 +831,7 @@ function calculateTuition() {
             
             totalInput.value = "$" + finalTotal;
 
-            timeDisplay.innerText = "每週二、三、四 早上 9:00-12:00a.m.";
+            timeDisplay.innerHTML = "<div>每週二、三、四</div><div style='font-size:11px; opacity:0.85; margin-top:2px;'>9:00 AM - 12:00 PM</div>";
             var bonusText = hasPM ? " (含下午英文複習班：每週$" + pmRate + " × " + weeks + "週)" : "";
             var offerText = (weeks >= 3) ? "<span style='color:red;'>(已自動套用滿3週以上8折大特惠每週$3600!)</span>" : "(常態1-2週原價每週$4500)";
             
@@ -819,14 +850,14 @@ function calculateTuition() {
             labelDisplay.innerText = adv.label;
             var finalTotal = adv[discountRate.toString()] || adv["1.0"];
             
-            document.getElementById('class_time').value = adv.time;
+            document.getElementById('class_time').value = adv.time.replace(/<[^>]+>/g, '');
             document.getElementById('sub_tuition').value = adv.t;
             document.getElementById('sub_materials').value = adv.m;
             document.getElementById('sub_misc').value = adv.ms;
             
             totalInput.value = "$" + finalTotal;
 
-            timeDisplay.innerText = adv.time;
+            timeDisplay.innerHTML = adv.time;
             calcPreview.innerHTML = "📚 <b>" + courseKey + " 費用即時拆解明細</b>：<br>" +
                                     "基本學費總計：$" + adv.t + " | 固定教材費：$" + adv.m + " | 當期學雜費：$" + adv.ms + "<br>" +
                                     "👉 <b>方案運算應繳總金額：NT$ " + finalTotal + " 元</b>";
@@ -837,7 +868,7 @@ function calculateTuition() {
         if (courseDatabase[courseKey]) {
             var course = courseDatabase[courseKey];
             labelDisplay.innerText = course.label;
-            document.getElementById('class_time').value = course.time;
+            document.getElementById('class_time').value = course.time.replace(/<[^>]+>/g, '');
             
             var tuitionTotal = course.price * course.lessons;
             var materialsTotal = course.materials;
@@ -851,7 +882,7 @@ function calculateTuition() {
             
             totalInput.value = "$" + finalTotal;
 
-            timeDisplay.innerText = course.time;
+            timeDisplay.innerHTML = course.time;
             var discountLabel = discountRate === 0.8 ? " <span style='color:red;'>(尊榮老朋友8折)</span>" : " (常態運算)";
 
             calcPreview.innerHTML = "📚 <b>" + courseKey + " 費用拆解明細" + discountLabel + "</b>：<br>" +
