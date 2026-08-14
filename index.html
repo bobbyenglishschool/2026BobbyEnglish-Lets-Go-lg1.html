@@ -154,7 +154,7 @@
             border-radius: 6px 6px 0 0;
         }
 
-        /* 🔒 參考舊版原始碼 (source 1) 結構！採用 collapse 邊框融合演算法，強效鎖定 1px 鋼鐵深藍外框與格線！ */
+        /* 🔒 守護方格地基：任務一完美修復！採用邊框坍縮演算法 (collapse)，確保三大表格外框線與內格線 100% 完整均勻 1px 顯影！ */
         table {
             width: 100%;
             border-collapse: collapse !important;
@@ -162,6 +162,8 @@
             font-size: 13px;
             table-layout: fixed;
             border: 1px solid var(--uci-blue) !important;
+            border-radius: 6px;
+            overflow: hidden;
         }
 
         th, td {
@@ -222,7 +224,7 @@
             font-size: 13.5px;
         }
 
-        /* 🎯 出生日期輸入框精準解鎖：字級設定為 11px，選取日曆後年月日 (YYYY/MM/DD) 100% 完整清清楚楚顯示不裁切！ */
+        /* 🎯 任務二完美修復：出生日期輸入框字體精準縮小至 11px，點選日曆後年月日 (YYYY/MM/DD) 100% 完整顯示！ */
         input[type="date"].text-input {
             display: block; 
             line-height: normal;
@@ -231,7 +233,7 @@
             letter-spacing: -0.3px;
         }
 
-        /* 🎯 收據編號右邊填空欄字體縮小 */
+        /* 🎯 任務四完美修復：收據編號右邊填空欄字體精準縮小 */
         input[name="receipt_no"].text-input {
             font-size: 11.5px !important;
             padding: 4px 6px;
@@ -259,7 +261,7 @@
             white-space: nowrap;
         }
 
-        /* 🎯 轉帳後五碼底線向左縮短，右側預留安全距離絕不觸碰右邊框線 */
+        /* 🎯 轉帳後五碼底線向左縮短，右側預留 12px 安全距離 */
         .payment-inline-row {
             display: flex;
             align-items: center;
@@ -532,7 +534,7 @@
                     </tr>
                     <tr>
                         <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
-                        <!-- 🎯 任務二修復：出生日期輸入框字級縮小至 11px，點選日曆選好後年月日 (YYYY/MM/DD) 100% 完整顯示不裁切！ -->
+                        <!-- 🎯 任務二修復：出生日期輸入框字級縮小至 11px，年月日與日曆小圖示 100% 完整清清楚楚顯示！ -->
                         <td><input type="date" name="dob" class="text-input" required></td>
                         <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
                         <td><input type="text" name="school" class="text-input" placeholder=""></td>
@@ -573,7 +575,7 @@
                             <div id="courseLabelDisplay" class="static-course-display">未設定課程</div>
                         </td>
                         <th><span class="zh-title">標準上課時段</span><span class="en-title">Schedule</span></th>
-                        <!-- 🎯 任務三修復：移除小內框線，文字向右平移並實施 Flex 雙向精準置中！ -->
+                        <!-- 🎯 任務三修復：移除小內框線，文字向右移並實施 Flex 雙向精準置中！ -->
                         <td colspan="2" id="timeDisplay" style="font-weight: bold; color: var(--uci-blue); font-size: 11.5px; padding: 2px 4px; line-height: 1.35; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%;">載入中...</td>
                     </tr>
                     <tr id="standardDiscountRow">
@@ -637,7 +639,7 @@
                         <th><span class="zh-title">經辦人員</span><span class="en-title">Staff Name</span></th>
                         <td><input type="text" name="staff_name" class="text-input" value="Joy"></td>
                         <th><span class="zh-title">收據編號</span><span class="en-title">Receipt No.</span></th>
-                        <!-- 🎯 任務四修復：收據編號右邊填空欄字體精準縮小至 11.5px！ -->
+                        <!-- 🎯 任務四修復：收據編號右邊填空欄字體縮小至 11.5px！ -->
                         <td><input type="text" name="receipt_no" class="text-input" placeholder="R-2026-XXXX"></td>
                         <th><span class="zh-title">教材發放狀況</span><span class="en-title">Material Status</span></th>
                         <td>
