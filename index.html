@@ -154,21 +154,32 @@
             border-radius: 6px 6px 0 0;
         }
 
-        /* 🔒 參考舊版原始碼 (source 1) 結構！採用 collapse 邊框融合演算法，強效鎖定 1px 鋼鐵深藍外框與格線！ */
+        /* 🔒 守護方格地基：任務一完美修復！採用雙重鋼鐵邊框演算法，表格本體 1.5px 深藍實體外框，內部格線 1px，100% 外框絕不消失！ */
         table {
             width: 100%;
-            border-collapse: collapse !important;
+            border-collapse: separate !important;
+            border-spacing: 0 !important;
             margin-bottom: 15px;
             font-size: 13px;
             table-layout: fixed;
-            border: 1px solid var(--uci-blue) !important;
+            border: 1.5px solid var(--uci-blue) !important;
+            border-radius: 6px;
+            overflow: hidden;
         }
 
         th, td {
-            border: 1px solid var(--uci-blue) !important;
+            border-right: 1px solid var(--uci-blue) !important;
+            border-bottom: 1px solid var(--uci-blue) !important;
             padding: 6px 8px;
             vertical-align: middle;
             word-break: break-word;
+        }
+
+        th:last-child, td:last-child {
+            border-right: none !important;
+        }
+        tr:last-child td {
+            border-bottom: none !important;
         }
 
         th {
@@ -222,7 +233,7 @@
             font-size: 13.5px;
         }
 
-        /* 🎯 出生日期輸入框精準解鎖：字級設定為 11px，選取日曆後年月日 (YYYY/MM/DD) 100% 完整清清楚楚顯示不裁切！ */
+        /* 🎯 任務二完美修復：出生日期輸入框字級縮小至 11px，點選日曆後年月日 (YYYY/MM/DD) 100% 完整清清楚楚顯示不裁切！ */
         input[type="date"].text-input {
             display: block; 
             line-height: normal;
@@ -231,7 +242,7 @@
             letter-spacing: -0.3px;
         }
 
-        /* 🎯 收據編號右邊填空欄字體縮小 */
+        /* 🎯 任務四完美修復：收據編號右邊填空欄字體精準縮小至 11.5px！ */
         input[name="receipt_no"].text-input {
             font-size: 11.5px !important;
             padding: 4px 6px;
@@ -259,7 +270,7 @@
             white-space: nowrap;
         }
 
-        /* 🎯 轉帳後五碼底線向左縮短，右側預留安全距離絕不觸碰右邊框線 */
+        /* 🎯 轉帳後五碼底線向左縮短，右側預留 12px 安全距離 */
         .payment-inline-row {
             display: flex;
             align-items: center;
@@ -532,7 +543,7 @@
                     </tr>
                     <tr>
                         <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
-                        <!-- 🎯 任務二修復：出生日期輸入框字級縮小至 11px，點選日曆選好後年月日 (YYYY/MM/DD) 100% 完整顯示不裁切！ -->
+                        <!-- 🎯 任務二修復：出生日期輸入框字級縮小至 11px，點選日曆選好後年月日 (YYYY/MM/DD) 100% 完整清清楚楚顯示不裁切！ -->
                         <td><input type="date" name="dob" class="text-input" required></td>
                         <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
                         <td><input type="text" name="school" class="text-input" placeholder=""></td>
@@ -895,7 +906,7 @@ function calculateTuition() {
                                     "基本學費：$" + course.price + " × " + course.lessons + "堂 = $" + tuitionTotal + " | " +
                                     "固定教材費：$" + materialsTotal + " | " +
                                     "學雜費：$" + course.misc + " × " + course.lessons + "堂 = $" + miscTotal + "<br>" +
-                                    "👉 <b>應繳實際總計金額：NT$ " + finalTotal + " 元</b>";
+                                    "👉 <b>方案運算應繳總金額：NT$ " + finalTotal + " 元</b>";
         }
     } catch (err) {
         console.error("Tuition calculation error resolved:", err);
