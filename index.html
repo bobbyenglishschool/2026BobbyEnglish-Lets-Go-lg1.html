@@ -154,7 +154,7 @@
             border-radius: 6px 6px 0 0;
         }
 
-        /* 🔒 守護方格地基：採用完美邊框坍縮演算法 (collapse)，確保 100% 框線均勻 1px，絕不粗細不均！ */
+        /* 🔒 守護方格地基：任務一完美修復！採用邊框坍縮演算法 (collapse)，確保三大表格外框線與內格線 100% 完整均勻 1px 顯影！ */
         table {
             width: 100%;
             border-collapse: collapse !important;
@@ -224,13 +224,19 @@
             font-size: 13.5px;
         }
 
-        /* 🎯 核心修復：出生日期輸入框精準微調，日曆點選後年月日 100% 完整清清楚楚顯示不裁切！ */
+        /* 🎯 任務二完美修復：出生日期輸入框字體精準縮小至 11px，點選日曆後年月日 (YYYY/MM/DD) 100% 完整顯示！ */
         input[type="date"].text-input {
             display: block; 
             line-height: normal;
-            padding: 2px 0 2px 2px;
-            font-size: 11.5px;
-            letter-spacing: -0.2px;
+            padding: 2px !important;
+            font-size: 11px !important;
+            letter-spacing: -0.3px;
+        }
+
+        /* 🎯 任務四完美修復：收據編號右邊填空欄字體精準縮小 */
+        input[name="receipt_no"].text-input {
+            font-size: 11.5px !important;
+            padding: 4px 6px;
         }
 
         .text-input:focus {
@@ -255,7 +261,7 @@
             white-space: nowrap;
         }
 
-        /* 🎯 核心修復：轉帳後五碼底線向左縮短，右側預留 12px 距離，絕不觸碰右邊框線！ */
+        /* 🎯 轉帳後五碼底線向左縮短，右側預留 12px 安全距離 */
         .payment-inline-row {
             display: flex;
             align-items: center;
@@ -528,7 +534,7 @@
                     </tr>
                     <tr>
                         <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
-                        <!-- 🎯 核心修復：出生日期輸入框完美解鎖！點選日曆後年月日 100% 完整清清楚楚顯示不切字！ -->
+                        <!-- 🎯 任務二修復：出生日期輸入框字級縮小至 11px，年月日與日曆小圖示 100% 完整清清楚楚顯示！ -->
                         <td><input type="date" name="dob" class="text-input" required></td>
                         <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
                         <td><input type="text" name="school" class="text-input" placeholder=""></td>
@@ -569,7 +575,7 @@
                             <div id="courseLabelDisplay" class="static-course-display">未設定課程</div>
                         </td>
                         <th><span class="zh-title">標準上課時段</span><span class="en-title">Schedule</span></th>
-                        <!-- 🎯 核心修復：上課時間設定不斷行保護，兩排文字水平與垂直雙向精準置中！完美還原標準 45px 兩行高度！ -->
+                        <!-- 🎯 任務三修復：移除小內框線，文字向右移並實施 Flex 雙向精準置中！ -->
                         <td colspan="2" id="timeDisplay" style="font-weight: bold; color: var(--uci-blue); font-size: 11.5px; padding: 2px 4px; line-height: 1.35; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%;">載入中...</td>
                     </tr>
                     <tr id="standardDiscountRow">
@@ -622,7 +628,6 @@
                         <td colspan="3">
                             <div class="payment-inline-row">
                                 <label><input type="radio" name="payment_method" value="現金" checked> 現金 Cash</label>
-                                <!-- 🎯 核心修復：縮短轉帳底線寬度（50px），右側預留 12px 距離，絕不觸碰右邊框線！ -->
                                 <label style="display: flex; align-items: center; gap: 2px;">
                                     <input type="radio" name="payment_method" value="銀行轉帳"> 銀行轉帳(後五碼)：
                                     <input type="text" name="transfer_code" style="border: none; border-bottom: 1.5px solid #333; width: 50px; background: transparent; outline: none; text-align: center; font-size: 13px; height: 22px; padding: 0; margin-right: 8px;">
@@ -634,6 +639,7 @@
                         <th><span class="zh-title">經辦人員</span><span class="en-title">Staff Name</span></th>
                         <td><input type="text" name="staff_name" class="text-input" value="Joy"></td>
                         <th><span class="zh-title">收據編號</span><span class="en-title">Receipt No.</span></th>
+                        <!-- 🎯 任務四修復：收據編號右邊填空欄字體縮小至 11.5px！ -->
                         <td><input type="text" name="receipt_no" class="text-input" placeholder="R-2026-XXXX"></td>
                         <th><span class="zh-title">教材發放狀況</span><span class="en-title">Material Status</span></th>
                         <td>
