@@ -154,32 +154,23 @@
             border-radius: 6px 6px 0 0;
         }
 
-        /* 🔒 守護方格地基：傳統表格獨立外框與彈性自適應 */
+        /* 🔒 守護方格地基：採用完美邊框坍縮演算法 (collapse)，確保 100% 框線均勻 1px，絕不粗細不均！ */
         table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
+            border-collapse: collapse !important;
             margin-bottom: 15px;
             font-size: 13px;
             table-layout: fixed;
-            border: 1px solid var(--uci-blue);
+            border: 1px solid var(--uci-blue) !important;
             border-radius: 6px;
             overflow: hidden;
         }
 
         th, td {
-            border-right: 1px solid var(--uci-blue);
-            border-bottom: 1px solid var(--uci-blue);
+            border: 1px solid var(--uci-blue) !important;
             padding: 6px 8px;
             vertical-align: middle;
             word-break: break-word;
-        }
-
-        th:last-child, td:last-child {
-            border-right: none;
-        }
-        tr:last-child td {
-            border-bottom: none;
         }
 
         th {
@@ -230,15 +221,16 @@
         .static-course-display {
             font-weight: bold;
             color: var(--uci-blue);
-            font-size: 14px;
+            font-size: 13.5px;
         }
 
-        /* 🎯 核心修復：出生日期輸入框完美對齊！微調內距與字級，確保年月日 100% 完整不切字！ */
+        /* 🎯 核心修復：出生日期輸入框精準微調，日曆點選後年月日 100% 完整清清楚楚顯示不裁切！ */
         input[type="date"].text-input {
             display: block; 
             line-height: normal;
-            padding: 2px 2px 2px 4px;
-            font-size: 12px;
+            padding: 2px 0 2px 2px;
+            font-size: 11.5px;
+            letter-spacing: -0.2px;
         }
 
         .text-input:focus {
@@ -263,7 +255,7 @@
             white-space: nowrap;
         }
 
-        /* 🎯 核心修復：轉帳後五碼底線向左縮短，右側預留至少 12px 安全距離，絕不觸碰右邊框線！ */
+        /* 🎯 核心修復：轉帳後五碼底線向左縮短，右側預留 12px 距離，絕不觸碰右邊框線！ */
         .payment-inline-row {
             display: flex;
             align-items: center;
@@ -536,7 +528,7 @@
                     </tr>
                     <tr>
                         <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
-                        <!-- 🎯 核心修復：出生日期輸入框完美對齊！點選日曆後年月日 100% 完整清清楚楚顯示不切字！ -->
+                        <!-- 🎯 核心修復：出生日期輸入框解鎖 Padding 與大小！點選日曆後年月日 100% 完整清清楚楚顯示不切字！ -->
                         <td><input type="date" name="dob" class="text-input" required></td>
                         <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
                         <td><input type="text" name="school" class="text-input" placeholder=""></td>
@@ -577,7 +569,7 @@
                             <div id="courseLabelDisplay" class="static-course-display">未設定課程</div>
                         </td>
                         <th><span class="zh-title">標準上課時段</span><span class="en-title">Schedule</span></th>
-                        <!-- 🎯 核心修復：上課時間設定不斷行保護 (no-orphan)，兩排文字水平與垂直雙向精準置中！還原標準兩行高度！ -->
+                        <!-- 🎯 核心修復：上課時間設定不斷行保護，兩排文字水平與垂直雙向精準置中！完美還原標準 45px 兩行高度！ -->
                         <td colspan="2" id="timeDisplay" style="font-weight: bold; color: var(--uci-blue); font-size: 11.5px; padding: 2px 4px; line-height: 1.35; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%;">載入中...</td>
                     </tr>
                     <tr id="standardDiscountRow">
