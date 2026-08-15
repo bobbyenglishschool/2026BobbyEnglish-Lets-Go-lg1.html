@@ -224,11 +224,11 @@
             font-size: 13.5px;
         }
 
-        /* 🎯 任務一核心修復：出生日期回歸小日曆！預留 20px 右側 Padding，點選月日後數字 100% 完整顯示絕不被小日曆圖示遮住！ */
+        /* 🎯 任務一核心修復：出生日期回歸小日曆！預留 22px 右側 Padding，點選月日後數字 100% 完整顯示絕不被小日曆圖示遮住！ */
         input[type="date"].text-input {
             display: block; 
             line-height: normal;
-            padding: 2px 20px 2px 4px !important;
+            padding: 2px 22px 2px 4px !important;
             font-size: 11.5px !important;
             letter-spacing: -0.2px;
             width: 100%;
@@ -898,7 +898,7 @@ function calculateTuition() {
                                     "基本學費：$" + course.price + " × " + course.lessons + "堂 = $" + tuitionTotal + " | " +
                                     "固定教材費：$" + materialsTotal + " | " +
                                     "學雜費：$" + course.misc + " × " + course.lessons + "堂 = $" + miscTotal + "<br>" +
-                                    "👉 <b>應繳實際總計金額：NT$ " + finalTotal + " 元</b>";
+                                    "👉 <b>方案運算應繳總金額：NT$ " + finalTotal + " 元</b>";
         }
     } catch (err) {
         console.error("Tuition calculation error resolved:", err);
