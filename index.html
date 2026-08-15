@@ -154,32 +154,23 @@
             border-radius: 6px 6px 0 0;
         }
 
-        /* 🔒 守護方格地基：採用雙重鋼鐵邊框演算法，表格本體 1.5px 深藍實體外框，內部格線 1px，100% 外框絕不消失！ */
+        /* 🔒 守護方格地基：任務二核心修復！採用均勻 collapse 演算法，所有表格外框與內部格線 100% 全部統一為一模一樣粗細的 1px 深藍鋼鐵線！ */
         table {
             width: 100%;
-            border-collapse: separate !important;
-            border-spacing: 0 !important;
+            border-collapse: collapse !important;
             margin-bottom: 15px;
             font-size: 13px;
             table-layout: fixed;
-            border: 1.5px solid var(--uci-blue) !important;
+            border: 1px solid var(--uci-blue) !important;
             border-radius: 6px;
             overflow: hidden;
         }
 
         th, td {
-            border-right: 1px solid var(--uci-blue) !important;
-            border-bottom: 1px solid var(--uci-blue) !important;
+            border: 1px solid var(--uci-blue) !important;
             padding: 6px 8px;
             vertical-align: middle;
             word-break: break-word;
-        }
-
-        th:last-child, td:last-child {
-            border-right: none !important;
-        }
-        tr:last-child td {
-            border-bottom: none !important;
         }
 
         th {
@@ -233,33 +224,15 @@
             font-size: 13.5px;
         }
 
-        /* 🎯 任務一核心修復：出生日期雙層結構 (第一行年 / 第二行月日)，100% 完整顯示絕不切字！ */
-        .dob-dual-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        /* 🎯 任務一核心修復：出生日期回歸小日曆！預留 20px 右側 Padding，點選月日後數字 100% 完整顯示絕不被小日曆圖示遮住！ */
+        input[type="date"].text-input {
+            display: block; 
+            line-height: normal;
+            padding: 2px 20px 2px 4px !important;
+            font-size: 11.5px !important;
+            letter-spacing: -0.2px;
+            width: 100%;
             height: 100%;
-            padding: 2px 4px;
-            gap: 2px;
-        }
-
-        .dob-row {
-            display: flex;
-            align-items: center;
-            font-size: 11.5px;
-            color: var(--uci-blue);
-            font-weight: 600;
-        }
-
-        .dob-input-small {
-            border: none;
-            border-bottom: 1px solid var(--uci-blue);
-            background: transparent;
-            outline: none;
-            font-size: 11.5px;
-            text-align: center;
-            color: var(--text-main);
-            padding: 0 2px;
         }
 
         /* 收據編號右邊填空欄字體縮小 */
@@ -290,6 +263,7 @@
             white-space: nowrap;
         }
 
+        /* 🎯 轉帳後五碼底線向左縮短，右側預留 12px 安全距離 */
         .payment-inline-row {
             display: flex;
             align-items: center;
@@ -521,9 +495,6 @@
         <input type="hidden" id="summer_weeks_selected" name="summer_weeks_selected" value="">
         <input type="hidden" id="summer_pm_selected" name="summer_pm_selected" value="">
 
-        <!-- 隱藏的西元生日欄位，自動同步傳送給 GAS 與後台 -->
-        <input type="hidden" id="dob_combined_hidden" name="dob" value="">
-
         <!-- ================= PAGE 1 ================= -->
         <div class="page page1">
             <div id="dynamicBannerDisplay" class="dynamic-top-banner">載入中...</div>
@@ -565,18 +536,8 @@
                     </tr>
                     <tr>
                         <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
-                        <!-- 🎯 任務一核心修復：出生日期雙層結構 (第一行年 / 第二行月日)，100% 完美呈現、絕不切字！ -->
-                        <td>
-                            <div class="dob-dual-container">
-                                <div class="dob-row">
-                                    年 (Year)：<input type="text" id="dob_year" class="dob-input-small" style="width: 55px;" placeholder="YYYY" onchange="syncCombinedDOB()" required> 年
-                                </div>
-                                <div class="dob-row">
-                                    月日 (MD)：<input type="text" id="dob_month" class="dob-input-small" style="width: 30px;" placeholder="MM" onchange="syncCombinedDOB()" required> 月 
-                                    <input type="text" id="dob_day" class="dob-input-small" style="width: 30px;" placeholder="DD" onchange="syncCombinedDOB()" required> 日
-                                </div>
-                            </div>
-                        </td>
+                        <!-- 🎯 任務一核心修復：回歸小日曆！預留右側空間，點選月/日選好後 100% 完整清清楚楚顯示不被遮住！ -->
+                        <td><input type="date" name="dob" class="text-input" required></td>
                         <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
                         <td><input type="text" name="school" class="text-input" placeholder=""></td>
                         <th><span class="zh-title">年級</span><span class="en-title">Grade</span></th>
@@ -616,7 +577,7 @@
                             <div id="courseLabelDisplay" class="static-course-display">未設定課程</div>
                         </td>
                         <th><span class="zh-title">標準上課時段</span><span class="en-title">Schedule</span></th>
-                        <!-- 🎯 任務二核心修復：無小內框線，第一行「每週一、三、五」，第二行「1:30 PM - 3:30 PM」，幾何上下左右完全置中！ -->
+                        <!-- 🎯 上課時間設定無小內框線，第一行「每週一、三、五」，第二行「1:30 PM - 3:30 PM」，幾何上下左右完全置中！ -->
                         <td colspan="2" id="timeDisplay" style="font-weight: bold; color: var(--uci-blue); padding: 0; height: 100%;">載入中...</td>
                     </tr>
                     <tr id="standardDiscountRow">
@@ -821,18 +782,6 @@ var advancedDeadValues = {
 // ==========================================
 var TARGET_COURSE = "Let's Go 1"; 
 
-// 🎯 同步將年、月、日填寫內容整合成西元格式 (YYYY/MM/DD) 並傳送至後台隱藏欄位
-function syncCombinedDOB() {
-    var y = document.getElementById('dob_year').value.trim();
-    var m = document.getElementById('dob_month').value.trim();
-    var d = document.getElementById('dob_day').value.trim();
-    if (y && m && d) {
-        document.getElementById('dob_combined_hidden').value = y + '/' + m + '/' + d;
-    } else {
-        document.getElementById('dob_combined_hidden').value = '';
-    }
-}
-
 // 頁面初始化自動綁定與運算
 window.onload = function() {
     document.getElementById('course_name_hidden').value = TARGET_COURSE;
@@ -949,7 +898,7 @@ function calculateTuition() {
                                     "基本學費：$" + course.price + " × " + course.lessons + "堂 = $" + tuitionTotal + " | " +
                                     "固定教材費：$" + materialsTotal + " | " +
                                     "學雜費：$" + course.misc + " × " + course.lessons + "堂 = $" + miscTotal + "<br>" +
-                                    "👉 <b>方案運算應繳總金額：NT$ " + finalTotal + " 元</b>";
+                                    "👉 <b>應繳實際總計金額：NT$ " + finalTotal + " 元</b>";
         }
     } catch (err) {
         console.error("Tuition calculation error resolved:", err);
@@ -978,9 +927,6 @@ document.getElementById('enrollmentForm').addEventListener('submit', function(e)
     e.preventDefault(); 
     var form = this;
     var submitBtn = document.getElementById('submitBtn');
-    
-    // 提交前強制同步一次組合生日
-    syncCombinedDOB();
 
     if (submitBtn) {
         submitBtn.disabled = true;
