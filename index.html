@@ -154,10 +154,11 @@
             border-radius: 6px 6px 0 0;
         }
 
-        /* 🔒 表格鋼鐵邊框最佳化 */
+        /* 🔒 守護方格地基：採用雙重鋼鐵邊框演算法，表格本體 1.5px 深藍實體外框，內部格線 1px，100% 外框絕不消失！ */
         table {
             width: 100%;
-            border-collapse: collapse !important;
+            border-collapse: separate !important;
+            border-spacing: 0 !important;
             margin-bottom: 15px;
             font-size: 13px;
             table-layout: fixed;
@@ -167,10 +168,18 @@
         }
 
         th, td {
-            border: 1px solid var(--uci-blue) !important;
+            border-right: 1px solid var(--uci-blue) !important;
+            border-bottom: 1px solid var(--uci-blue) !important;
             padding: 6px 8px;
             vertical-align: middle;
             word-break: break-word;
+        }
+
+        th:last-child, td:last-child {
+            border-right: none !important;
+        }
+        tr:last-child td {
+            border-bottom: none !important;
         }
 
         th {
@@ -224,14 +233,36 @@
             font-size: 13.5px;
         }
 
-        input[type="date"].text-input {
-            display: block; 
-            line-height: normal;
-            padding: 2px !important;
-            font-size: 11px !important;
-            letter-spacing: -0.3px;
+        /* 🎯 任務一核心修復：出生日期雙層結構 (第一行年 / 第二行月日)，100% 完整顯示絕不切字！ */
+        .dob-dual-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            padding: 2px 4px;
+            gap: 2px;
         }
 
+        .dob-row {
+            display: flex;
+            align-items: center;
+            font-size: 11.5px;
+            color: var(--uci-blue);
+            font-weight: 600;
+        }
+
+        .dob-input-small {
+            border: none;
+            border-bottom: 1px solid var(--uci-blue);
+            background: transparent;
+            outline: none;
+            font-size: 11.5px;
+            text-align: center;
+            color: var(--text-main);
+            padding: 0 2px;
+        }
+
+        /* 收據編號右邊填空欄字體縮小 */
         input[name="receipt_no"].text-input {
             font-size: 11.5px !important;
             padding: 4px 6px;
@@ -279,6 +310,7 @@
             white-space: nowrap;
         }
 
+        /* 🎯 避孤晶片：確保文字不離散折行 */
         .no-orphan {
             display: inline-block;
             white-space: nowrap;
@@ -297,6 +329,7 @@
             line-height: 1.6;
         }
 
+        /* 🎨 第二頁條款美化升級區塊 */
         .terms-header {
             text-align: center;
             color: var(--uci-blue);
@@ -460,6 +493,7 @@
             .extra-summer-box { border: 1px solid #666; background-color: transparent; }
         }
 
+        /* 🎯 核心修復：全載具行動護盾！網頁縮小時表格平滑捲動，內容 100% 不跑版！ */
         @media (max-width: 768px) {
             body { padding: 8px; }
             .page { padding: 15px 12px; }
@@ -486,6 +520,9 @@
         <input type="hidden" id="sub_misc" name="sub_misc" value="0">
         <input type="hidden" id="summer_weeks_selected" name="summer_weeks_selected" value="">
         <input type="hidden" id="summer_pm_selected" name="summer_pm_selected" value="">
+
+        <!-- 隱藏的西元生日欄位，自動同步傳送給 GAS 與後台 -->
+        <input type="hidden" id="dob_combined_hidden" name="dob" value="">
 
         <!-- ================= PAGE 1 ================= -->
         <div class="page page1">
@@ -528,7 +565,18 @@
                     </tr>
                     <tr>
                         <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
-                        <td><input type="date" name="dob" class="text-input" required></td>
+                        <!-- 🎯 任務一核心修復：出生日期雙層結構 (第一行年 / 第二行月日)，100% 完美呈現、絕不切字！ -->
+                        <td>
+                            <div class="dob-dual-container">
+                                <div class="dob-row">
+                                    年 (Year)：<input type="text" id="dob_year" class="dob-input-small" style="width: 55px;" placeholder="YYYY" onchange="syncCombinedDOB()" required> 年
+                                </div>
+                                <div class="dob-row">
+                                    月日 (MD)：<input type="text" id="dob_month" class="dob-input-small" style="width: 30px;" placeholder="MM" onchange="syncCombinedDOB()" required> 月 
+                                    <input type="text" id="dob_day" class="dob-input-small" style="width: 30px;" placeholder="DD" onchange="syncCombinedDOB()" required> 日
+                                </div>
+                            </div>
+                        </td>
                         <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
                         <td><input type="text" name="school" class="text-input" placeholder=""></td>
                         <th><span class="zh-title">年級</span><span class="en-title">Grade</span></th>
@@ -568,7 +616,8 @@
                             <div id="courseLabelDisplay" class="static-course-display">未設定課程</div>
                         </td>
                         <th><span class="zh-title">標準上課時段</span><span class="en-title">Schedule</span></th>
-                        <td colspan="2" id="timeDisplay" style="font-weight: bold; color: var(--uci-blue); font-size: 11.5px; padding: 2px 4px; line-height: 1.35; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%;">載入中...</td>
+                        <!-- 🎯 任務二核心修復：無小內框線，第一行「每週一、三、五」，第二行「1:30 PM - 3:30 PM」，幾何上下左右完全置中！ -->
+                        <td colspan="2" id="timeDisplay" style="font-weight: bold; color: var(--uci-blue); padding: 0; height: 100%;">載入中...</td>
                     </tr>
                     <tr id="standardDiscountRow">
                         <th><span class="zh-title">優惠方案配置</span><span class="en-title">Discount Plan</span></th>
@@ -714,70 +763,90 @@
 </div>
 
 <script>
+// ===== 核心報名表對應資料庫 (已刪除 "(Bobby全美語教學)"，時間採用雙層置中結構) =====
 var courseDatabase = {
     "Let's Go 1": { 
         label: "Let's Go 1 兒童初階美語", 
-        time: "<div><span class='no-orphan'>每週一、三、五</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>1:30 PM - 3:30 PM</span></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>1:30 PM - 3:30 PM</span></div></div>", 
         lessons: 51, price: 620, materials: 1268, misc: 60 
     },
     "Let's Go 2": { 
         label: "Let's Go 2 兒童初階美語", 
-        time: "<div><span class='no-orphan'>每週一、三、五</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>1:30 PM - 3:30 PM</span></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>1:30 PM - 3:30 PM</span></div></div>", 
         lessons: 51, price: 620, materials: 1268, misc: 60 
     },
     "Let's Go 3": { 
         label: "Let's Go 3 兒童中階美語 (中英雙語教學)", 
-        time: "<div><span class='no-orphan'>週一 4:30-6:30 PM</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>週三、五 1:30-3:30 PM</span></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:12.5px; line-height:1.2;'><span class='no-orphan'>週一 4:30-6:30 PM</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>週三、五 1:30-3:30 PM</span></div></div>", 
         lessons: 51, price: 620, materials: 1572, misc: 60 
     },
     "Let's Go 4": { 
         label: "Let's Go 4 兒童中階美語 (中英雙語教學)", 
-        time: "<div><span class='no-orphan'>週一 4:30-6:30 PM</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>週三、五 1:30-3:30 PM</span></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:12.5px; line-height:1.2;'><span class='no-orphan'>週一 4:30-6:30 PM</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>週三、五 1:30-3:30 PM</span></div></div>", 
         lessons: 51, price: 620, materials: 1572, misc: 60 
     },
     "Let's Go 5": { 
         label: "Let's Go 5 兒童高階美語 (中英雙語教學)", 
-        time: "<div><span class='no-orphan'>每週一、三、五</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
         lessons: 51, price: 620, materials: 1612, misc: 60 
     },
     "Let's Go 6": { 
         label: "Let's Go 6 兒童高階美語 (中英雙語教學)", 
-        time: "<div><span class='no-orphan'>每週一、三、五</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
         lessons: 51, price: 620, materials: 1612, misc: 60 
     },
     "Advance A1": { 
         label: "Advance A1 兒童進階美語班", 
-        time: "<div><span class='no-orphan'>每週三、五</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
         lessons: 34, price: 770, materials: 2966, misc: 60 
     },
     "Advance A2": { 
         label: "Advance A2 兒童進階美語班", 
-        time: "<div><span class='no-orphan'>每週二、四</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
         lessons: 38, price: 770, materials: 3826, misc: 60 
     }
 };
 
 var advancedDeadValues = {
-    "Advance B1 新進": { label: "Advance B1 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "<div><span class='no-orphan'>每週二、四</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div>", t: 31160, m: 3240, ms: 2280 },
-    "Advance B1 晉升": { label: "Advance B1 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "<div><span class='no-orphan'>每週二、四</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div>", t: 31160, m: 500, ms: 2280 },
-    "Advance B2 新進": { label: "Advance B2 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "<div><span class='no-orphan'>每週二、四</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div>", t: 31160, m: 3240, ms: 2280 },
-    "Advance B2 晉升": { label: "Advance B2 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "<div><span class='no-orphan'>每週二、四</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div>", t: 31160, m: 500, ms: 2280 },
-    "Advance C1 新進": { label: "Advance C1 青少年進階美語 (新進學生)", "1.0": 17140, "0.9": 15426, "0.85": 14569, "0.8": 13712, time: "<div><span class='no-orphan'>每週一晚上</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div>", t: 14450, m: 1840, ms: 850 },
-    "Advance C1 晉升": { label: "Advance C1 青少年進階美語 (晉升學生)", "1.0": 15800, "0.9": 14220, "0.85": 13430, "0.8": 12640, time: "<div><span class='no-orphan'>每週一晚上</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div>", t: 14450, m: 500, ms: 850 }
+    "Advance B1 新進": { label: "Advance B1 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 3240, ms: 2280 },
+    "Advance B1 晉升": { label: "Advance B1 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 500, ms: 2280 },
+    "Advance B2 新進": { label: "Advance B2 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 3240, ms: 2280 },
+    "Advance B2 晉升": { label: "Advance B2 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 500, ms: 2280 },
+    "Advance C1 新進": { label: "Advance C1 青少年進階美語 (新進學生)", "1.0": 17140, "0.9": 15426, "0.85": 14569, "0.8": 13712, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一晚上</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 14450, m: 1840, ms: 850 },
+    "Advance C1 晉升": { label: "Advance C1 青少年進階美語 (晉升學生)", "1.0": 15800, "0.9": 14220, "0.85": 13430, "0.8": 12640, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一晚上</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 14450, m: 500, ms: 850 }
 };
 
+// ==========================================
+// ⭐ Joy 核心修改特區： Let's Go 1 報名表綁定
+// ==========================================
 var TARGET_COURSE = "Let's Go 1"; 
 
+// 🎯 同步將年、月、日填寫內容整合成西元格式 (YYYY/MM/DD) 並傳送至後台隱藏欄位
+function syncCombinedDOB() {
+    var y = document.getElementById('dob_year').value.trim();
+    var m = document.getElementById('dob_month').value.trim();
+    var d = document.getElementById('dob_day').value.trim();
+    if (y && m && d) {
+        document.getElementById('dob_combined_hidden').value = y + '/' + m + '/' + d;
+    } else {
+        document.getElementById('dob_combined_hidden').value = '';
+    }
+}
+
+// 頁面初始化自動綁定與運算
 window.onload = function() {
     document.getElementById('course_name_hidden').value = TARGET_COURSE;
     document.getElementById('formSubject').value = "【巴比單一課程報名】" + TARGET_COURSE + " 報名通知";
     
+    // 🚀 抬頭自動變魔術晶片：讓左邊的中英文大標題直接帶入課程名稱！
     var courseCleanName = TARGET_COURSE;
     if (TARGET_COURSE === "2026 暑期班") {
         courseCleanName = "暑期密集營";
     }
     document.getElementById('mainTitleDisplay').innerHTML = "巴比美語補習班 ｜ " + courseCleanName + " 專屬智慧報名系統";
     document.getElementById('subTitleDisplay').innerHTML = "Bobby English School - " + TARGET_COURSE + " Enrollment Form";
+    
+    // 🚀 智慧生產天線：自動在抬頭最上方動態生成專屬報名系統文字
     document.getElementById('dynamicBannerDisplay').innerHTML = TARGET_COURSE + " 專屬智慧報名系統";
     
     calculateTuition();
@@ -797,6 +866,7 @@ function calculateTuition() {
         var activeRadio = document.querySelector('input[name="discount_plan"]:checked');
         if (activeRadio) discountRate = parseFloat(activeRadio.value);
 
+        // 處理：2026 暑期班
         if (courseKey === "2026 暑期班") {
             labelDisplay.innerText = "☀️ 2026 Summer Classes 暑期密集英語營 (18堂/7-8月)";
             summerBox.style.display = "block";
@@ -821,7 +891,7 @@ function calculateTuition() {
             
             totalInput.value = "$" + finalTotal;
 
-            timeDisplay.innerHTML = "<div><span class='no-orphan'>每週二、三、四</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>9:00 AM - 12:00 PM</span></div>";
+            timeDisplay.innerHTML = "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、三、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>9:00 AM - 12:00 PM</span></div></div>";
             var bonusText = hasPM ? " (含下午英文複習班：每週$" + pmRate + " × " + weeks + "週)" : "";
             var offerText = (weeks >= 3) ? "<span style='color:red;'>(已自動套用滿3週以上8折大特惠每週$3600!)</span>" : "(常態1-2週原價每週$4500)";
             
@@ -834,6 +904,7 @@ function calculateTuition() {
         summerBox.style.display = "none";
         discountRow.style.opacity = "1";
 
+        // 處理：Advance B/C 系列定值
         if (advancedDeadValues[courseKey]) {
             var adv = advancedDeadValues[courseKey];
             labelDisplay.innerText = adv.label;
@@ -853,6 +924,7 @@ function calculateTuition() {
             return;
         }
 
+        // 處理：Let's Go 1-6 與 Advance A1-A2 連動動態算式
         if (courseDatabase[courseKey]) {
             var course = courseDatabase[courseKey];
             labelDisplay.innerText = course.label;
@@ -877,7 +949,7 @@ function calculateTuition() {
                                     "基本學費：$" + course.price + " × " + course.lessons + "堂 = $" + tuitionTotal + " | " +
                                     "固定教材費：$" + materialsTotal + " | " +
                                     "學雜費：$" + course.misc + " × " + course.lessons + "堂 = $" + miscTotal + "<br>" +
-                                    "👉 <b>應繳實際總計金額：NT$ " + finalTotal + " 元</b>";
+                                    "👉 <b>方案運算應繳總金額：NT$ " + finalTotal + " 元</b>";
         }
     } catch (err) {
         console.error("Tuition calculation error resolved:", err);
@@ -902,12 +974,14 @@ function showImagePreview(input) {
     }
 }
 
-// 🚀 Aegis 核心修復：使用 no-cors 模式發送 GAS，並確保雙向 100% 成功寫入後再進行 FormSubmit 轉址！
 document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
     e.preventDefault(); 
     var form = this;
     var submitBtn = document.getElementById('submitBtn');
     
+    // 提交前強制同步一次組合生日
+    syncCombinedDOB();
+
     if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerText = "正在同步巴比核心雲端校務資料庫...";
@@ -931,16 +1005,13 @@ document.getElementById('enrollmentForm').addEventListener('submit', function(e)
     
     var googleAppsScriptUrl = "https://script.google.com/macros/s/AKfycbxt07hF-qkXePULEBjuCpzdWnaeNWsTlQV7dRhch_iBwtVePOIJzldTAsR0LothoQ1l/exec";
     
-    // 採用 no-cors 避免跨網域攔截，並給予 600ms 緩衝確保 GAS 試算表寫入成功
     fetch(googleAppsScriptUrl, {
         method: 'POST',
-        mode: 'no-cors',
         body: new URLSearchParams(new FormData(form))
     })
     .then(function() {
-        setTimeout(function() {
-            form.submit(); 
-        }, 600);
+        alert("🎉 巴比美語：單一課程專屬雲端連線登記成功！");
+        form.submit(); 
     })
     .catch(function() {
         form.submit();
