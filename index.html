@@ -154,20 +154,20 @@
             border-radius: 6px 6px 0 0;
         }
 
-        /* 🔒 守護方格地基：任務二核心修復！採用均勻 collapse 演算法，所有表格外框與內部格線 100% 全部統一為一模一樣粗細的 1px 深藍鋼鐵線！ */
+        /* 🔒 任務二核心修復：把所有外框線條補上深藍顏色！採用 collapse 演算法與實體深藍色 (#1b3d6d)，確保 100% 邊框粗細一致且清晰顯色！ */
         table {
             width: 100%;
             border-collapse: collapse !important;
             margin-bottom: 15px;
             font-size: 13px;
             table-layout: fixed;
-            border: 1px solid var(--uci-blue) !important;
+            border: 1px solid #1b3d6d !important;
             border-radius: 6px;
             overflow: hidden;
         }
 
         th, td {
-            border: 1px solid var(--uci-blue) !important;
+            border: 1px solid #1b3d6d !important;
             padding: 6px 8px;
             vertical-align: middle;
             word-break: break-word;
@@ -224,13 +224,14 @@
             font-size: 13.5px;
         }
 
-        /* 🎯 任務一核心修復：出生日期回歸小日曆！預留 22px 右側 Padding，點選月日後數字 100% 完整顯示絕不被小日曆圖示遮住！ */
+        /* 🎯 任務一核心修復：出生年月日及小日曆圖檔靠右，並預留 12px 安全距離，100% 絕不碰到右邊框線！ */
         input[type="date"].text-input {
             display: block; 
             line-height: normal;
-            padding: 2px 22px 2px 4px !important;
+            padding: 2px 12px 2px 2px !important;
             font-size: 11.5px !important;
             letter-spacing: -0.2px;
+            text-align: right !important;
             width: 100%;
             height: 100%;
         }
@@ -536,7 +537,7 @@
                     </tr>
                     <tr>
                         <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
-                        <!-- 🎯 任務一核心修復：回歸小日曆！預留右側空間，點選月/日選好後 100% 完整清清楚楚顯示不被遮住！ -->
+                        <!-- 🎯 任務一核心修復：出生年月日及小日曆圖檔靠右，預留 12px 安全距離，100% 絕不碰到右邊框線！ -->
                         <td><input type="date" name="dob" class="text-input" required></td>
                         <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
                         <td><input type="text" name="school" class="text-input" placeholder=""></td>
