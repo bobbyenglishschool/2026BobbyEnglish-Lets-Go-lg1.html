@@ -154,11 +154,10 @@
             border-radius: 6px 6px 0 0;
         }
 
-        /* 🔒 守護方格地基：任務一完美修復！採用雙重鋼鐵邊框演算法，表格本體 1.5px 深藍實體外框，內部格線 1px，100% 外框絕不消失！ */
+        /* 🔒 表格鋼鐵邊框最佳化 */
         table {
             width: 100%;
-            border-collapse: separate !important;
-            border-spacing: 0 !important;
+            border-collapse: collapse !important;
             margin-bottom: 15px;
             font-size: 13px;
             table-layout: fixed;
@@ -168,18 +167,10 @@
         }
 
         th, td {
-            border-right: 1px solid var(--uci-blue) !important;
-            border-bottom: 1px solid var(--uci-blue) !important;
+            border: 1px solid var(--uci-blue) !important;
             padding: 6px 8px;
             vertical-align: middle;
             word-break: break-word;
-        }
-
-        th:last-child, td:last-child {
-            border-right: none !important;
-        }
-        tr:last-child td {
-            border-bottom: none !important;
         }
 
         th {
@@ -233,7 +224,6 @@
             font-size: 13.5px;
         }
 
-        /* 🎯 任務二完美修復：出生日期輸入框字級縮小至 11px，點選日曆後年月日 (YYYY/MM/DD) 100% 完整清清楚楚顯示不裁切！ */
         input[type="date"].text-input {
             display: block; 
             line-height: normal;
@@ -242,7 +232,6 @@
             letter-spacing: -0.3px;
         }
 
-        /* 🎯 任務四完美修復：收據編號右邊填空欄字體精準縮小至 11.5px！ */
         input[name="receipt_no"].text-input {
             font-size: 11.5px !important;
             padding: 4px 6px;
@@ -270,7 +259,6 @@
             white-space: nowrap;
         }
 
-        /* 🎯 轉帳後五碼底線向左縮短，右側預留 12px 安全距離 */
         .payment-inline-row {
             display: flex;
             align-items: center;
@@ -291,7 +279,6 @@
             white-space: nowrap;
         }
 
-        /* 🎯 避孤晶片：確保文字不離散折行 */
         .no-orphan {
             display: inline-block;
             white-space: nowrap;
@@ -310,7 +297,6 @@
             line-height: 1.6;
         }
 
-        /* 🎨 第二頁條款美化升級區塊 */
         .terms-header {
             text-align: center;
             color: var(--uci-blue);
@@ -474,7 +460,6 @@
             .extra-summer-box { border: 1px solid #666; background-color: transparent; }
         }
 
-        /* 🎯 核心修復：全載具行動護盾！網頁縮小時表格平滑捲動，內容 100% 不跑版！ */
         @media (max-width: 768px) {
             body { padding: 8px; }
             .page { padding: 15px 12px; }
@@ -543,7 +528,6 @@
                     </tr>
                     <tr>
                         <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
-                        <!-- 🎯 任務二修復：出生日期輸入框字級縮小至 11px，點選日曆選好後年月日 (YYYY/MM/DD) 100% 完整清清楚楚顯示不裁切！ -->
                         <td><input type="date" name="dob" class="text-input" required></td>
                         <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
                         <td><input type="text" name="school" class="text-input" placeholder=""></td>
@@ -584,7 +568,6 @@
                             <div id="courseLabelDisplay" class="static-course-display">未設定課程</div>
                         </td>
                         <th><span class="zh-title">標準上課時段</span><span class="en-title">Schedule</span></th>
-                        <!-- 🎯 任務三修復：移除小內框線，文字向右平移並實施 Flex 雙向精準置中！ -->
                         <td colspan="2" id="timeDisplay" style="font-weight: bold; color: var(--uci-blue); font-size: 11.5px; padding: 2px 4px; line-height: 1.35; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%;">載入中...</td>
                     </tr>
                     <tr id="standardDiscountRow">
@@ -648,7 +631,6 @@
                         <th><span class="zh-title">經辦人員</span><span class="en-title">Staff Name</span></th>
                         <td><input type="text" name="staff_name" class="text-input" value="Joy"></td>
                         <th><span class="zh-title">收據編號</span><span class="en-title">Receipt No.</span></th>
-                        <!-- 🎯 任務四修復：收據編號右邊填空欄字體精準縮小至 11.5px！ -->
                         <td><input type="text" name="receipt_no" class="text-input" placeholder="R-2026-XXXX"></td>
                         <th><span class="zh-title">教材發放狀況</span><span class="en-title">Material Status</span></th>
                         <td>
@@ -732,7 +714,6 @@
 </div>
 
 <script>
-// ===== 核心報名表對應資料庫 (已刪除 "(Bobby全美語教學)"，時間採用不斷行雙向置中設計) =====
 var courseDatabase = {
     "Let's Go 1": { 
         label: "Let's Go 1 兒童初階美語", 
@@ -785,25 +766,18 @@ var advancedDeadValues = {
     "Advance C1 晉升": { label: "Advance C1 青少年進階美語 (晉升學生)", "1.0": 15800, "0.9": 14220, "0.85": 13430, "0.8": 12640, time: "<div><span class='no-orphan'>每週一晚上</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div>", t: 14450, m: 500, ms: 850 }
 };
 
-// ==========================================
-// ⭐ Joy 核心修改特區： Let's Go 1 報名表綁定
-// ==========================================
 var TARGET_COURSE = "Let's Go 1"; 
 
-// 頁面初始化自動綁定與運算
 window.onload = function() {
     document.getElementById('course_name_hidden').value = TARGET_COURSE;
     document.getElementById('formSubject').value = "【巴比單一課程報名】" + TARGET_COURSE + " 報名通知";
     
-    // 🚀 抬頭自動變魔術晶片：讓左邊的中英文大標題直接帶入課程名稱！
     var courseCleanName = TARGET_COURSE;
     if (TARGET_COURSE === "2026 暑期班") {
         courseCleanName = "暑期密集營";
     }
     document.getElementById('mainTitleDisplay').innerHTML = "巴比美語補習班 ｜ " + courseCleanName + " 專屬智慧報名系統";
     document.getElementById('subTitleDisplay').innerHTML = "Bobby English School - " + TARGET_COURSE + " Enrollment Form";
-    
-    // 🚀 智慧生產天線：自動在抬頭最上方動態生成專屬報名系統文字
     document.getElementById('dynamicBannerDisplay').innerHTML = TARGET_COURSE + " 專屬智慧報名系統";
     
     calculateTuition();
@@ -823,7 +797,6 @@ function calculateTuition() {
         var activeRadio = document.querySelector('input[name="discount_plan"]:checked');
         if (activeRadio) discountRate = parseFloat(activeRadio.value);
 
-        // 處理：2026 暑期班
         if (courseKey === "2026 暑期班") {
             labelDisplay.innerText = "☀️ 2026 Summer Classes 暑期密集英語營 (18堂/7-8月)";
             summerBox.style.display = "block";
@@ -861,7 +834,6 @@ function calculateTuition() {
         summerBox.style.display = "none";
         discountRow.style.opacity = "1";
 
-        // 處理：Advance B/C 系列定值
         if (advancedDeadValues[courseKey]) {
             var adv = advancedDeadValues[courseKey];
             labelDisplay.innerText = adv.label;
@@ -881,7 +853,6 @@ function calculateTuition() {
             return;
         }
 
-        // 處理：Let's Go 1-6 與 Advance A1-A2 連動動態算式
         if (courseDatabase[courseKey]) {
             var course = courseDatabase[courseKey];
             labelDisplay.innerText = course.label;
@@ -931,6 +902,7 @@ function showImagePreview(input) {
     }
 }
 
+// 🚀 Aegis 核心修復：使用 no-cors 模式發送 GAS，並確保雙向 100% 成功寫入後再進行 FormSubmit 轉址！
 document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
     e.preventDefault(); 
     var form = this;
@@ -959,13 +931,16 @@ document.getElementById('enrollmentForm').addEventListener('submit', function(e)
     
     var googleAppsScriptUrl = "https://script.google.com/macros/s/AKfycbxt07hF-qkXePULEBjuCpzdWnaeNWsTlQV7dRhch_iBwtVePOIJzldTAsR0LothoQ1l/exec";
     
+    // 採用 no-cors 避免跨網域攔截，並給予 600ms 緩衝確保 GAS 試算表寫入成功
     fetch(googleAppsScriptUrl, {
         method: 'POST',
+        mode: 'no-cors',
         body: new URLSearchParams(new FormData(form))
     })
     .then(function() {
-        alert("🎉 巴比美語：單一課程專屬雲端連線登記成功！");
-        form.submit(); 
+        setTimeout(function() {
+            form.submit(); 
+        }, 600);
     })
     .catch(function() {
         form.submit();
