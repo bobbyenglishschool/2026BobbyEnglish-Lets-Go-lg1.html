@@ -154,16 +154,23 @@
             border-radius: 6px 6px 0 0;
         }
 
-        /* 🔒 任務二核心修復：把所有外框線條補上深藍顏色！採用 collapse 演算法與實體深藍色 (#1b3d6d)，確保 100% 邊框粗細一致且清晰顯色！ */
+        /* 表格行動端包裹容器 */
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 15px;
+        }
+
+        /* 🔒 任務二核心修復：採用 collapse 演算法與實體深藍色 (#1b3d6d)，確保 100% 邊框粗細一致且清晰顯色！ */
         table {
             width: 100%;
             border-collapse: collapse !important;
-            margin-bottom: 15px;
+            margin-bottom: 0;
             font-size: 13px;
             table-layout: fixed;
             border: 1px solid #1b3d6d !important;
-            border-radius: 6px;
-            overflow: hidden;
+            background-color: #ffffff;
         }
 
         th, td {
@@ -224,16 +231,17 @@
             font-size: 13.5px;
         }
 
-        /* 🎯 任務一核心修復：出生年月日及小日曆圖檔靠右，並預留 12px 安全距離，100% 絕不碰到右邊框線！ */
+        /* 🎯 任務一核心修復：出生年月日及小日曆圖檔靠右，並預留安全距離 */
         input[type="date"].text-input {
             display: block; 
             line-height: normal;
-            padding: 2px 12px 2px 2px !important;
+            padding: 2px 8px 2px 2px !important;
             font-size: 11.5px !important;
             letter-spacing: -0.2px;
             text-align: right !important;
             width: 100%;
             height: 100%;
+            box-sizing: border-box;
         }
 
         /* 收據編號右邊填空欄字體縮小 */
@@ -466,13 +474,14 @@
             .page { padding: 0; }
             .submit-btn-container { display: none !important; }
             .extra-summer-box { border: 1px solid #666; background-color: transparent; }
+            table, th, td { border: 1px solid #1b3d6d !important; }
         }
 
         /* 🎯 核心修復：全載具行動護盾！網頁縮小時表格平滑捲動，內容 100% 不跑版！ */
         @media (max-width: 768px) {
             body { padding: 8px; }
             .page { padding: 15px 12px; }
-            .page-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .page-container { width: 100%; overflow-x: visible; }
             .header-section { flex-direction: row; gap: 10px; }
             .signature-section { flex-direction: column; gap: 15px; }
             .signature-box { width: 100%; }
@@ -520,80 +529,82 @@
             </div>
 
             <div class="section-title">學員基本資料 Student Information</div>
-            <table>
-                <tbody>
-                    <tr>
-                        <th><span class="zh-title">中文姓名</span><span class="en-title">Chinese Name</span></th>
-                        <td><input type="text" name="student_name_zh" class="text-input" placeholder="" required></td>
-                        <th><span class="zh-title">英文姓名</span><span class="en-title">English Name</span></th>
-                        <td><input type="text" name="student_name_en" class="text-input" placeholder="" required></td>
-                        <th><span class="zh-title">性別</span><span class="en-title">Gender</span></th>
-                        <td>
-                            <div class="radio-group">
-                                <label><input type="radio" name="gender" value="男" required> 男/M</label>
-                                <label><input type="radio" name="gender" value="女" required> 女/F</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
-                        <!-- 🎯 任務一核心修復：出生年月日及小日曆圖檔靠右，預留 12px 安全距離，100% 絕不碰到右邊框線！ -->
-                        <td><input type="date" name="dob" class="text-input" required></td>
-                        <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
-                        <td><input type="text" name="school" class="text-input" placeholder=""></td>
-                        <th><span class="zh-title">年級</span><span class="en-title">Grade</span></th>
-                        <td>
-                            <div style="display: flex; align-items: center; justify-content: flex-start; padding: 0 8px; height: 100%;">
-                                第 <input type="text" name="grade" style="border: none; border-bottom: 1px solid #333; width: 50px; text-align: center; margin: 0 5px; background: transparent; outline: none;"> 年級
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><span class="zh-title">家長姓名</span><span class="en-title">Parent's Name</span></th>
-                        <td><input type="text" name="parent_name" class="text-input" placeholder="" required></td>
-                        <th><span class="zh-title">與學生關係</span><span class="en-title">Relationship</span></th>
-                        <td><input type="text" name="relation" class="text-input" placeholder="" required></td>
-                        <th><span class="zh-title">聯絡電話</span><span class="en-title">Phone Number</span></th>
-                        <td><input type="tel" name="phone" class="text-input" placeholder="" required></td>
-                    </tr>
-                    <tr>
-                        <th><span class="zh-title">電子信箱</span><span class="en-title">E-mail</span></th>
-                        <td colspan="3"><input type="email" name="email" class="text-input" placeholder=""></td>
-                        <th><span class="zh-title">LINE ID</span><span class="en-title">LINE ID</span></th>
-                        <td><input type="text" name="line_id" class="text-input" placeholder=""></td>
-                    </tr>
-                    <tr>
-                        <th><span class="zh-title">通訊地址</span><span class="en-title">Mailing Address</span></th>
-                        <td colspan="5"><input type="text" name="address" class="text-input" placeholder="" required></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive-wrapper">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th><span class="zh-title">中文姓名</span><span class="en-title">Chinese Name</span></th>
+                            <td><input type="text" name="student_name_zh" class="text-input" placeholder="" required></td>
+                            <th><span class="zh-title">英文姓名</span><span class="en-title">English Name</span></th>
+                            <td><input type="text" name="student_name_en" class="text-input" placeholder="" required></td>
+                            <th><span class="zh-title">性別</span><span class="en-title">Gender</span></th>
+                            <td>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="gender" value="男" required> 男/M</label>
+                                    <label><input type="radio" name="gender" value="女" required> 女/F</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
+                            <td><input type="date" name="dob" class="text-input" required></td>
+                            <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
+                            <td><input type="text" name="school" class="text-input" placeholder=""></td>
+                            <th><span class="zh-title">年級</span><span class="en-title">Grade</span></th>
+                            <td>
+                                <div style="display: flex; align-items: center; justify-content: flex-start; padding: 0 8px; height: 100%;">
+                                    第 <input type="text" name="grade" style="border: none; border-bottom: 1px solid #333; width: 50px; text-align: center; margin: 0 5px; background: transparent; outline: none;"> 年級
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><span class="zh-title">家長姓名</span><span class="en-title">Parent's Name</span></th>
+                            <td><input type="text" name="parent_name" class="text-input" placeholder="" required></td>
+                            <th><span class="zh-title">與學生關係</span><span class="en-title">Relationship</span></th>
+                            <td><input type="text" name="relation" class="text-input" placeholder="" required></td>
+                            <th><span class="zh-title">聯絡電話</span><span class="en-title">Phone Number</span></th>
+                            <td><input type="tel" name="phone" class="text-input" placeholder="" required></td>
+                        </tr>
+                        <tr>
+                            <th><span class="zh-title">電子信箱</span><span class="en-title">E-mail</span></th>
+                            <td colspan="3"><input type="email" name="email" class="text-input" placeholder=""></td>
+                            <th><span class="zh-title">LINE ID</span><span class="en-title">LINE ID</span></th>
+                            <td><input type="text" name="line_id" class="text-input" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <th><span class="zh-title">通訊地址</span><span class="en-title">Mailing Address</span></th>
+                            <td colspan="5"><input type="text" name="address" class="text-input" placeholder="" required></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <div class="section-title">報名班別與即時計費 Course & Billing</div>
-            <table>
-                <tbody>
-                    <tr>
-                        <th><span class="zh-title">就讀班別</span><span class="en-title">Course</span></th>
-                        <td colspan="2">
-                            <div id="courseLabelDisplay" class="static-course-display">未設定課程</div>
-                        </td>
-                        <th><span class="zh-title">標準上課時段</span><span class="en-title">Schedule</span></th>
-                        <!-- 🎯 上課時間設定無小內框線，第一行「每週一、三、五」，第二行「1:30 PM - 3:30 PM」，幾何上下左右完全置中！ -->
-                        <td colspan="2" id="timeDisplay" style="font-weight: bold; color: var(--uci-blue); padding: 0; height: 100%;">載入中...</td>
-                    </tr>
-                    <tr id="standardDiscountRow">
-                        <th><span class="zh-title">優惠方案配置</span><span class="en-title">Discount Plan</span></th>
-                        <td colspan="5">
-                            <div class="radio-group">
-                                <label><input type="radio" name="discount_plan" value="1.0" checked onchange="calculateTuition()"> 常態收費原價 (Full Price)</label>
-                                <label><input type="radio" name="discount_plan" value="0.9" onchange="calculateTuition()"> 9 折優惠 (10% OFF)</label>
-                                <label><input type="radio" name="discount_plan" value="0.85" onchange="calculateTuition()"> 85 折優惠 (15% OFF)</label>
-                                <label><input type="radio" name="discount_plan" value="0.8" onchange="calculateTuition()"> ✨ 老朋友 8 折 (20% OFF)</label>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive-wrapper">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th><span class="zh-title">就讀班別</span><span class="en-title">Course</span></th>
+                            <td colspan="2">
+                                <div id="courseLabelDisplay" class="static-course-display">未設定課程</div>
+                            </td>
+                            <th><span class="zh-title">標準上課時段</span><span class="en-title">Schedule</span></th>
+                            <td colspan="2" id="timeDisplay" style="font-weight: bold; color: var(--uci-blue); padding: 0; height: 100%;">載入中...</td>
+                        </tr>
+                        <tr id="standardDiscountRow">
+                            <th><span class="zh-title">優惠方案配置</span><span class="en-title">Discount Plan</span></th>
+                            <td colspan="5">
+                                <div class="radio-group">
+                                    <label><input type="radio" name="discount_plan" value="1.0" checked onchange="calculateTuition()"> 常態收費原價 (Full Price)</label>
+                                    <label><input type="radio" name="discount_plan" value="0.9" onchange="calculateTuition()"> 9 折優惠 (10% OFF)</label>
+                                    <label><input type="radio" name="discount_plan" value="0.85" onchange="calculateTuition()"> 85 折優惠 (15% OFF)</label>
+                                    <label><input type="radio" name="discount_plan" value="0.8" onchange="calculateTuition()"> ✨ 老朋友 8 折 (20% OFF)</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <!-- 暑期專案加購區 -->
             <div class="extra-summer-box" id="summerConfigBox">
@@ -622,37 +633,39 @@
             </div>
 
             <div class="section-title">補習班行政確認欄 Office Use Only</div>
-            <table>
-                <tbody>
-                    <tr>
-                        <th><span class="zh-title">應繳總金額</span><span class="en-title">Total Amount</span></th>
-                        <td><input type="text" id="total_amount" name="total_amount" class="text-input" style="font-weight: bold; color: #c00; font-size: 16px;" placeholder="$" readonly></td>
-                        <th><span class="zh-title">付款方式</span><span class="en-title">Payment Method</span></th>
-                        <td colspan="3">
-                            <div class="payment-inline-row">
-                                <label><input type="radio" name="payment_method" value="現金" checked> 現金 Cash</label>
-                                <label style="display: flex; align-items: center; gap: 2px;">
-                                    <input type="radio" name="payment_method" value="銀行轉帳"> 銀行轉帳(後五碼)：
-                                    <input type="text" name="transfer_code" style="border: none; border-bottom: 1.5px solid #333; width: 50px; background: transparent; outline: none; text-align: center; font-size: 13px; height: 22px; padding: 0; margin-right: 8px;">
-                                </label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><span class="zh-title">經辦人員</span><span class="en-title">Staff Name</span></th>
-                        <td><input type="text" name="staff_name" class="text-input" value="Joy"></td>
-                        <th><span class="zh-title">收據編號</span><span class="en-title">Receipt No.</span></th>
-                        <td><input type="text" name="receipt_no" class="text-input" placeholder="R-2026-XXXX"></td>
-                        <th><span class="zh-title">教材發放狀況</span><span class="en-title">Material Status</span></th>
-                        <td>
-                            <div class="radio-group">
-                                <label><input type="radio" name="materials_status" value="已發放"> 已發放</label>
-                                <label><input type="radio" name="materials_status" value="待發放" checked> 待發放</label>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive-wrapper">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th><span class="zh-title">應繳總金額</span><span class="en-title">Total Amount</span></th>
+                            <td><input type="text" id="total_amount" name="total_amount" class="text-input" style="font-weight: bold; color: #c00; font-size: 16px;" placeholder="$" readonly></td>
+                            <th><span class="zh-title">付款方式</span><span class="en-title">Payment Method</span></th>
+                            <td colspan="3">
+                                <div class="payment-inline-row">
+                                    <label><input type="radio" name="payment_method" value="現金" checked> 現金 Cash</label>
+                                    <label style="display: flex; align-items: center; gap: 2px;">
+                                        <input type="radio" name="payment_method" value="銀行轉帳"> 銀行轉帳(後五碼)：
+                                        <input type="text" name="transfer_code" style="border: none; border-bottom: 1.5px solid #333; width: 50px; background: transparent; outline: none; text-align: center; font-size: 13px; height: 22px; padding: 0; margin-right: 8px;">
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><span class="zh-title">經辦人員</span><span class="en-title">Staff Name</span></th>
+                            <td><input type="text" name="staff_name" class="text-input" value="Joy"></td>
+                            <th><span class="zh-title">收據編號</span><span class="en-title">Receipt No.</span></th>
+                            <td><input type="text" name="receipt_no" class="text-input" placeholder="R-2026-XXXX"></td>
+                            <th><span class="zh-title">教材發放狀況</span><span class="en-title">Material Status</span></th>
+                            <td>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="materials_status" value="已發放"> 已發放</label>
+                                    <label><input type="radio" name="materials_status" value="待發放" checked> 待發放</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- ================= PAGE 2 ================= -->
@@ -725,7 +738,7 @@
 </div>
 
 <script>
-// ===== 核心報名表對應資料庫 (已刪除 "(Bobby全美語教學)"，時間採用雙層置中結構) =====
+// ===== 核心報名表對應資料庫 =====
 var courseDatabase = {
     "Let's Go 1": { 
         label: "Let's Go 1 兒童初階美語", 
