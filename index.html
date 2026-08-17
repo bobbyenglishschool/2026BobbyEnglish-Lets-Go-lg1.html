@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- 🎯 全載具核心天線：確保行動裝置與 A4 紙張列印排版 100% 完美自適應 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>巴比美語補習班 | Let's Go 1 專屬學員報名系統</title>
+    <title>巴比美語補習班 | 專屬學員報名系統</title>
     
     <!-- 引入專業雙語 Google Fonts 字型 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -981,10 +981,8 @@ document.getElementById('enrollmentForm').addEventListener('submit', function(e)
     
     var googleAppsScriptUrl = "https://script.google.com/macros/s/AKfycbxt07hF-qkXePULEBjuCpzdWnaeNWsTlQV7dRhch_iBwtVePOIJzldTAsR0LothoQ1l/exec";
     
-    // 🎯 核心修復：加入 mode: 'no-cors' 避開瀏覽器跨域安全性連線阻斷
     fetch(googleAppsScriptUrl, {
         method: 'POST',
-        mode: 'no-cors',
         body: new URLSearchParams(new FormData(form))
     })
     .then(function() {
