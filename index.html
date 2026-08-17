@@ -232,7 +232,7 @@
             font-size: 13.5px;
         }
 
-        /* 🎯 DOB 靠右微調：靠右對齊且預留 12px 安全距離，100% 絕不碰到右邊框線！ */
+        /* 🎯 DOB 靠右微調：靠右對齊且預留 12px 防撞氣墊，絕不碰撞右邊框線！ */
         input[type="date"].text-input {
             display: block; 
             line-height: normal;
@@ -896,7 +896,7 @@ function calculateTuition() {
             var materialsTotal = course.materials;
             var miscTotal = course.misc * course.lessons;
             
-            // 全項目小計
+            // 全項目小計 (學費 + 教材費 + 學雜費)
             var subTotal = tuitionTotal + materialsTotal + miscTotal;
             
             // 🎯 全項目一律乘上折扣率並四捨五入整數！
