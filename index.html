@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- 🎯 全載具核心天線：確保行動裝置與 A4 紙張列印排版 100% 完美自適應 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>私立巴比美語短期補習班 | 短期補習服務契約書 (Let's Go 1)</title>
+    <title>巴比美語補習班 | 專屬學員報名系統</title>
     
     <!-- 引入專業雙語 Google Fonts 字型 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@
         }
 
         .page-container {
-            max-width: 850px;
+            max-width: 800px;
             margin: 0 auto;
             background: #fff;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
@@ -48,28 +48,99 @@
         }
 
         .page {
-            padding: 40px 50px;
+            padding: 30px 40px;
         }
 
-        .contract-header {
-            text-align: center;
-            border-bottom: 3px double var(--uci-blue);
+        /* 🎯 抬頭最上方動態智慧生產字樣 */
+        .dynamic-top-banner {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--uci-blue);
+            background-color: #e6f0fa;
+            padding: 6px 14px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--uci-gold);
+            display: inline-block;
+        }
+
+        /* 經典頂部：左資料、右相片 */
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--uci-blue);
             padding-bottom: 15px;
-            margin-bottom: 25px;
         }
 
-        .contract-header h1 {
+        .title-area {
+            flex: 1;
+            padding-right: 20px;
+            min-width: 0;
+        }
+
+        .main-title {
             color: var(--uci-blue);
             font-size: 21px;
             margin: 0 0 5px 0;
             font-weight: 800;
         }
 
-        .contract-header h2 {
+        .sub-title {
             color: var(--uci-blue);
-            font-size: 15px;
-            margin: 0;
-            font-weight: 700;
+            font-size: 14px;
+            margin: 0 0 15px 0;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            font-size: 11.5px;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+        
+        .contact-info p {
+            margin: 2px 0;
+        }
+
+        .photo-box {
+            width: 2in;
+            height: 2in;
+            border: 2px solid var(--uci-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 12px;
+            color: var(--uci-blue);
+            flex-shrink: 0;
+            background-color: #fafafa;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .photo-box:hover {
+            background-color: rgba(27, 61, 109, 0.05);
+        }
+
+        .photo-file-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .preview-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .section-title {
@@ -78,12 +149,11 @@
             padding: 8px 14px;
             font-size: 15px;
             font-weight: 800;
-            margin: 25px 0 10px 0;
-            border-radius: 6px 6px 0 0;
+            margin: 20px 0 10px 0;
             display: inline-block;
+            border-radius: 6px 6px 0 0;
         }
 
-        /* 表格行動端包裹容器 */
         .table-responsive-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -91,7 +161,7 @@
             margin-bottom: 15px;
         }
 
-        /* 🔒 三大表格邊框防護：採用 collapse 演算法與實體深藍色 (#1b3d6d !important) */
+        /* 🔒 邊框顯色修復：三大主題下方表格外框與內部格線全數強制補上實體深藍色 (#1b3d6d !important)！ */
         table {
             width: 100%;
             border-collapse: collapse !important;
@@ -99,12 +169,14 @@
             font-size: 13px;
             table-layout: fixed;
             border: 1px solid #1b3d6d !important;
+            border-radius: 0px;
+            overflow: hidden;
             background-color: #ffffff;
         }
 
         th, td {
             border: 1px solid #1b3d6d !important;
-            padding: 10px;
+            padding: 6px 8px;
             vertical-align: middle;
             word-break: break-word;
         }
@@ -113,167 +185,240 @@
             background-color: #f0f4f8;
             color: var(--uci-blue);
             text-align: center; 
-            width: 25%;
-            font-weight: 700;
+            width: 18%;
             line-height: 1.4;
+            font-weight: 700;
+            padding: 6px 4px;
         }
 
         th span.zh-title {
-            font-size: 13px;
+            font-size: 13.5px;
             display: block;
+            margin-bottom: 2px;
             font-weight: 700;
         }
         th span.en-title {
-            font-size: 10px;
+            font-size: 10.5px;
             display: block;
             font-weight: 400;
             opacity: 0.85;
         }
 
         td {
+            height: 45px;
             position: relative;
             text-align: left;
-            width: 25%;
-            background-color: #fff;
         }
 
-        .select-input {
-            font-size: 12px; 
-            font-weight: bold;
-            color: var(--uci-blue);
-            cursor: pointer;
-            background-color: #e6f0fa;
-            border: 1px solid #1b3d6d;
-            border-radius: 4px;
-            width: 100%;
-            padding: 6px 4px;
-            outline: none;
-        }
-
-        .text-input {
+        .text-input, .static-course-display {
             border: none;
             background: transparent;
             width: 100%;
             height: 100%;
             outline: none;
             font-family: inherit;
-            color: inherit;
             font-size: 13px;
-            padding: 4px;
+            color: inherit;
+            padding: 4px 8px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
         }
 
-        .text-input:focus, .select-input:focus {
+        .static-course-display {
+            font-weight: bold;
+            color: var(--uci-blue);
+            font-size: 13.5px;
+        }
+
+        /* 🎯 DOB 靠右微調：靠右對齊且預留 12px 安全距離，100% 絕不碰到右邊框線！ */
+        input[type="date"].text-input {
+            display: block; 
+            line-height: normal;
+            padding: 2px 12px 2px 2px !important;
+            font-size: 11.5px !important;
+            letter-spacing: -0.2px;
+            text-align: right !important;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 收據編號右邊填空欄字體縮小 */
+        input[name="receipt_no"].text-input {
+            font-size: 11.5px !important;
+            padding: 4px 6px;
+        }
+
+        .text-input:focus {
             background-color: rgba(254, 204, 7, 0.15);
         }
 
-        .legal-box {
-            border: 1px solid var(--border-color);
-            background-color: #fafbfc;
-            padding: 20px;
-            height: 420px; 
-            overflow-y: scroll;
-            font-size: 13px;
-            line-height: 1.7;
-            text-align: left;
-            margin-bottom: 20px;
+        .radio-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; 
+            gap: 12px;
+            padding-left: 4px;
+            height: 100%;
+            flex-wrap: wrap;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .payment-inline-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px; 
+            padding-left: 4px;
+            padding-right: 12px;
+            height: 100%;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .payment-inline-row label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .no-orphan {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .offer-box {
+            background-color: rgba(254, 204, 7, 0.15);
+            border: 1px dashed var(--uci-gold);
+            padding: 12px 16px;
+            margin: 15px 0;
             border-radius: 6px;
+            font-weight: bold;
+            color: #997a00;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
-        .legal-item {
-            margin-bottom: 20px;
-            border-bottom: 1px dashed #cbd5e1;
-            padding-bottom: 15px;
+        /* 🎨 第二頁條款美化升級區塊 */
+        .terms-header {
+            text-align: center;
+            color: var(--uci-blue);
+            border-bottom: 2.5px solid var(--uci-blue);
+            padding-bottom: 12px;
+            margin-bottom: 22px;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
         }
 
-        .legal-item:last-child {
-            border-bottom: none;
+        .privacy-statement {
+            background-color: #f0f4f8;
+            padding: 14px 18px;
+            border-left: 4px solid var(--uci-blue);
+            font-size: 13.5px;
+            margin-bottom: 22px;
+            border-radius: 6px;
+            text-align: justify;
+            line-height: 1.65;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
         }
 
-        .legal-item strong {
+        .terms-list {
+            font-size: 13.5px;
+            color: var(--text-main);
+            text-align: justify;
+        }
+
+        .terms-list .term-item {
+            margin-bottom: 18px;
+            line-height: 1.65;
+            background: #ffffff;
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .terms-list strong {
             color: var(--uci-blue);
             font-size: 14px;
             font-weight: 800;
         }
 
-        .legal-en {
-            color: var(--text-sub);
-            font-style: normal;
-            display: block;
-            margin-top: 4px;
-            font-size: 11.5px;
-            line-height: 1.5;
-        }
-
-        .dual-signature-row {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 4%;
-            width: 100%;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-
-        .signature-block {
-            width: 48%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .signature-label {
-            font-size: 12.5px;
-            color: var(--uci-blue);
-            font-weight: bold;
-            margin-bottom: 6px;
-        }
-
-        .signature-canvas-container {
-            width: 100%;
-            height: 130px;
-            background-color: #fff;
-            border: 1.5px dashed var(--uci-blue);
-            position: relative;
-            border-radius: 6px;
-        }
-
-        canvas {
-            width: 100%;
-            height: 100%;
-            cursor: crosshair;
-            display: block;
-        }
-
-        .canvas-clear-btn {
-            position: absolute;
-            bottom: 6px;
-            right: 6px;
-            background-color: var(--soft-red);
-            color: #fff;
-            border: none;
-            padding: 4px 8px;
-            font-size: 11px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .agreement-banner {
+        .agreement-text {
             text-align: center;
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 14.5px;
+            font-weight: 800;
             color: var(--soft-red);
-            margin: 25px 0;
-            padding: 12px;
-            background-color: #fef2f2;
-            border: 1px solid #fecaca;
-            border-radius: 6px;
+            margin: 25px 0 20px 0;
             line-height: 1.6;
         }
 
-        .submit-btn-container, .print-btn-container {
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            gap: 20px;
+        }
+
+        .signature-box {
+            flex: 1;
+            width: 50%; 
+            border: 1.5px solid var(--uci-blue);
+            padding: 16px;
+            border-radius: 8px;
+            background-color: #fafbfc;
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .signature-row {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 12px;
+            height: 38px; 
+        }
+
+        .signature-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .signature-row span {
+            color: var(--uci-blue);
+            font-weight: 700;
+            font-size: 13px;
+            line-height: 1.3;
+            display: inline-block;
+            width: 140px; 
+            flex-shrink: 0;
+        }
+
+        .signature-input {
+            border: none;
+            border-bottom: 1.5px solid #666;
+            background: transparent;
+            flex: 1;
+            outline: none;
+            font-size: 15px;
+            padding: 2px 5px;
+            text-align: left;
+            width: 100%; 
+        }
+
+        .submit-btn-container {
+            margin-top: 30px;
             text-align: center;
-            margin-top: 20px;
-            padding-bottom: 10px;
         }
 
         .submit-btn {
@@ -286,11 +431,9 @@
             border-radius: 30px;
             cursor: pointer;
             width: 100%;
-            max-width: 520px;
+            max-width: 400px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.2s, box-shadow 0.2s;
-            display: inline-block;
-            white-space: nowrap;
         }
 
         .submit-btn:hover {
@@ -298,427 +441,553 @@
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
 
-        .print-btn {
-            background-color: var(--uci-blue);
-            color: #fff;
-            border: none;
-            padding: 12px 35px;
-            font-size: 14px;
-            font-weight: 800;
-            border-radius: 25px;
-            cursor: pointer;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-            transition: all 0.2s;
+        .submit-btn:disabled {
+            background-color: #cccccc !important;
+            color: #666666 !important;
+            cursor: not-allowed;
+            transform: none !important;
         }
 
-        .print-btn:hover {
-            background-color: #102a4d;
-            transform: translateY(-1px);
+        .extra-summer-box {
+            background-color: #f9fbfd;
+            border: 1px solid #bde0fe;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 6px;
+            display: none;
+            text-align: left;
+        }
+
+        .extra-summer-title {
+            color: #0077b6;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14px;
         }
 
         @media print {
             @page { size: A4 portrait; margin: 10mm 15mm; }
-            body { background-color: #fff; padding: 0; margin: 0; }
-            .page-container { max-width: 100%; width: 100%; box-shadow: none; border-radius: 0; }
-            .page { padding: 10mm 15mm !important; width: 210mm; }
-            .legal-box { height: auto !important; overflow-y: visible !important; border: none; background-color: #fff; padding: 0; }
-            .legal-item { page-break-inside: avoid; }
-            .canvas-clear-btn, .submit-btn-container, .print-btn-container { display: none !important; }
-            .signature-canvas-container { border: 1px solid var(--uci-blue); }
-            table, th, td { border: 1px solid #1b3d6d !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            th { width: 25% !important; background-color: #f0f4f8 !important; }
-            td { width: 25% !important; }
+            body { background-color: transparent; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page-container { box-shadow: none; max-width: 100%; }
+            .page1 { break-after: page; }
+            .page { padding: 0; }
+            .submit-btn-container { display: none !important; }
+            .extra-summer-box { border: 1px solid #666; background-color: transparent; }
+            table, th, td { border: 1px solid #1b3d6d !important; }
         }
 
         @media (max-width: 768px) {
             body { padding: 8px; }
-            .page { padding: 20px 15px; }
+            .page { padding: 15px 12px; }
             .page-container { width: 100%; overflow-x: visible; }
-            .select-input { font-size: 11px; padding: 4px 2px; }
-            .submit-btn { font-size: 15px; padding: 12px 20px; }
-            .dual-signature-row { flex-direction: column; gap: 15px; }
-            .signature-block { width: 100%; }
-            table { min-width: 650px; }
+            .header-section { flex-direction: row; gap: 10px; }
+            .signature-section { flex-direction: column; gap: 15px; }
+            .signature-box { width: 100%; }
+            table { min-width: 600px; }
         }
     </style>
 </head>
 <body>
 
 <div class="page-container">
-    <form id="contractForm" action="https://formsubmit.co/joy@bobbyenglishschool.com" method="POST" onsubmit="prepareSubmit(event)">
+    <form id="enrollmentForm" action="https://formsubmit.co/joy@bobbyenglishschool.com" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" id="formSubject" name="_subject" value="【法律合約書回傳】Let's Go 1 兒童美語初級班">
-        
-        <!-- 🔒 雙簽章圖檔回收管道 -->
-        <input type="hidden" id="signature_parent_base64" name="[家長親筆手寫電子簽章區]">
-        <input type="hidden" id="signature_staff_base64" name="[補習班行政核定電子簽章區]">
+        <input type="hidden" id="formSubject" name="_subject" value="【專屬報名登記】巴比美語單一課程填報通知">
+        <input type="hidden" id="printLinkInput" name="查看並印出完整A4報名表" value="">
 
-        <!-- 巴比死數字核心隱形數據備份 -->
-        <input type="hidden" id="hidden_tuition" name="[契約核定] 學費金額">
-        <input type="hidden" id="hidden_materials" name="[契約核定] 教材費金額">
-        <input type="hidden" id="hidden_misc" name="[契約核定] 學雜費金額">
-        <input type="hidden" id="hidden_total" name="[契約核定] 總計繳費總額">
+        <input type="hidden" id="course_name_hidden" name="course_name" value="">
+        <input type="hidden" id="class_time" name="class_time" value="">
+        <input type="hidden" id="sub_tuition" name="sub_tuition" value="0">
+        <input type="hidden" id="sub_materials" name="sub_materials" value="0">
+        <input type="hidden" id="sub_misc" name="sub_misc" value="0">
+        <input type="hidden" id="summer_weeks_selected" name="summer_weeks_selected" value="">
+        <input type="hidden" id="summer_pm_selected" name="summer_pm_selected" value="">
 
-        <div class="page">
-            <div class="contract-header">
-                <h1>私立巴比美語短期補習班 ｜ 短期補習服務報名表暨服務契約書</h1>
-                <h2>Let's Go 1 兒童美語初級班</h2>
-                <h2 style="font-size: 13.5px; font-weight: bold; margin-top: 5px; opacity: 0.95;">Bobby English School - Enrollment Form & Service Contract</h2>
-                <p style="font-size: 11px; color: var(--text-sub); margin: 10px 0 0 0;">(依據教育部短期補習班補習服務契約書範本與桃園市最新設立及管理法規制定-2026年9月最新核定版)</p>
+        <!-- ================= PAGE 1 ================= -->
+        <div class="page page1">
+            <div id="dynamicBannerDisplay" class="dynamic-top-banner">載入中...</div>
+
+            <div class="header-section">
+                <div class="title-area">
+                    <h1 class="main-title" id="mainTitleDisplay">巴比美語補習班 ｜ 全能智慧校務報名系統</h1>
+                    <h2 class="sub-title" id="subTitleDisplay">Bobby English School - Smart Course Enrollment Form</h2>
+                    <div class="contact-info">
+                        <p><strong>電話 / Phone：</strong>03-2161338</p>
+                        <p><strong>官方 / Line：</strong>@bobbyenglish</p>
+                        <p><strong>信箱 / E-mail：</strong>Joy@bobbyenglishschool.com</p>
+                        <p><strong>地址 / Address：</strong>330 桃園市桃園區莊二街156號1樓</p>
+                        <p><strong>立案字號 / Registration No.：</strong>府教社字第0930131461號</p>
+                    </div>
+                </div>
+                
+                <label class="photo-box" id="photoContainer">
+                    <div id="uploadText">點擊上傳照片<br>Click to Upload<br>(2-inch)</div>
+                    <input type="file" name="student_photo" accept="image/*" class="photo-file-input" onchange="showImagePreview(this)">
+                </label>
             </div>
 
-            <!-- 🎯 契約審閱確認條款 -->
-            <div class="privacy-statement" style="background-color: #f0f4f8; padding: 12px; border-left: 4px solid var(--uci-blue); font-size: 13px; margin-bottom: 20px;">
-                <strong>【重要權益：契約審閱權】 / Contract Review Right</strong><br>
-                本定型化契約書於中華民國 <span id="reviewYearDisplay" style="font-weight: bold; color: var(--uci-blue);"></span> 年 <span id="reviewMonthDisplay" style="font-weight: bold; color: var(--uci-blue);"></span> 月 <span id="reviewDayDisplay" style="font-weight: bold; color: var(--uci-blue);"></span> 日由學員及監護人攜回審閱（契約審閱期間至少為五日）。甲方簽章確認已充分審閱並同意條款。<br>
-                <span style="color: var(--text-sub); font-style: italic;">This standard contract was taken home by the student/parent for review on Minguo <span id="reviewYearDisplayEn"></span>/<span id="reviewMonthDisplayEn"></span>/<span id="reviewDayDisplayEn"></span> (The contract review period shall be at least five days). Signature below confirms full review and acknowledgment.</span>
-            </div>
-
-            <!-- 📄 【契約核定區】 -->
-            <div class="section-title">一、選讀班級、科目與學費核定明細 / Course & Billing Details</div>
+            <div class="section-title">學員基本資料 Student Information</div>
             <div class="table-responsive-wrapper">
                 <table>
                     <tbody>
                         <tr>
-                            <th><span class="zh-title">選讀核定班別</span><span class="en-title">Enrolled Course</span></th>
-                            <!-- 🎯 修改亮點：將班別拆分為兩行，並精準居中對齊 -->
-                            <td style="font-weight: bold; color: var(--uci-blue); font-size: 13.5px; text-align: center; vertical-align: middle; line-height: 1.4;">
-                                Let's Go 1<br>兒童美語初級班
-                            </td>
-                            <th><span class="zh-title">核定收費方案選擇</span><span class="en-title">Tuition Plan Option</span></th>
+                            <th><span class="zh-title">中文姓名</span><span class="en-title">Chinese Name</span></th>
+                            <td><input type="text" name="student_name_zh" class="text-input" placeholder="" required></td>
+                            <th><span class="zh-title">英文姓名</span><span class="en-title">English Name</span></th>
+                            <td><input type="text" name="student_name_en" class="text-input" placeholder="" required></td>
+                            <th><span class="zh-title">性別</span><span class="en-title">Gender</span></th>
                             <td>
-                                <select id="discountSelector" class="select-input" onchange="calculateContractBilling()">
-                                    <option value="1">標準常規原價方案 / Standard Plan ($35,948)</option>
-                                    <option value="0.9">9折優惠方案 / 10% Off Promotion</option>
-                                    <option value="0.85">85折優惠方案 / 15% Off Promotion</option>
-                                    <!-- 🎯 已刪除「老朋友」字樣，保留「8折優惠方案」 -->
-                                    <option value="0.8">8折優惠方案 / 20% Off Promotion</option>
-                                </select>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="gender" value="男" required> 男/M</label>
+                                    <label><input type="radio" name="gender" value="女" required> 女/F</label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
-                            <th><span class="zh-title">(1) 學費</span><span class="en-title">Tuition Fee</span></th>
-                            <td id="td_tuition" style="font-weight: bold; color: var(--uci-blue);">NT$ 31,620 元</td>
-                            <th><span class="zh-title">(2) 講義教材費</span><span class="en-title">Materials Fee</span></th>
-                            <td id="td_materials" style="font-weight: bold; color: var(--uci-blue);">NT$ 1,268 元</td>
+                            <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
+                            <!-- 🎯 DOB 靠右且留 12px 防撞氣墊，絕不碰撞右邊框線！ -->
+                            <td><input type="date" name="dob" class="text-input" required></td>
+                            <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
+                            <td><input type="text" name="school" class="text-input" placeholder=""></td>
+                            <th><span class="zh-title">年級</span><span class="en-title">Grade</span></th>
+                            <td>
+                                <div style="display: flex; align-items: center; justify-content: flex-start; padding: 0 8px; height: 100%;">
+                                    第 <input type="text" name="grade" style="border: none; border-bottom: 1px solid #333; width: 50px; text-align: center; margin: 0 5px; background: transparent; outline: none;"> 年級
+                                </div>
+                            </td>
                         </tr>
                         <tr>
-                            <th><span class="zh-title">(3) 當期學雜費</span><span class="en-title">School Fees</span></th>
-                            <td id="td_misc" style="font-weight: bold; color: var(--uci-blue);">NT$ 3,060 元</td>
-                            <th><span class="zh-title">核定繳費總金額(1)+(2)+(3)</span><span class="en-title">Grand Total (1)+(2)+(3)</span></th>
-                            <td id="td_total" style="font-weight: bold; color: #c00; font-size: 14px;">NT$ 35,948 元</td>
+                            <th><span class="zh-title">家長姓名</span><span class="en-title">Parent's Name</span></th>
+                            <td><input type="text" name="parent_name" class="text-input" placeholder="" required></td>
+                            <th><span class="zh-title">與學生關係</span><span class="en-title">Relationship</span></th>
+                            <td><input type="text" name="relation" class="text-input" placeholder="" required></td>
+                            <th><span class="zh-title">聯絡電話</span><span class="en-title">Phone Number</span></th>
+                            <td><input type="tel" name="phone" class="text-input" placeholder="" required></td>
+                        </tr>
+                        <tr>
+                            <th><span class="zh-title">電子信箱</span><span class="en-title">E-mail</span></th>
+                            <td colspan="3"><input type="email" name="email" class="text-input" placeholder=""></td>
+                            <th><span class="zh-title">LINE ID</span><span class="en-title">LINE ID</span></th>
+                            <td><input type="text" name="line_id" class="text-input" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <th><span class="zh-title">通訊地址</span><span class="en-title">Mailing Address</span></th>
+                            <td colspan="5"><input type="text" name="address" class="text-input" placeholder="" required></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="section-title">二、短期補習服務定型化契約應記載條款 / Cram School Services Model Contract Provisions</div>
-            <div class="legal-box" id="legalBoxContainer">
-                <div class="legal-item">
-                    <strong>前言：契約收受與審閱確認 / Preamble: Acknowledged Contract Review Period：</strong><br>
-                    甲方確認於實際上課日前已收受本契約原本（或審閱本），並已攜回本契約原本審閱至少五日，充分理解並表示同意全部條款細則。<br>
-                    <span class="legal-en">Party A confirms that the copy of this contract was taken home for review for at least five days prior to the official commencement of classes, and fully understands and agrees to all terms and conditions herein.</span>
-                </div>
-                <div class="legal-item">
-                    <strong>第一條：修業班別與班級性質 / Article 1: Course and Program Enrollment Type：</strong><br>
-                    1. 本契約核定就讀班級為：Let's Go 1 兒童美語初級班。<br>
-                    2. 本課程屬一般系統化正規美語教學進度班，非屬保證班（補習班未提供任何特定考取、分數擔保、退費退分等特定保證成效承諾）。<br>
-                    <span class="legal-en">1. The approved program under this contract is: Let's Go 1 Children's English Elementary Class.<br>2. This course is a regular systematic progression program and is NOT a "guaranteed success" or "warranty" program (No promises of passing specific exams or special guarantee warranties shall apply).</span>
-                </div>
-                <div class="legal-item">
-                    <strong>第二條：修業期間與插班計費規範 / Article 2: Study Period and Pro-Rata Later Enrollment Policy：</strong><br>
-                    1. 本期核定修業期間自民國115年08月31日正式開課起，至該班當期排定課程總堂數（51堂課）結束止。<br>
-                    2. 課程開始後報名插班者，應以實際報名後之最近一次實際上課日作為開課日（未填列時以甲方實際第一次上課日為準），並以該課程當期剩餘期間及未上課時數，依比例計費收取費用。<br>
-                    <span class="legal-en">1. The term of study commences on the official start date of August 31, 2026, until the scheduled conclusion of the entire semester program lessons (51 lessons).<br>2. For students enrolling after the course has commenced, the immediate next actual class date after formal registration shall be deemed the official start date, and fees shall be calculated pro-rata based on the remaining lessons and period.</span>
-                </div>
-                <div class="legal-item">
-                    <strong>第三條：課程科目、內容與授課時數 / Article 3: Course Subjects, Content, and Timetable Hours：</strong><br>
-                    1. 課程科目與核心內容：Let's Go 1 美語基礎教學（涵蓋 26 字母標準拼讀認讀、Phonics 自然發音基礎啟蒙、日常情境指令與生活社交對話、高頻率字彙視覺記憶養成）。<br>
-                    2. 每週授課時數與時間：每週授課 3 次，每次 2 小時，每週共計 6 小時（每週一、三、五 下午 1:30 - 3:30 p.m.）。<br>
-                    <span class="legal-en">1. Course Subjects and Core Content: Let's Go 1 Foundational English (including standard alphabet writing/recognition, Phonics enlightenment, classroom directions, situational daily dialogues, and visual vocabulary training).<br>2. Weekly Hours: 3 times a week, 2 hours per lesson, totaling 6 hours per week (Every Mon, Wed, Fri from 1:30 PM to 3:30 PM).</span>
-                </div>
-                <div class="legal-item">
-                    <strong>第四條：班級編制與實際上課人數上限 / Article 4: Class Size and Legal Capacity Limitations：</strong><br>
-                    1. 本班採取精緻小班制教學，實際點名上課人數上限嚴格遵守政府法令規範限制（本班招生人數上限為10人），以確保教學品質與場所公共安全。<br>
-                    <span class="legal-en">1. Exquisite small-class system. The number of students per class shall strictly comply with government regulatory limitations and is strictly capped at 10 students maximum to ensure teaching quality and venue safety.</span>
-                </div>
-                <div class="legal-item">
-                    <strong>第五條：收費項目、金額與禁止不當收費 / Article 5: Fee Items, Grand Total, and Receipt Requirements：</strong><br>
-                    1. 本期核定收費費用包含基本學費、教材講義費及當期學雜費，當期實際應繳總金額以本合約第一項動態計算扣除優惠減免後之實際金額為準（目前核定應繳總額為新台幣 <span id="legal_total_zh" style="font-weight:bold; color:#c00;">35,948</span> 元）。<br>
-                    2. 未明列於契約內之項目，乙方不得收取。所有收取費用乙方應依法開立正式核定收據憑證交予甲方。<br>
-                    <span class="legal-en">1. The tuition and fees consist of Base Tuition, Textbooks/Materials, and Fees, and the total payment shall be based on the actual Grand Total dynamically computed under Section 1 after discount deductions.<br>2. Party B shall not collect any fee items that are not explicitly specified herein under any pretext. Official receipts must be issued for all fees collected.</span>
-                </div>
-                <div class="legal-item">
-                    <strong>第六條：桃園市法定退費標準 / Article 6: Refund Policy and Regulations (Taoyuan City Standard)：</strong><br>
-                    依據「桃園市短期補習班退費管理自治條例」規範，學員因故離班退費標準條例嚴格執行如下（補習班應於家長要求退費之日起七日內辦理完畢）：<br>
-                    (1) 實際開課日前第30日以前要求退費者：退還當期依約繳納費用之總額（100%全退）。<br>
-                    (2) 實際開課日前第1日至第29日要求退費者：退還繳納費用總額之百分之九十（90%）。但所扣除金額以新臺幣一千元為限，超過部分仍應退還。<br>
-                    (3) 實際開課日起5日內要求退費者：退還依約繳納費用總額之百分之八十（80%）。<br>
-                    (4) 實際開課日起第六日，至全期或總課程時數之三分之一期間內要求退費者：退還依約繳納費用總額之百分之五十（50%）。<br>
-                    (5) 已逾全期或總課程時數之三分之一者：所收取之當期費用得全數不予退還。<br>
-                    (6) 代辦之教材費若已購置並已發放予甲方者，該項目不予退還，教材歸甲方所有。<br>
-                    <span class="legal-en">In accordance with the Taoyuan City Cram School Refund Regulations, refunds shall be processed within 7 days based on the following:<br>(1) Requested 30 days or more before start date: Full 100% refund of total fees paid.<br>(2) Requested within 1 to 29 days before start date: 90% refund of total fees paid (capped at NT$1,000 deduction).<br>(3) Requested within 5 days from start date: 80% refund of total fees paid.<br>(4) Requested from the 6th day until 1/3 of total course term: 50% refund of total fees paid.<br>(5) Requested after 1/3 of total course term: Fees collected may be entirely non-refundable.<br>(6) Issued materials or textbooks are non-refundable and belong to the student.</span>
-                </div>
-                <div class="legal-item">
-                    <strong>第七條：學員請假規範與導師編制補課機制 / Article 7: Absence, Leave Notification, and Make-up Tutoring：</strong><br>
-                    1. 學生若因病、因事假無法出席，監護人應於上課前兩小時透過官方 LINE 帳號或專線完成請假登記。<br>
-                    2. 凡完成合規請假者，本班將指派該班導師安排合適時間，提供一對一或小組專業輔導、補課或提供課堂精華錄影。<br>
-                    3. 未依規定請假無故缺課者，視同自動放棄該堂課程權益，本班不另行補課，亦不予扣除學費或退費。<br>
-                    <span class="legal-en">1. If a student cannot attend due to sickness or personal matters, parents must request leave via official LINE or phone at least 2 hours prior to class.<br>2. For approved leaves, the school will arrange 1-on-1 or small-group instructor-led make-up classes or supplementary tutoring.<br>3. Unexcused absences without proper notification constitute a waiver of lesson rights; no make-up sessions or tuition deductions shall apply.</span>
-                </div>
-                <div class="legal-item">
-                    <strong>第八條：可歸責乙方之調課補課與退費保障 / Article 8: Alterations Attributable to Party B and Penalty Refund：</strong><br>
-                    1. 因可歸責於乙方之原因（如教師請假等）調動上課時間，致甲方無法配合而缺課者，乙方應無條件予以補課、提供課堂影音，或按比例計算返還該節課程費用。<br>
-                    2. 乙方無正當事由變更原訂課程、科目、時數、上課地點或更換教學人員超過三分之一人數者，甲方得宣告終止契約，乙方應依甲方已繳金額費用加計30%作為違約金損害賠償退還甲方。<br>
-                    <span class="legal-en">1. If a class schedule is adjusted due to reasons attributable to Party B, resulting in Party A's inability to attend, Party B shall provide alternative make-up sessions or refund the lesson fee proportionally.<br>2. If Party B alters the course or replaces instructors by more than 1/3 without cause, Party A may terminate the contract, and Party B must refund all fees paid plus an extra 30% penalty.</span>
-                </div>
-                <div class="legal-item">
-                    <strong>第九條：肖像權合理使用授權與個資隱私安全保護 / Article 9: Portrait Rights and Personal Data Privacy Protection：</strong><br>
-                    1. 甲方同意並授權乙方得於常態教學、成果發表或特殊節慶活動中進行拍照與錄影，並得將學員影像合理、不損及名譽地使用於補習班內部學習成果展示、官方網站或招生行銷文宣。<br>
-                    2. 乙方應嚴格遵守《個人資料保護法》規範，甲方所填報之所有個資僅得用於補習班內部教學行政與安全緊急聯絡，未經書面允許，絕不得洩漏給任何第三人。<br>
-                    <span class="legal-en">1. Party A authorizes Party B to take photos and videos during regular classes or holiday events, and reasonably use the images for internal achievement displays or official website promotional marketing.<br>2. Party B must strictly handle all personal data in full compliance with the Personal Data Protection Act solely for academic administration and urgent communication.</span>
-                </div>
-                <div class="legal-item">
-                    <strong>第十條：違規行為處置、秩序維護與契約終止 / Article 10: Student Conduct, Classroom Order, and Termination：</strong><br>
-                    1. 學員於修業期間應共同維護課堂秩序與安全。若有嚴重干擾他人學習、惡意破壞公共設施、侵害違法行為且屢勸不聽者，為維護全班學員安全防線，乙方得單方面終止本契約，並依第六條退費條款辦理剩餘款項退費手續。<br>
-                    <span class="legal-en">Students must strictly maintain classroom order and safety. For severe disruptions endangering others or malicious vandalism where repeated counseling fails, Party B reserves the right to unilaterally terminate this contract, issuing refunds according to Article 6.</span>
-                </div>
-                <div class="legal-item">
-                    <strong>第十一條：法律疑義解釋、保存期限與爭議管轄 / Article 11: Legal Interpretation, Preservation Term, and Jurisdiction：</strong><br>
-                    1. 本契約各條款如有疑義時，應依據《消費者保護法》第十一條第二項規定，採取最有利於消費者（甲方）之方向進行法律解釋。<br>
-                    2. 本契約一式二份，由甲乙雙方各執一份為憑，自家長簽約日起生效（簽約日期：<span id="currentDateDisplay" style="font-weight:bold; color:var(--uci-blue);"></span>）。雙方合意合約保存期限不得少於五年，以備查核。<br>
-                    <span class="legal-en">1. In case of doubts regarding contract clauses, interpretations shall lean in favor of the consumer (Party A) based on Article 11, Paragraph 2 of the Consumer Protection Act.<br>2. This contract is executed in duplicate, with each party holding one copy as evidence. Both parties agree that the contract preservation period shall be at least 5 years for compliance review.</span>
-                </div>
+            <div class="section-title">報名班別與即時計費 Course & Billing</div>
+            <div class="table-responsive-wrapper">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th><span class="zh-title">就讀班別</span><span class="en-title">Course</span></th>
+                            <td colspan="2">
+                                <div id="courseLabelDisplay" class="static-course-display">未設定課程</div>
+                            </td>
+                            <th><span class="zh-title">標準上課時段</span><span class="en-title">Schedule</span></th>
+                            <td colspan="2" id="timeDisplay" style="padding: 0; text-align: center; vertical-align: middle;">載入中...</td>
+                        </tr>
+                        <tr id="standardDiscountRow">
+                            <th><span class="zh-title">優惠方案配置</span><span class="en-title">Discount Plan</span></th>
+                            <td colspan="5">
+                                <div class="radio-group">
+                                    <label><input type="radio" name="discount_plan" value="1.0" checked onchange="calculateTuition()"> 常態收費原價 (Full Price)</label>
+                                    <label><input type="radio" name="discount_plan" value="0.9" onchange="calculateTuition()"> 9 折優惠 (10% OFF)</label>
+                                    <label><input type="radio" name="discount_plan" value="0.85" onchange="calculateTuition()"> 85 折優惠 (15% OFF)</label>
+                                    <!-- 🎯 已刪除「老朋友」字樣，保留「✨ 8 折優惠」 -->
+                                    <label><input type="radio" name="discount_plan" value="0.8" onchange="calculateTuition()"> ✨ 8 折優惠 (20% OFF)</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="agreement-banner">
-                本人已詳細閱讀、理解並完全同意上述所有巴比美語短期補習服務條款。雙方於下方完成親筆電子簽章，即代表完全承認並代為履行本契約之所有法律權利與義務。
-                <span style="font-size: 11px; font-weight: normal; display: block; margin-top: 3px; font-style: italic;">I have read, understood, and fully agreed to all terms. Electronic signatures below imply full execution of all rights under this contract.</span>
-            </div>
-
-            <!-- 👑 雙軌親筆電子簽名艙 -->
-            <div class="dual-signature-row">
-                <!-- 左邊：家長簽名區 (48%) -->
-                <div class="signature-block">
-                    <span class="signature-label">✍️ 甲方家長/監護人親筆電子簽名區：</span>
-                    <div class="signature-canvas-container">
-                        <canvas id="parentSigPad"></canvas>
-                        <button type="button" class="canvas-clear-btn" onclick="clearSig('parent')">清除重簽 / Clear</button>
+            <!-- 暑期專案加購區 -->
+            <div class="extra-summer-box" id="summerConfigBox">
+                <div class="extra-summer-title">☀️ 暑期課程特別配置艙 (Summer Options)</div>
+                <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap; font-size: 13px; padding-left: 8px;">
+                    <div>
+                        <b>1. 選擇報名週數：</b>
+                        <select id="summerWeeks" style="width: 150px; display: inline-block; border: 1px solid #1b3d6d; height: 30px; border-radius: 4px;" onchange="calculateTuition()">
+                            <option value="1">1 週課程 / 1 Week</option>
+                            <option value="2">2 週課程 / 2 Weeks</option>
+                            <option value="3">3 週 (享8折) / 3 Weeks</option>
+                            <option value="4">4 週 (享8折) / 4 Weeks</option>
+                            <option value="5">5 週 (享8折) / 5 Weeks</option>
+                            <option value="6">6 週 (享8折) / 6 Weeks</option>
+                        </select>
                     </div>
-                </div>
-                <!-- 右邊：補習班行政簽名區 (48%) -->
-                <div class="signature-block">
-                    <span class="signature-label">🛡️ 乙方補習班授權行政審查人員簽名區：</span>
-                    <div class="signature-canvas-container">
-                        <canvas id="staffSigPad"></canvas>
-                        <button type="button" class="canvas-clear-btn" onclick="clearSig('staff')">清除重簽 / Clear</button>
+                    <div>
+                        <b>2. 加購下午英文複習班：</b>
+                        <label style="cursor: pointer; margin-left: 10px;"><input type="checkbox" id="summerPM" onchange="calculateTuition()"> 加購下午班 (1:30-4:30p.m.)</label>
                     </div>
                 </div>
             </div>
 
-            <!-- 🖨️ 頂級 A4 PDF 實體列印控制端晶片 -->
-            <div class="print-btn-container">
-                <button type="button" class="print-btn" onclick="window.print()">🖨️ 本定型化契約 ── 一鍵匯出 A4 雙語實體 PDF / 雙向列印</button>
+            <div class="offer-box" id="calcPreview">
+                核心大腦實時計算中...
             </div>
 
-            <!-- 圓角黃金按鈕完全體 -->
+            <div class="section-title">補習班行政確認欄 Office Use Only</div>
+            <div class="table-responsive-wrapper">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th><span class="zh-title">應繳總金額</span><span class="en-title">Total Amount</span></th>
+                            <td><input type="text" id="total_amount" name="total_amount" class="text-input" style="font-weight: bold; color: #c00; font-size: 16px;" placeholder="$" readonly></td>
+                            <th><span class="zh-title">付款方式</span><span class="en-title">Payment Method</span></th>
+                            <td colspan="3">
+                                <div class="payment-inline-row">
+                                    <label><input type="radio" name="payment_method" value="現金" checked> 現金 Cash</label>
+                                    <label style="display: flex; align-items: center; gap: 2px;">
+                                        <input type="radio" name="payment_method" value="銀行轉帳"> 銀行轉帳(後五碼)：
+                                        <input type="text" name="transfer_code" style="border: none; border-bottom: 1.5px solid #333; width: 50px; background: transparent; outline: none; text-align: center; font-size: 13px; height: 22px; padding: 0; margin-right: 8px;">
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><span class="zh-title">經辦人員</span><span class="en-title">Staff Name</span></th>
+                            <td><input type="text" name="staff_name" class="text-input" value="Joy"></td>
+                            <th><span class="zh-title">收據編號</span><span class="en-title">Receipt No.</span></th>
+                            <td><input type="text" name="receipt_no" class="text-input" placeholder="R-2026-XXXX"></td>
+                            <th><span class="zh-title">教材發放狀況</span><span class="en-title">Material Status</span></th>
+                            <td>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="materials_status" value="已發放"> 已發放</label>
+                                    <label><input type="radio" name="materials_status" value="待發放" checked> 待發放</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 2 ================= -->
+        <div class="page page2">
+            <h2 class="terms-header">報名條款與家長同意書<br><span style="font-size: 13.5px; font-weight: 500; color: var(--text-sub); display: block; margin-top: 4px;">Terms & Conditions (Bobby English School Policies)</span></h2>
+            
+            <div class="privacy-statement">
+                <strong>個資保護聲明 / Privacy Statement：</strong><br>
+                本班收集之個人資料僅供課程聯繫與行政管理使用，絕不外洩。符合中華民國個人資料保護法規範。<br>
+                <span class="light-en-text" style="margin-top: 3px;">All personal data collected by Bobby English School is strictly used for course communication and administrative purposes in accordance with the Personal Data Protection Act of the R.O.C. and will never be disclosed to third parties.</span>
+            </div>
+
+            <div class="terms-list">
+                <div class="term-item">
+                    <strong>1. 審閱權與退費規定 / Refund Policy：</strong><br>
+                    依據「桃園市短期補習班退費管理自治條例」規定辦理。家長攜回審閱期至少五日。開課前30日前退費者，退還全額；開課前1日至29日退費者，退還90%；開課後5日內要求退費者，退還80%；上課未逾全期1/3期間內要求退費者，退還50%；超過全期1/3學期者不予退費。教材發放後亦不予退還。<br>
+                    <span class="light-en-text" style="margin-top: 4px;">Refunds are processed in accordance with the "Taoyuan Short-term Cram School Refund Management Regulations." Parents have at least a 5-day contract review period. A 100% refund is issued if requested 30 days prior to the course start date; a 90% refund if requested 1 to 29 days prior; an 80% refund within the first 5 days of class; a 50% refund if requested after the 6th day but before completing 1/3 of the total course duration. No refunds will be issued after 1/3 of the course duration has passed. No refunds on textbook or material fees once distributed.</span>
+                </div>
+                <div class="term-item">
+                    <strong>2. 請假與補課 / Leave & Make-up Lessons：</strong><br>
+                    因事或病假缺席者，請於上課前兩小時透過官方 LINE 或電話完成請假。完成請假者，本班將提供一對一或小組補課、輔導。無故缺課者（曠課）不予補課與退費。<br>
+                    <span class="light-en-text" style="margin-top: 4px;">In case of sick leave or personal leave, please notify the school via our official LINE account or phone at least 2 hours before class. For validated absences, the school will arrange one-on-one or small-group make-up tutoring. No make-up lessons or refunds will be provided for unexcused absences (truancy).</span>
+                </div>
+                <div class="term-item">
+                    <strong>3. 安全與公共責任 / Safety & Public Liability Insurance：</strong><br>
+                    為維護學生安全，下課後請家長按時前來接送。本補習班公共安全設施、消防設備以及公共意外責任險均嚴格符合政府法令規範。<br>
+                    <span class="light-en-text" style="margin-top: 4px;">To ensure student safety, parents are requested to pick up their children on time after class. Our school's public safety facilities, fire safety equipment, and public liability insurance strictly comply with government laws and regulations.</span>
+                </div>
+                <div class="term-item">
+                    <strong>4. 肖像權合理授權 / Portrait Rights Authorization：</strong><br>
+                    家長同意本班在節慶活動、課堂成果中進行拍照或錄影，合理授權作為內部成果展示與官方推廣使用，且不損及學生名譽。<br>
+                    <span class="light-en-text" style="margin-top: 4px;">Parents agree to allow the school to take photos or videos during holiday activities and class presentations. This constitutes a rational authorization for internal displays and official promotional use, ensuring that student reputation is fully protected.</span>
+                </div>
+            </div>
+
+            <div class="agreement-text">
+                本人已詳細閱讀、理解並完全同意上述所有巴比美語短期補習服務條款。<br>
+                <span style="font-size: 11.5px; font-weight: 400; color: var(--text-sub); display: block; margin-top: 4px; font-style: italic;">I have read, understood, and fully agreed to all the terms and conditions of Bobby English School services stated above.</span>
+            </div>
+
+            <div class="signature-section">
+                <div class="signature-box">
+                    <div class="signature-row">
+                        <span>家長/監護人簽名 (Signature)</span>
+                        <input type="text" name="parent_signature" class="signature-input" required>
+                    </div>
+                    <div class="signature-row">
+                        <span>日期 Date</span>
+                        <input type="date" name="parent_sig_date" class="signature-input" required>
+                    </div>
+                </div>
+
+                <div class="signature-box">
+                    <div class="signature-row">
+                        <span>承辦老師簽章<br>(Staff Signature)</span>
+                        <input type="text" name="teacher_signature" class="signature-input" value="Joy">
+                    </div>
+                    <div class="signature-row">
+                        <span>日期 Date</span>
+                        <input type="date" name="teacher_sig_date" class="signature-input">
+                    </div>
+                </div>
+            </div>
+
             <div class="submit-btn-container">
-                <button type="submit" id="submitBtn" class="submit-btn">我已閱讀完畢 ── 確認電子送出法律契約書</button>
+                <button type="submit" id="submitBtn" class="submit-btn">確認並送出報名表 / Submit Form</button>
             </div>
         </div>
     </form>
 </div>
 
 <script>
-// ===== HTML5 左右雙畫布親筆電子簽名引擎 =====
-var parentCanvas = document.getElementById('parentSigPad');
-var staffCanvas = document.getElementById('staffSigPad');
-var parentCtx = parentCanvas.getContext('2d');
-var staffCtx = staffCanvas.getContext('2d');
-
-var isDrawingParent = false;
-var isDrawingStaff = false;
-var hasSignedParent = false;
-var hasSignedStaff = false;
-
-function resizeAllCanvases() {
-    if(!hasSignedParent) {
-        parentCanvas.width = parentCanvas.parentElement.clientWidth;
-        parentCanvas.height = parentCanvas.parentElement.clientHeight;
-        parentCtx.strokeStyle = "#1b3d6d";
-        parentCtx.lineWidth = 3;
-        parentCtx.lineCap = "round";
+// ===== 核心報名表對應資料庫 (時間採用兩層結構，完美雙層居中對齊) =====
+var courseDatabase = {
+    "Let's Go 1": { 
+        label: "Let's Go 1 兒童初階美語", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>1:30 PM - 3:30 PM</span></div></div>", 
+        lessons: 51, price: 620, materials: 1268, misc: 60 
+    },
+    "Let's Go 2": { 
+        label: "Let's Go 2 兒童初階美語", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>1:30 PM - 3:30 PM</span></div></div>", 
+        lessons: 51, price: 620, materials: 1268, misc: 60 
+    },
+    "Let's Go 3": { 
+        label: "Let's Go 3 兒童中階美語 (中英雙語教學)", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:12.5px; line-height:1.2;'><span class='no-orphan'>週一 4:30-6:30 PM</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>週三、五 1:30-3:30 PM</span></div></div>", 
+        lessons: 51, price: 620, materials: 1572, misc: 60 
+    },
+    "Let's Go 4": { 
+        label: "Let's Go 4 兒童中階美語 (中英雙語教學)", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:12.5px; line-height:1.2;'><span class='no-orphan'>週一 4:30-6:30 PM</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>週三、五 1:30-3:30 PM</span></div></div>", 
+        lessons: 51, price: 620, materials: 1572, misc: 60 
+    },
+    "Let's Go 5": { 
+        label: "Let's Go 5 兒童高階美語 (中英雙語教學)", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
+        lessons: 51, price: 620, materials: 1612, misc: 60 
+    },
+    "Let's Go 6": { 
+        label: "Let's Go 6 兒童高階美語 (中英雙語教學)", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
+        lessons: 51, price: 620, materials: 1612, misc: 60 
+    },
+    "Advance A1": { 
+        label: "Advance A1 兒童進階美語班", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
+        lessons: 34, price: 770, materials: 2966, misc: 60 
+    },
+    "Advance A2": { 
+        label: "Advance A2 兒童進階美語班", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
+        lessons: 38, price: 770, materials: 3826, misc: 60 
     }
+};
 
-    if(!hasSignedStaff) {
-        staffCanvas.width = staffCanvas.parentElement.clientWidth;
-        staffCanvas.height = staffCanvas.parentElement.clientHeight;
-        staffCtx.strokeStyle = "#1b3d6d"; 
-        staffCtx.lineWidth = 3;
-        staffCtx.lineCap = "round";
+var advancedDeadValues = {
+    "Advance B1 新進": { label: "Advance B1 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 3240, ms: 2280 },
+    "Advance B1 晉升": { label: "Advance B1 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 500, ms: 2280 },
+    "Advance B2 新進": { label: "Advance B2 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 3240, ms: 2280 },
+    "Advance B2 晉升": { label: "Advance B2 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 500, ms: 2280 },
+    "Advance C1 新進": { label: "Advance C1 青少年進階美語 (新進學生)", "1.0": 17140, "0.9": 15426, "0.85": 14569, "0.8": 13712, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一晚上</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 14450, m: 1840, ms: 850 },
+    "Advance C1 晉升": { label: "Advance C1 青少年進階美語 (晉升學生)", "1.0": 15800, "0.9": 14220, "0.85": 13430, "0.8": 12640, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一晚上</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 14450, m: 500, ms: 850 }
+};
+
+// ==========================================
+// ⭐ Joy 核心修改特區： Let's Go 1 報名表綁定
+// ==========================================
+var TARGET_COURSE = "Let's Go 1"; 
+
+// 頁面初始化自動綁定與運算
+window.onload = function() {
+    document.getElementById('course_name_hidden').value = TARGET_COURSE;
+    document.getElementById('formSubject').value = "【巴比單一課程報名】" + TARGET_COURSE + " 報名通知";
+    
+    // 🚀 抬頭自動變魔術晶片：讓左邊的中英文大標題直接帶入課程名稱！
+    var courseCleanName = TARGET_COURSE;
+    if (TARGET_COURSE === "2026 暑期班") {
+        courseCleanName = "暑期密集營";
+    }
+    document.getElementById('mainTitleDisplay').innerHTML = "巴比美語補習班 ｜ " + courseCleanName + " 專屬智慧報名系統";
+    document.getElementById('subTitleDisplay').innerHTML = "Bobby English School - " + TARGET_COURSE + " Enrollment Form";
+    
+    // 🚀 智慧生產天線：自動在抬頭最上方動態生成專屬報名系統文字
+    document.getElementById('dynamicBannerDisplay').innerHTML = TARGET_COURSE + " 專屬智慧報名系統";
+    
+    calculateTuition();
+};
+
+function calculateTuition() {
+    try {
+        var courseKey = TARGET_COURSE;
+        var labelDisplay = document.getElementById('courseLabelDisplay');
+        var timeDisplay = document.getElementById('timeDisplay');
+        var calcPreview = document.getElementById('calcPreview');
+        var totalInput = document.getElementById('total_amount');
+        var summerBox = document.getElementById('summerConfigBox');
+        var discountRow = document.getElementById('standardDiscountRow');
+
+        var discountRate = 1.0;
+        var activeRadio = document.querySelector('input[name="discount_plan"]:checked');
+        if (activeRadio) discountRate = parseFloat(activeRadio.value);
+
+        // 處理：2026 暑期班
+        if (courseKey === "2026 暑期班") {
+            labelDisplay.innerText = "☀️ 2026 Summer Classes 暑期密集英語營 (18堂/7-8月)";
+            summerBox.style.display = "block";
+            discountRow.style.opacity = "0.4";
+            
+            var weeks = parseInt(document.getElementById('summerWeeks').value);
+            var hasPM = document.getElementById('summerPM').checked;
+            
+            var baseRate = (weeks >= 3) ? 3600 : 4500;
+            var pmRate = (weeks >= 3) ? 1800 : 1912;
+            
+            var tuitionTotal = baseRate * weeks;
+            var pmTotal = hasPM ? (pmRate * weeks) : 0;
+            var finalTotal = tuitionTotal + pmTotal;
+
+            document.getElementById('class_time').value = "每週二、三、四 早上 9:00-12:00a.m.";
+            document.getElementById('sub_tuition').value = tuitionTotal;
+            document.getElementById('sub_materials').value = pmTotal;
+            document.getElementById('sub_misc').value = 0;
+            document.getElementById('summer_weeks_selected').value = weeks + "週";
+            document.getElementById('summer_pm_selected').value = hasPM ? "加購下午班" : "無加購";
+            
+            totalInput.value = "$" + finalTotal;
+
+            timeDisplay.innerHTML = "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、三、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>9:00 AM - 12:00 PM</span></div></div>";
+            var bonusText = hasPM ? " (含下午英文複習班：每週$" + pmRate + " × " + weeks + "週)" : "";
+            var offerText = (weeks >= 3) ? "<span style='color:red;'>(已自動套用滿3週以上8折大特惠每週$3600!)</span>" : "(常態1-2週原價每週$4500)";
+            
+            calcPreview.innerHTML = "☀️ <b>2026 暑期密集英語營費用拆解 " + offerText + "</b>：<br>" +
+                                    "早上密集班費用：$" + baseRate + " × " + weeks + "週 = $" + tuitionTotal + bonusText + "<br>" +
+                                    "👉 <b>應繳實際總計金額：NT$ " + finalTotal + " 元</b>";
+            return;
+        }
+
+        summerBox.style.display = "none";
+        discountRow.style.opacity = "1";
+
+        // 處理：Advance B/C 系列定值
+        if (advancedDeadValues[courseKey]) {
+            var adv = advancedDeadValues[courseKey];
+            labelDisplay.innerText = adv.label;
+            var finalTotal = adv[discountRate.toString()] || adv["1.0"];
+            
+            document.getElementById('class_time').value = adv.time.replace(/<[^>]+>/g, '');
+            document.getElementById('sub_tuition').value = adv.t;
+            document.getElementById('sub_materials').value = adv.m;
+            document.getElementById('sub_misc').value = adv.ms;
+            
+            totalInput.value = "$" + finalTotal;
+
+            timeDisplay.innerHTML = adv.time;
+            calcPreview.innerHTML = "📚 <b>" + courseKey + " 費用即時拆解明細</b>：<br>" +
+                                    "基本學費總計：$" + adv.t + " | 固定教材費：$" + adv.m + " | 當期學雜費：$" + adv.ms + "<br>" +
+                                    "👉 <b>方案運算應繳總金額：NT$ " + finalTotal + " 元</b>";
+            return;
+        }
+
+        // 🎯 核心升級：Let's Go 1-6 與 Advance A1-A2 全項目（學費＋教材費＋學雜費）連動 8折/85折/9折 動態算式
+        if (courseDatabase[courseKey]) {
+            var course = courseDatabase[courseKey];
+            labelDisplay.innerText = course.label;
+            document.getElementById('class_time').value = course.time.replace(/<[^>]+>/g, '');
+            
+            var tuitionTotal = course.price * course.lessons;
+            var materialsTotal = course.materials;
+            var miscTotal = course.misc * course.lessons;
+            
+            // 全項目小計
+            var subTotal = tuitionTotal + materialsTotal + miscTotal;
+            
+            // 🎯 全項目一律乘上折扣率並四捨五入整數！
+            var finalTotal = Math.round(subTotal * discountRate);
+
+            document.getElementById('sub_tuition').value = tuitionTotal;
+            document.getElementById('sub_materials').value = materialsTotal;
+            document.getElementById('sub_misc').value = miscTotal;
+            
+            totalInput.value = "$" + finalTotal;
+
+            timeDisplay.innerHTML = course.time;
+            
+            // 折扣文字轉換 (0.85 -> 85折, 0.8 -> 8折)
+            var discountStr = (discountRate * 100).toString();
+            if (discountRate === 0.9) discountStr = "9";
+            if (discountRate === 0.8) discountStr = "8";
+            
+            // 🎯 刪除「尊榮老朋友」文字，更新為「(尊榮8折)」
+            var discountLabel = discountRate === 0.8 ? " <span style='color:red;'>(尊榮8折)</span>" : " (常態運算)";
+
+            calcPreview.innerHTML = "📚 <b>" + courseKey + " 全項目折扣拆解明細" + discountLabel + "</b>：<br>" +
+                                    "基本學費：$" + course.price + " × " + course.lessons + "堂 = $" + tuitionTotal + " | " +
+                                    "原價教材費：$" + materialsTotal + " | " +
+                                    "學雜費：$" + course.misc + " × " + course.lessons + "堂 = $" + miscTotal + "<br>" +
+                                    "👉 <b>全項目（學費＋教材＋雜費）套用 " + discountStr + " 折後實際總計：NT$ " + finalTotal + " 元</b>";
+        }
+    } catch (err) {
+        console.error("Tuition calculation error resolved:", err);
     }
 }
 
-// 📡 1. 左側家長畫布天線事件
-parentCanvas.addEventListener('mousedown', function(e) { isDrawingParent = true; hasSignedParent = true; draw(parentCtx, e.offsetX, e.offsetY); });
-parentCanvas.addEventListener('mousemove', function(e) { if(isDrawingParent) draw(parentCtx, e.offsetX, e.offsetY); });
-window.addEventListener('mouseup', function() { isDrawingParent = false; parentCtx.beginPath(); });
-
-parentCanvas.addEventListener('touchstart', function(e) {
-    isDrawingParent = true; hasSignedParent = true;
-    var t = e.touches[0]; var rect = parentCanvas.getBoundingClientRect();
-    draw(parentCtx, t.clientX - rect.left, t.clientY - rect.top);
-}, {passive: true});
-parentCanvas.addEventListener('touchmove', function(e) {
-    if(!isDrawingParent) return;
-    var t = e.touches[0]; var rect = parentCanvas.getBoundingClientRect();
-    draw(parentCtx, t.clientX - rect.left, t.clientY - rect.top);
-}, {passive: true});
-parentCanvas.addEventListener('touchend', function() { isDrawingParent = false; parentCtx.beginPath(); });
-
-// 📡 2. 右側行政畫布天線事件
-staffCanvas.addEventListener('mousedown', function(e) { isDrawingStaff = true; hasSignedStaff = true; draw(staffCtx, e.offsetX, e.offsetY); });
-staffCanvas.addEventListener('mousemove', function(e) { if(isDrawingStaff) draw(staffCtx, e.offsetX, e.offsetY); });
-window.addEventListener('mouseup', function() { isDrawingStaff = false; staffCtx.beginPath(); });
-
-staffCanvas.addEventListener('touchstart', function(e) {
-    isDrawingStaff = true; hasSignedStaff = true;
-    var t = e.touches[0]; var rect = staffCanvas.getBoundingClientRect();
-    draw(staffCtx, t.clientX - rect.left, t.clientY - rect.top);
-}, {passive: true});
-staffCanvas.addEventListener('touchmove', function(e) {
-    if(!isDrawingStaff) return;
-    var t = e.touches[0]; var rect = staffCanvas.getBoundingClientRect();
-    draw(staffCtx, t.clientX - rect.left, t.clientY - rect.top);
-}, {passive: true});
-staffCanvas.addEventListener('touchend', function() { isDrawingStaff = false; staffCtx.beginPath(); });
-
-function draw(context, x, y) {
-    context.lineTo(x, y);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(x, y);
-}
-
-function clearSig(target) {
-    if(target === 'parent') {
-        parentCtx.clearRect(0, 0, parentCanvas.width, parentCanvas.height);
-        hasSignedParent = false;
-    } else {
-        staffCtx.clearRect(0, 0, staffCanvas.width, staffCanvas.height);
-        hasSignedStaff = false;
+function showImagePreview(input) {
+    var container = document.getElementById('photoContainer');
+    var uploadText = document.getElementById('uploadText');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            uploadText.style.display = 'none';
+            var oldImg = container.querySelector('.preview-img');
+            if (oldImg) oldImg.remove();
+            var img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'preview-img';
+            container.appendChild(img);
+        };
+        reader.readAsDataURL(input.files[0]);
     }
 }
 
-// =========================================================================
-// 🎯 核心修正：遵守最高協定全項目連動算式：
-// 【應繳總金額 = Math.round((基本學費 + 原價教材費 + 當期學雜費) * 折扣率)】
-// =========================================================================
-function calculateContractBilling() {
-    var discountRatio = parseFloat(document.getElementById('discountSelector').value);
-    
-    // Let's Go 1 標準三項基礎定額 (51堂課)
-    var pricePerLesson = 620;
-    var lessons = 51;
-    var baseTuition = pricePerLesson * lessons; // $31,620
-    var rawMaterials = 1268;                   // $1,268
-    var rawMisc = 60 * lessons;                // $3,060
-    
-    // 全項目未折總計 = 31,620 + 1,268 + 3,060 = 35,948
-    var subTotal = baseTuition + rawMaterials + rawMisc;
-    
-    // 🎯 全項目一律連動乘上折扣率並四捨五入整數！
-    var grandTotal = Math.round(subTotal * discountRatio);
+document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
+    e.preventDefault(); 
+    var form = this;
+    var submitBtn = document.getElementById('submitBtn');
 
-    // 顯示於表格中 (教材與雜費顯示原價標示，或依全項目折扣後展現)
-    document.getElementById('td_tuition').innerText = "NT$ " + baseTuition.toLocaleString() + " 元";
-    document.getElementById('td_materials').innerText = "NT$ " + rawMaterials.toLocaleString() + " 元";
-    document.getElementById('td_misc').innerText = "NT$ " + rawMisc.toLocaleString() + " 元";
-    document.getElementById('td_total').innerText = "NT$ " + grandTotal.toLocaleString() + " 元";
-    
-    // 🎯 法律條款第五條動態連動更新！
-    document.getElementById('legal_total_zh').innerText = grandTotal.toLocaleString();
-
-    // 備份死數據至 Form 隱藏欄位
-    document.getElementById('hidden_tuition').value = baseTuition + " 元";
-    document.getElementById('hidden_materials').value = rawMaterials + " 元";
-    document.getElementById('hidden_misc').value = rawMisc + " 元";
-    document.getElementById('hidden_total').value = grandTotal + " 元";
-
-    // 動態修改郵件主旨標籤
-    var discountText = "標準常規原價";
-    if (discountRatio === 0.9) discountText = "享 9 折特惠";
-    if (discountRatio === 0.85) discountText = "享 85 折特惠";
-    if (discountRatio === 0.8) discountText = "享 8 折特惠";
-
-    document.getElementById('formSubject').value = "【法律合約完成-" + discountText + "】Let's Go 1 兒童美語初級班";
-}
-
-// ===== 雙通道連線傳送驗證 =====
-function prepareSubmit(event) {
-    event.preventDefault();
-    
-    var blankParent = document.createElement('canvas');
-    blankParent.width = parentCanvas.width; blankParent.height = parentCanvas.height;
-    
-    if (!hasSignedParent || parentCanvas.toDataURL() === blankParent.toDataURL()) {
-        alert("⚠️ 智慧防呆提示：負責人 Joy 主任溫馨提醒您，請家長務必先在左側藍色方框內完成「家長親筆電子簽章」，才能送出契約書喔！");
-        return false;
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = "正在同步巴比核心雲端校務資料庫...";
     }
     
-    document.getElementById('signature_parent_base64').value = parentCanvas.toDataURL("image/png");
+    var params = new URLSearchParams();
+    var baseUrl = window.location.origin + window.location.pathname;
+    var formElements = form.elements;
     
-    var blankStaff = document.createElement('canvas');
-    blankStaff.width = staffCanvas.width; blankStaff.height = staffCanvas.height;
-    if (hasSignedStaff && staffCanvas.toDataURL() !== blankStaff.toDataURL()) {
-        document.getElementById('signature_staff_base64').value = staffCanvas.toDataURL("image/png");
-    } else {
-        document.getElementById('signature_staff_base64').value = "[本次由家長單向自主簽署，尚未執行行政櫃檯實體複簽覆蓋]";
+    for (var i = 0; i < formElements.length; i++) {
+        var el = formElements[i];
+        if (!el.name || el.type === 'file' || el.type === 'submit' || el.name.startsWith('_')) continue;
+        if (el.type === 'radio') {
+            if (el.checked) params.append(el.name, el.value);
+        } else {
+            if (el.value) params.append(el.name, el.value);
+        }
     }
+    params.append('auto_print', 'true');
+    document.getElementById('printLinkInput').value = baseUrl + '?' + params.toString();
     
-    document.getElementById('submitBtn').innerText = "正傳送至 Joy 負責人法律簽核夾...";
-    document.getElementById('submitBtn').disabled = true;
-
     var googleAppsScriptUrl = "https://script.google.com/macros/s/AKfycbxt07hF-qkXePULEBjuCpzdWnaeNWsTlQV7dRhch_iBwtVePOIJzldTAsR0LothoQ1l/exec";
-    var form = document.getElementById('contractForm');
-
-    // 🎯 雙連線發射：先傳送至 Google Sheets 自動存檔，再執行 FormSubmit 發信
+    
     fetch(googleAppsScriptUrl, {
         method: 'POST',
-        mode: 'no-cors',
         body: new URLSearchParams(new FormData(form))
     })
     .then(function() {
-        form.submit();
+        alert("🎉 巴比美語：單一課程專屬雲端連線登記成功！");
+        form.submit(); 
     })
     .catch(function() {
         form.submit();
     });
-}
-
-window.onload = function() {
-    resizeAllCanvases();
-    window.addEventListener('resize', resizeAllCanvases);
-    
-    var today = new Date();
-    var minguoYear = today.getFullYear() - 1911;
-    var currentMonth = today.getMonth() + 1;
-    var currentDate = today.getDate();
-    
-    document.getElementById('reviewYearDisplay').innerText = minguoYear;
-    document.getElementById('reviewMonthDisplay').innerText = currentMonth;
-    document.getElementById('reviewDayDisplay').innerText = currentDate;
-    
-    document.getElementById('reviewYearDisplayEn').innerText = minguoYear;
-    document.getElementById('reviewMonthDisplayEn').innerText = currentMonth;
-    document.getElementById('reviewDayDisplayEn').innerText = currentDate;
-    
-    if(document.getElementById('currentDateDisplay')) {
-        document.getElementById('currentDateDisplay').innerText = today.getFullYear() + " 年 " + currentMonth + " 月 " + currentDate + " 日";
-    }
-    
-    calculateContractBilling();
-};
+});
 </script>
 </body>
 </html>
