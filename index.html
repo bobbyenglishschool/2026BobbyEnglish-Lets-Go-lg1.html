@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- 🎯 全載具核心天線：確保行動裝置與 A4 紙張列印排版 100% 完美自適應 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>巴比美語補習班 | Let's Go 1 專屬學員報名系統</title>
+    <title>巴比美語補習班 | 專屬學員報名系統</title>
     
     <!-- 引入專業雙語 Google Fonts 字型 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,10 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* 🔒 巴比美語補給艦 ── 三大表格 #1b3d6d 均勻深藍實體邊框標準 CSS */
         :root {
             --uci-blue: #1b3d6d;
-            --uci-blue-dark: #102a4d;
             --uci-gold: #fecc07;
             --soft-red: #e74c3c;
             --card-bg: #f8fafc;
@@ -23,7 +21,7 @@
             --text-main: #1e293b;
             --text-sub: #475569;
         }
-
+        
         * {
             box-shadow: none;
             box-sizing: border-box;
@@ -156,16 +154,14 @@
             border-radius: 6px 6px 0 0;
         }
 
-        /* 1. 行動端自適應包裹容器：防止陰影與圓角切邊 */
         .table-responsive-wrapper {
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             margin-bottom: 15px;
-            border-radius: 6px;
         }
 
-        /* 2. 核心表格邊框強固協定 */
+        /* 🔒 邊框顯色修復：三大主題下方表格外框與內部格線全數強制補上實體深藍色 (#1b3d6d !important)！ */
         table {
             width: 100%;
             border-collapse: collapse !important;
@@ -173,25 +169,26 @@
             font-size: 13px;
             table-layout: fixed;
             border: 1px solid #1b3d6d !important;
+            border-radius: 6px;
+            overflow: hidden;
             background-color: #ffffff;
         }
 
-        /* 3. 單元格 1px 深藍實體邊框強制顯影 */
-        table th, table td {
+        th, td {
             border: 1px solid #1b3d6d !important;
-            padding: 10px 12px;
+            padding: 6px 8px;
             vertical-align: middle;
             word-break: break-word;
         }
 
-        /* 4. 表頭質感與顏色調校 */
-        table th {
-            background-color: #f1f5f9;
+        th {
+            background-color: #f0f4f8;
             color: var(--uci-blue);
-            text-align: center;
-            font-weight: 700;
-            line-height: 1.4;
+            text-align: center; 
             width: 18%;
+            line-height: 1.4;
+            font-weight: 700;
+            padding: 6px 4px;
         }
 
         th span.zh-title {
@@ -235,7 +232,7 @@
             font-size: 13.5px;
         }
 
-        /* 🎯 DOB 靠右微調：靠右對齊且預留 12px 防撞氣墊，絕不碰撞右邊框線！ */
+        /* 🎯 DOB 靠右微調：靠右對齊且預留 12px 安全距離，100% 絕不碰到右邊框線！ */
         input[type="date"].text-input {
             display: block; 
             line-height: normal;
@@ -468,25 +465,15 @@
             font-size: 14px;
         }
 
-        /* 5. A4 實體列印防禦鎖：強制印表機吐出 #1b3d6d 實體顏色 */
         @media print {
-            body {
-                background-color: transparent; 
-                padding: 0; 
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
+            @page { size: A4 portrait; margin: 10mm 15mm; }
+            body { background-color: transparent; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .page-container { box-shadow: none; max-width: 100%; }
             .page1 { break-after: page; }
             .page { padding: 0; }
             .submit-btn-container { display: none !important; }
             .extra-summer-box { border: 1px solid #666; background-color: transparent; }
-            
-            table, table th, table td {
-                border: 1px solid #1b3d6d !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
+            table, th, td { border: 1px solid #1b3d6d !important; }
         }
 
         @media (max-width: 768px) {
@@ -750,7 +737,7 @@
 </div>
 
 <script>
-// ===== 核心報名表對應資料庫 =====
+// ===== 核心報名表對應資料庫 (已刪除 "(Bobby全美語教學)"，時間採用雙層置中結構) =====
 var courseDatabase = {
     "Let's Go 1": { 
         label: "Let's Go 1 兒童初階美語", 
@@ -909,7 +896,7 @@ function calculateTuition() {
             var materialsTotal = course.materials;
             var miscTotal = course.misc * course.lessons;
             
-            // 全項目小計 (學費 + 教材費 + 學雜費)
+            // 全項目小計
             var subTotal = tuitionTotal + materialsTotal + miscTotal;
             
             // 🎯 全項目一律乘上折扣率並四捨五入整數！
@@ -981,10 +968,8 @@ document.getElementById('enrollmentForm').addEventListener('submit', function(e)
     
     var googleAppsScriptUrl = "https://script.google.com/macros/s/AKfycbxt07hF-qkXePULEBjuCpzdWnaeNWsTlQV7dRhch_iBwtVePOIJzldTAsR0LothoQ1l/exec";
     
-    // 🎯 核心修復：加入 mode: 'no-cors' 避開瀏覽器跨域安全性連線阻斷
     fetch(googleAppsScriptUrl, {
         method: 'POST',
-        mode: 'no-cors',
         body: new URLSearchParams(new FormData(form))
     })
     .then(function() {
