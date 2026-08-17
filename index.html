@@ -169,7 +169,7 @@
             font-size: 13px;
             table-layout: fixed;
             border: 1px solid #1b3d6d !important;
-            border-radius: 6px;
+            border-radius: 0px;
             overflow: hidden;
             background-color: #ffffff;
         }
@@ -588,7 +588,7 @@
                                 <div id="courseLabelDisplay" class="static-course-display">未設定課程</div>
                             </td>
                             <th><span class="zh-title">標準上課時段</span><span class="en-title">Schedule</span></th>
-                            <td colspan="2" id="timeDisplay" style="font-weight: bold; color: var(--uci-blue); padding: 0; height: 100%;">載入中...</td>
+                            <td colspan="2" id="timeDisplay" style="padding: 0; text-align: center; vertical-align: middle;">載入中...</td>
                         </tr>
                         <tr id="standardDiscountRow">
                             <th><span class="zh-title">優惠方案配置</span><span class="en-title">Discount Plan</span></th>
@@ -737,57 +737,57 @@
 </div>
 
 <script>
-// ===== 核心報名表對應資料庫 (已刪除 "(Bobby全美語教學)"，時間採用雙層置中結構) =====
+// ===== 核心報名表對應資料庫 (時間採用兩層結構，完美雙層居中對齊) =====
 var courseDatabase = {
     "Let's Go 1": { 
         label: "Let's Go 1 兒童初階美語", 
-        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>1:30 PM - 3:30 PM</span></div></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>1:30 PM - 3:30 PM</span></div></div>", 
         lessons: 51, price: 620, materials: 1268, misc: 60 
     },
     "Let's Go 2": { 
         label: "Let's Go 2 兒童初階美語", 
-        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>1:30 PM - 3:30 PM</span></div></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>1:30 PM - 3:30 PM</span></div></div>", 
         lessons: 51, price: 620, materials: 1268, misc: 60 
     },
     "Let's Go 3": { 
         label: "Let's Go 3 兒童中階美語 (中英雙語教學)", 
-        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:12.5px; line-height:1.2;'><span class='no-orphan'>週一 4:30-6:30 PM</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>週三、五 1:30-3:30 PM</span></div></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:12.5px; line-height:1.2;'><span class='no-orphan'>週一 4:30-6:30 PM</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>週三、五 1:30-3:30 PM</span></div></div>", 
         lessons: 51, price: 620, materials: 1572, misc: 60 
     },
     "Let's Go 4": { 
         label: "Let's Go 4 兒童中階美語 (中英雙語教學)", 
-        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:12.5px; line-height:1.2;'><span class='no-orphan'>週一 4:30-6:30 PM</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>週三、五 1:30-3:30 PM</span></div></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:12.5px; line-height:1.2;'><span class='no-orphan'>週一 4:30-6:30 PM</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>週三、五 1:30-3:30 PM</span></div></div>", 
         lessons: 51, price: 620, materials: 1572, misc: 60 
     },
     "Let's Go 5": { 
         label: "Let's Go 5 兒童高階美語 (中英雙語教學)", 
-        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
         lessons: 51, price: 620, materials: 1612, misc: 60 
     },
     "Let's Go 6": { 
         label: "Let's Go 6 兒童高階美語 (中英雙語教學)", 
-        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一、三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
         lessons: 51, price: 620, materials: 1612, misc: 60 
     },
     "Advance A1": { 
         label: "Advance A1 兒童進階美語班", 
-        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週三、五</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
         lessons: 34, price: 770, materials: 2966, misc: 60 
     },
     "Advance A2": { 
         label: "Advance A2 兒童進階美語班", 
-        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
+        time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>4:30 PM - 6:30 PM</span></div></div>", 
         lessons: 38, price: 770, materials: 3826, misc: 60 
     }
 };
 
 var advancedDeadValues = {
-    "Advance B1 新進": { label: "Advance B1 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 3240, ms: 2280 },
-    "Advance B1 晉升": { label: "Advance B1 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 500, ms: 2280 },
-    "Advance B2 新進": { label: "Advance B2 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 3240, ms: 2280 },
-    "Advance B2 晉升": { label: "Advance B2 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 500, ms: 2280 },
-    "Advance C1 新進": { label: "Advance C1 青少年進階美語 (新進學生)", "1.0": 17140, "0.9": 15426, "0.85": 14569, "0.8": 13712, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一晚上</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 14450, m: 1840, ms: 850 },
-    "Advance C1 晉升": { label: "Advance C1 青少年進階美語 (晉升學生)", "1.0": 15800, "0.9": 14220, "0.85": 13430, "0.8": 12640, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一晚上</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 14450, m: 500, ms: 850 }
+    "Advance B1 新進": { label: "Advance B1 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 3240, ms: 2280 },
+    "Advance B1 晉升": { label: "Advance B1 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 500, ms: 2280 },
+    "Advance B2 新進": { label: "Advance B2 青少年進階美語 (新進學生)", "1.0": 36680, "0.9": 33012, "0.85": 31178, "0.8": 29344, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 3240, ms: 2280 },
+    "Advance B2 晉升": { label: "Advance B2 青少年進階美語 (晉升學生)", "1.0": 33940, "0.9": 30546, "0.85": 28849, "0.8": 27152, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 31160, m: 500, ms: 2280 },
+    "Advance C1 新進": { label: "Advance C1 青少年進階美語 (新進學生)", "1.0": 17140, "0.9": 15426, "0.85": 14569, "0.8": 13712, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一晚上</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 14450, m: 1840, ms: 850 },
+    "Advance C1 晉升": { label: "Advance C1 青少年進階美語 (晉升學生)", "1.0": 15800, "0.9": 14220, "0.85": 13430, "0.8": 12640, time: "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週一晚上</span></div><div style='font-size:11px; opacity:0.9; margin-top:1px;'><span class='no-orphan'>7:00 PM - 9:00 PM</span></div></div>", t: 14450, m: 500, ms: 850 }
 };
 
 // ==========================================
@@ -853,7 +853,7 @@ function calculateTuition() {
             
             totalInput.value = "$" + finalTotal;
 
-            timeDisplay.innerHTML = "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、三、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>9:00 AM - 12:00 PM</span></div></div>";
+            timeDisplay.innerHTML = "<div style='display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 4px 0;'><div style='font-weight:800; color:var(--uci-blue); font-size:13px; line-height:1.2;'><span class='no-orphan'>每週二、三、四</span></div><div style='font-weight:700; color:var(--uci-blue); font-size:11.5px; line-height:1.2; margin-top:3px;'><span class='no-orphan'>9:00 AM - 12:00 PM</span></div></div>";
             var bonusText = hasPM ? " (含下午英文複習班：每週$" + pmRate + " × " + weeks + "週)" : "";
             var offerText = (weeks >= 3) ? "<span style='color:red;'>(已自動套用滿3週以上8折大特惠每週$3600!)</span>" : "(常態1-2週原價每週$4500)";
             
@@ -909,13 +909,19 @@ function calculateTuition() {
             totalInput.value = "$" + finalTotal;
 
             timeDisplay.innerHTML = course.time;
+            
+            // 折扣文字轉換 (0.85 -> 85折, 0.8 -> 8折)
+            var discountStr = (discountRate * 100).toString();
+            if (discountRate === 0.9) discountStr = "9";
+            if (discountRate === 0.8) discountStr = "8";
+            
             var discountLabel = discountRate === 0.8 ? " <span style='color:red;'>(尊榮老朋友8折)</span>" : " (常態運算)";
 
             calcPreview.innerHTML = "📚 <b>" + courseKey + " 全項目折扣拆解明細" + discountLabel + "</b>：<br>" +
                                     "基本學費：$" + course.price + " × " + course.lessons + "堂 = $" + tuitionTotal + " | " +
                                     "原價教材費：$" + materialsTotal + " | " +
                                     "學雜費：$" + course.misc + " × " + course.lessons + "堂 = $" + miscTotal + "<br>" +
-                                    "👉 <b>全項目（學費＋教材＋雜費）套用 " + (discountRate * 10) + " 折後實際總計：NT$ " + finalTotal + " 元</b>";
+                                    "👉 <b>全項目（學費＋教材＋雜費）套用 " + discountStr + " 折後實際總計：NT$ " + finalTotal + " 元</b>";
         }
     } catch (err) {
         console.error("Tuition calculation error resolved:", err);
