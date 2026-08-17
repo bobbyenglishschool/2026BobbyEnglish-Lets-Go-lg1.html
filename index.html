@@ -154,7 +154,6 @@
             border-radius: 6px 6px 0 0;
         }
 
-        /* 表格行動端包裹容器 */
         .table-responsive-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -162,7 +161,7 @@
             margin-bottom: 15px;
         }
 
-        /* 🔒 任務二核心修復：採用 collapse 演算法與實體深藍色 (#1b3d6d)，確保 100% 邊框粗細一致且清晰顯色！ */
+        /* 🔒 邊框顯色修復：三大主題下方表格外框與內部格線全數強制補上實體深藍色 (#1b3d6d !important)！ */
         table {
             width: 100%;
             border-collapse: collapse !important;
@@ -170,6 +169,8 @@
             font-size: 13px;
             table-layout: fixed;
             border: 1px solid #1b3d6d !important;
+            border-radius: 6px;
+            overflow: hidden;
             background-color: #ffffff;
         }
 
@@ -231,11 +232,11 @@
             font-size: 13.5px;
         }
 
-        /* 🎯 任務一核心修復：出生年月日及小日曆圖檔靠右，並預留安全距離 */
+        /* 🎯 DOB 靠右微調：靠右對齊且預留 12px 安全距離，100% 絕不碰到右邊框線！ */
         input[type="date"].text-input {
             display: block; 
             line-height: normal;
-            padding: 2px 8px 2px 2px !important;
+            padding: 2px 12px 2px 2px !important;
             font-size: 11.5px !important;
             letter-spacing: -0.2px;
             text-align: right !important;
@@ -272,7 +273,6 @@
             white-space: nowrap;
         }
 
-        /* 🎯 轉帳後五碼底線向左縮短，右側預留 12px 安全距離 */
         .payment-inline-row {
             display: flex;
             align-items: center;
@@ -293,7 +293,6 @@
             white-space: nowrap;
         }
 
-        /* 🎯 避孤晶片：確保文字不離散折行 */
         .no-orphan {
             display: inline-block;
             white-space: nowrap;
@@ -477,7 +476,6 @@
             table, th, td { border: 1px solid #1b3d6d !important; }
         }
 
-        /* 🎯 核心修復：全載具行動護盾！網頁縮小時表格平滑捲動，內容 100% 不跑版！ */
         @media (max-width: 768px) {
             body { padding: 8px; }
             .page { padding: 15px 12px; }
@@ -547,6 +545,7 @@
                         </tr>
                         <tr>
                             <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
+                            <!-- 🎯 DOB 靠右且留 12px 防撞氣墊，絕不碰撞右邊框線！ -->
                             <td><input type="date" name="dob" class="text-input" required></td>
                             <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
                             <td><input type="text" name="school" class="text-input" placeholder=""></td>
@@ -738,7 +737,7 @@
 </div>
 
 <script>
-// ===== 核心報名表對應資料庫 =====
+// ===== 核心報名表對應資料庫 (已刪除 "(Bobby全美語教學)"，時間採用雙層置中結構) =====
 var courseDatabase = {
     "Let's Go 1": { 
         label: "Let's Go 1 兒童初階美語", 
@@ -887,7 +886,7 @@ function calculateTuition() {
             return;
         }
 
-        // 處理：Let's Go 1-6 與 Advance A1-A2 連動動態算式
+        // 🎯 核心升級：Let's Go 1-6 與 Advance A1-A2 全項目（學費＋教材費＋學雜費）連動 8折/85折/9折 動態算式
         if (courseDatabase[courseKey]) {
             var course = courseDatabase[courseKey];
             labelDisplay.innerText = course.label;
@@ -897,7 +896,11 @@ function calculateTuition() {
             var materialsTotal = course.materials;
             var miscTotal = course.misc * course.lessons;
             
-            var finalTotal = Math.round((tuitionTotal + miscTotal) * discountRate + materialsTotal);
+            // 全項目小計
+            var subTotal = tuitionTotal + materialsTotal + miscTotal;
+            
+            // 🎯 全項目一律乘上折扣率並四捨五入整數！
+            var finalTotal = Math.round(subTotal * discountRate);
 
             document.getElementById('sub_tuition').value = tuitionTotal;
             document.getElementById('sub_materials').value = materialsTotal;
@@ -908,11 +911,11 @@ function calculateTuition() {
             timeDisplay.innerHTML = course.time;
             var discountLabel = discountRate === 0.8 ? " <span style='color:red;'>(尊榮老朋友8折)</span>" : " (常態運算)";
 
-            calcPreview.innerHTML = "📚 <b>" + courseKey + " 費用拆解明細" + discountLabel + "</b>：<br>" +
+            calcPreview.innerHTML = "📚 <b>" + courseKey + " 全項目折扣拆解明細" + discountLabel + "</b>：<br>" +
                                     "基本學費：$" + course.price + " × " + course.lessons + "堂 = $" + tuitionTotal + " | " +
-                                    "固定教材費：$" + materialsTotal + " | " +
+                                    "原價教材費：$" + materialsTotal + " | " +
                                     "學雜費：$" + course.misc + " × " + course.lessons + "堂 = $" + miscTotal + "<br>" +
-                                    "👉 <b>應繳實際總計金額：NT$ " + finalTotal + " 元</b>";
+                                    "👉 <b>全項目（學費＋教材＋雜費）套用 " + (discountRate * 10) + " 折後實際總計：NT$ " + finalTotal + " 元</b>";
         }
     } catch (err) {
         console.error("Tuition calculation error resolved:", err);
