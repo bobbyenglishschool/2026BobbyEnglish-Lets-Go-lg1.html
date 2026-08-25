@@ -2,11 +2,9 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <!-- 🎯 全載具核心天線：確保行動裝置與 A4 紙張列印排版 100% 完美自適應 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>私立巴比美語短期補習班 | 專屬學員報名系統 (Let's Go 1)</title>
     
-    <!-- 引入專業雙語 Google Fonts 字型 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -16,8 +14,9 @@
             --uci-blue: #1b3d6d;
             --uci-gold: #fecc07;
             --soft-red: #e74c3c;
+            --lg1-blue: #0077b6;
             --card-bg: #f8fafc;
-            --border-color: #1b3d6d; /* 🎯 強制導向巴比深藍 */
+            --border-color: #1b3d6d;
             --text-main: #1e293b;
             --text-sub: #475569;
         }
@@ -45,13 +44,11 @@
             border-radius: 12px;
             overflow: hidden;
             width: 100%;
+            position: relative;
         }
 
-        .page {
-            padding: 30px 40px;
-        }
+        .page { padding: 30px 40px; }
 
-        /* 🎯 抬頭最上方動態智慧生產字樣 */
         .dynamic-top-banner {
             font-size: 15px;
             font-weight: bold;
@@ -64,7 +61,6 @@
             display: inline-block;
         }
 
-        /* 經典頂部：左資料、右相片 */
         .header-section {
             display: flex;
             justify-content: space-between;
@@ -99,10 +95,7 @@
             color: var(--text-sub);
             line-height: 1.6;
         }
-        
-        .contact-info p {
-            margin: 2px 0;
-        }
+        .contact-info p { margin: 2px 0; }
 
         .photo-box {
             width: 2in;
@@ -123,9 +116,7 @@
             transition: background-color 0.2s;
         }
 
-        .photo-box:hover {
-            background-color: rgba(27, 61, 109, 0.05);
-        }
+        .photo-box:hover { background-color: rgba(27, 61, 109, 0.05); }
 
         .photo-file-input {
             position: absolute;
@@ -137,11 +128,7 @@
             cursor: pointer;
         }
 
-        .preview-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .preview-img { width: 100%; height: 100%; object-fit: cover; }
 
         .section-title {
             background-color: var(--uci-blue);
@@ -161,7 +148,6 @@
             margin-bottom: 15px;
         }
 
-        /* 🔒 Aegis 核心 UI 規範 1：所有表格與內格線 100% 飽滿巴比深藍色實體化 */
         table {
             width: 100%;
             border-collapse: collapse !important;
@@ -169,8 +155,6 @@
             font-size: 13px;
             table-layout: fixed;
             border: 1px solid #1b3d6d !important;
-            border-radius: 0px;
-            overflow: hidden;
             background-color: #ffffff;
         }
 
@@ -191,24 +175,10 @@
             padding: 6px 4px;
         }
 
-        th span.zh-title {
-            font-size: 13.5px;
-            display: block;
-            margin-bottom: 2px;
-            font-weight: 700;
-        }
-        th span.en-title {
-            font-size: 10.5px;
-            display: block;
-            font-weight: 400;
-            opacity: 0.85;
-        }
+        th span.zh-title { font-size: 13.5px; display: block; margin-bottom: 2px; font-weight: 700; }
+        th span.en-title { font-size: 10.5px; display: block; font-weight: 400; opacity: 0.85; }
 
-        td {
-            height: 45px;
-            position: relative;
-            text-align: left;
-        }
+        td { height: 45px; position: relative; text-align: left; }
 
         .text-input, .static-course-display {
             border: none;
@@ -226,7 +196,6 @@
             justify-content: flex-start;
         }
 
-        /* 🎯 Aegis 核心 UI 規範 5：選讀班別拆解兩行、去「班」字、100% 幾何精準居中 */
         .static-course-display {
             font-weight: bold;
             color: var(--uci-blue);
@@ -240,17 +209,9 @@
             padding: 4px 0;
         }
         
-        .static-course-display .course-id {
-            font-size: 14px;
-            font-weight: 800;
-        }
-        .static-course-display .course-zh {
-            font-size: 12px;
-            font-weight: 600;
-            margin-top: 2px;
-        }
+        .static-course-display .course-id { font-size: 14px; font-weight: 800; }
+        .static-course-display .course-zh { font-size: 12px; font-weight: 600; margin-top: 2px; }
 
-        /* 🎯 Aegis 核心 UI 規範 2：DOB 原生 Date Picker 靠右置中並預留 12px 安全氣墊防撞 */
         input[type="date"].text-input {
             display: block; 
             line-height: normal;
@@ -263,15 +224,6 @@
             box-sizing: border-box;
         }
 
-        input[name="receipt_no"].text-input {
-            font-size: 11.5px !important;
-            padding: 4px 6px;
-        }
-
-        .text-input:focus {
-            background-color: rgba(254, 204, 7, 0.15);
-        }
-
         .radio-group {
             display: flex;
             align-items: center;
@@ -282,13 +234,7 @@
             flex-wrap: wrap;
         }
 
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            cursor: pointer;
-            white-space: nowrap;
-        }
+        .radio-group label { display: flex; align-items: center; gap: 4px; cursor: pointer; white-space: nowrap; }
 
         .payment-inline-row {
             display: flex;
@@ -302,18 +248,7 @@
             flex-wrap: nowrap;
         }
 
-        .payment-inline-row label {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .no-orphan {
-            display: inline-block;
-            white-space: nowrap;
-        }
+        .payment-inline-row label { display: flex; align-items: center; gap: 4px; cursor: pointer; white-space: nowrap; }
 
         .offer-box {
             background-color: rgba(254, 204, 7, 0.15);
@@ -336,7 +271,6 @@
             margin-bottom: 22px;
             font-size: 19px;
             font-weight: 800;
-            letter-spacing: 0.5px;
         }
 
         .privacy-statement {
@@ -346,20 +280,11 @@
             font-size: 13.5px;
             margin-bottom: 22px;
             border-radius: 6px;
-            text-align: justify;
             line-height: 1.65;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-            border-top: 1px solid #1b3d6d !important;
-            border-right: 1px solid #1b3d6d !important;
-            border-bottom: 1px solid #1b3d6d !important;
+            border: 1px solid #1b3d6d !important;
         }
 
-        .terms-list {
-            font-size: 13.5px;
-            color: var(--text-main);
-            text-align: justify;
-        }
-
+        .terms-list { font-size: 13.5px; color: var(--text-main); }
         .terms-list .term-item {
             margin-bottom: 18px;
             line-height: 1.65;
@@ -369,77 +294,23 @@
             border: 1px solid #1b3d6d !important;
         }
 
-        .terms-list strong {
-            color: var(--uci-blue);
-            font-size: 14px;
-            font-weight: 800;
-        }
-
-        .agreement-text {
-            text-align: center;
-            font-size: 14.5px;
-            font-weight: 800;
-            color: var(--soft-red);
-            margin: 25px 0 20px 0;
-            line-height: 1.6;
-        }
-
-        .signature-section {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 25px;
-            gap: 20px;
-        }
-
+        .signature-section { display: flex; justify-content: space-between; margin-top: 25px; gap: 20px; }
         .signature-box {
             flex: 1;
             width: 50%; 
             border: 1.5px solid var(--uci-blue) !important;
-            padding: 16px;
+            padding: 14px;
             border-radius: 8px;
             background-color: #fafbfc;
-            text-align: left;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
-        .signature-row {
-            display: flex;
-            align-items: flex-end;
-            margin-bottom: 12px;
-            height: 38px; 
-        }
+        .sig-title { color: var(--uci-blue); font-weight: 700; font-size: 13px; margin-bottom: 6px; display: flex; justify-content: space-between; }
+        .canvas-container { position: relative; width: 100%; height: 120px; background: #fff; border: 1px dashed var(--uci-blue); border-radius: 6px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        canvas.sig-pad { width: 100%; height: 100%; cursor: crosshair; touch-action: none; display: block; }
+        .sig-preview-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .btn-clear-sig { background: #f1f5f9; border: 1px solid #cbd5e1; color: var(--text-sub); font-size: 11px; padding: 2px 8px; border-radius: 4px; cursor: pointer; }
 
-        .signature-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .signature-row span {
-            color: var(--uci-blue);
-            font-weight: 700;
-            font-size: 13px;
-            line-height: 1.3;
-            display: inline-block;
-            width: 140px; 
-            flex-shrink: 0;
-        }
-
-        .signature-input {
-            border: none;
-            border-bottom: 1.5px solid #666;
-            background: transparent;
-            flex: 1;
-            outline: none;
-            font-size: 15px;
-            padding: 2px 5px;
-            text-align: left;
-            width: 100%; 
-        }
-
-        .submit-btn-container {
-            margin-top: 30px;
-            text-align: center;
-        }
-
+        .submit-btn-container { margin-top: 30px; text-align: center; }
         .submit-btn {
             background-color: var(--uci-gold);
             color: var(--uci-blue);
@@ -452,77 +323,49 @@
             width: 100%;
             max-width: 400px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        #loadingOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.92);
+            display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;
+            color: var(--uci-blue); font-weight: 800; font-size: 18px;
         }
 
-        .submit-btn:disabled {
-            background-color: #cccccc !important;
-            color: #666666 !important;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        .extra-summer-box {
-            background-color: #f9fbfd;
-            border: 1px solid #1b3d6d !important;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 6px;
-            display: none;
-            text-align: left;
-        }
-
-        .extra-summer-title {
-            color: var(--uci-blue);
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
+        #successScreen { display: none; padding: 60px 30px; text-align: center; animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         @media print {
             @page { size: A4 portrait; margin: 10mm 15mm; }
-            body { background-color: transparent; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { background-color: transparent; padding: 0; }
             .page-container { box-shadow: none; max-width: 100%; }
-            .page1 { break-after: page; }
-            .page { padding: 0; }
-            .submit-btn-container { display: none !important; }
-            .extra-summer-box { border: 1px solid #1b3d6d !important; background-color: transparent; }
+            .submit-btn-container, .btn-clear-sig, #loadingOverlay { display: none !important; }
             table, th, td { border: 1px solid #1b3d6d !important; }
-        }
-
-        @media (max-width: 768px) {
-            body { padding: 8px; }
-            .page { padding: 15px 12px; }
-            .page-container { width: 100%; overflow-x: visible; }
-            .header-section { flex-direction: row; gap: 10px; }
-            .signature-section { flex-direction: column; gap: 15px; }
-            .signature-box { width: 100%; }
-            table { min-width: 600px; }
         }
     </style>
 </head>
 <body>
 
-<div class="page-container">
-    <form id="enrollmentForm" action="https://formsubmit.co/joy@bobbyenglishschool.com" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" id="formSubject" name="_subject" value="【專屬報名登記】巴比美語單一課程填報通知">
-        <input type="hidden" id="printLinkInput" name="查看並印出完整A4報名表" value="">
+<div id="loadingOverlay">
+    <div style="font-size: 40px; margin-bottom: 10px;">🛡️🛹</div>
+    <div>正在調閱雲端報名資料，請稍候...</div>
+</div>
 
-        <input type="hidden" id="course_name_hidden" name="course_name" value="">
+<div class="page-container">
+    <form id="enrollmentForm">
+        <input type="hidden" name="series" value="LetsGo">
+        <input type="hidden" name="formType" value="registration">
+        <input type="hidden" id="course_name_hidden" name="course_name" value="Let's Go 1">
         <input type="hidden" id="class_time" name="class_time" value="">
         <input type="hidden" id="sub_tuition" name="sub_tuition" value="0">
         <input type="hidden" id="sub_materials" name="sub_materials" value="0">
         <input type="hidden" id="sub_misc" name="sub_misc" value="0">
-        <input type="hidden" id="summer_weeks_selected" name="summer_weeks_selected" value="">
-        <input type="hidden" id="summer_pm_selected" name="summer_pm_selected" value="">
+        <input type="hidden" id="discount_plan_text" name="discount_plan_text" value="">
 
-        <!-- ================= PAGE 1 ================= -->
+        <input type="hidden" id="student_photo_base64" name="student_photo_base64" value="">
+        <input type="hidden" id="parent_signature_base64" name="parent_signature_base64" value="">
+        <input type="hidden" id="staff_signature_base64" name="staff_signature_base64" value="">
+
+        <!-- PAGE 1 -->
         <div class="page page1">
             <div id="dynamicBannerDisplay" class="dynamic-top-banner">載入中...</div>
 
@@ -541,7 +384,7 @@
                 
                 <label class="photo-box" id="photoContainer">
                     <div id="uploadText">點擊上傳照片<br>Click to Upload<br>(2-inch)</div>
-                    <input type="file" name="student_photo" accept="image/*" class="photo-file-input" onchange="showImagePreview(this)">
+                    <input type="file" accept="image/*" class="photo-file-input" onchange="processImageUpload(this)">
                 </label>
             </div>
 
@@ -551,9 +394,9 @@
                     <tbody>
                         <tr>
                             <th><span class="zh-title">中文姓名</span><span class="en-title">Chinese Name</span></th>
-                            <td><input type="text" name="student_name_zh" class="text-input" placeholder="" required></td>
+                            <td><input type="text" id="student_name_zh" name="student_name_zh" class="text-input" required></td>
                             <th><span class="zh-title">英文姓名</span><span class="en-title">English Name</span></th>
-                            <td><input type="text" name="student_name_en" class="text-input" placeholder="" required></td>
+                            <td><input type="text" id="student_name_en" name="student_name_en" class="text-input" required></td>
                             <th><span class="zh-title">性別</span><span class="en-title">Gender</span></th>
                             <td>
                                 <div class="radio-group">
@@ -564,34 +407,33 @@
                         </tr>
                         <tr>
                             <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
-                            <!-- 🎯 DOB 靠右且留 12px 防撞氣墊，絕不碰撞右邊框線！ -->
-                            <td><input type="date" name="dob" class="text-input" required></td>
+                            <td><input type="date" id="dob" name="dob" class="text-input" required></td>
                             <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
-                            <td><input type="text" name="school" class="text-input" placeholder=""></td>
+                            <td><input type="text" id="school_name" name="school_name" class="text-input"></td>
                             <th><span class="zh-title">年級</span><span class="en-title">Grade</span></th>
                             <td>
                                 <div style="display: flex; align-items: center; justify-content: flex-start; padding: 0 8px; height: 100%;">
-                                    第 <input type="text" name="grade" style="border: none; border-bottom: 1px solid #333; width: 50px; text-align: center; margin: 0 5px; background: transparent; outline: none;"> 年級
+                                    第 <input type="text" id="grade_level" name="grade_level" style="border: none; border-bottom: 1px solid #333; width: 50px; text-align: center; margin: 0 5px; background: transparent; outline: none;"> 年級
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th><span class="zh-title">家長姓名</span><span class="en-title">Parent's Name</span></th>
-                            <td><input type="text" name="parent_name" class="text-input" placeholder="" required></td>
+                            <td><input type="text" id="parent_name" name="parent_name" class="text-input" required></td>
                             <th><span class="zh-title">與學生關係</span><span class="en-title">Relationship</span></th>
-                            <td><input type="text" name="relation" class="text-input" placeholder="" required></td>
+                            <td><input type="text" id="relationship" name="relationship" class="text-input" required></td>
                             <th><span class="zh-title">聯絡電話</span><span class="en-title">Phone Number</span></th>
-                            <td><input type="tel" name="phone" class="text-input" placeholder="" required></td>
+                            <td><input type="tel" id="phone" name="phone" class="text-input" required></td>
                         </tr>
                         <tr>
                             <th><span class="zh-title">電子信箱</span><span class="en-title">E-mail</span></th>
-                            <td colspan="3"><input type="email" name="email" class="text-input" placeholder=""></td>
+                            <td colspan="3"><input type="email" id="email" name="email" class="text-input"></td>
                             <th><span class="zh-title">LINE ID</span><span class="en-title">LINE ID</span></th>
-                            <td><input type="text" name="line_id" class="text-input" placeholder=""></td>
+                            <td><input type="text" id="line_id" name="line_id" class="text-input"></td>
                         </tr>
                         <tr>
                             <th><span class="zh-title">通訊地址</span><span class="en-title">Mailing Address</span></th>
-                            <td colspan="5"><input type="text" name="address" class="text-input" placeholder="" required></td>
+                            <td colspan="5"><input type="text" id="address" name="address" class="text-input" required></td>
                         </tr>
                     </tbody>
                 </table>
@@ -604,7 +446,6 @@
                         <tr>
                             <th><span class="zh-title">就讀班別</span><span class="en-title">Course</span></th>
                             <td colspan="2">
-                                <!-- 🎯 Aegis 核心 UI 規範 3 & 5：選讀班別拆解兩行、去「班」字、100% 精準居中 -->
                                 <div id="courseLabelDisplay" class="static-course-display">未設定課程</div>
                             </td>
                             <th><span class="zh-title">標準上課時段</span><span class="en-title">Schedule</span></th>
@@ -617,7 +458,6 @@
                                     <label><input type="radio" name="discount_plan" value="1.0" checked onchange="calculateTuition()"> 常態收費原價 (Full Price)</label>
                                     <label><input type="radio" name="discount_plan" value="0.9" onchange="calculateTuition()"> 9 折優惠 (10% OFF)</label>
                                     <label><input type="radio" name="discount_plan" value="0.85" onchange="calculateTuition()"> 85 折優惠 (15% OFF)</label>
-                                    <!-- 🎯 已同步刪除「老朋友」字樣，統一為「✨ 8 折優惠」 -->
                                     <label><input type="radio" name="discount_plan" value="0.8" onchange="calculateTuition()"> ✨ 8 折優惠 (20% OFF)</label>
                                 </div>
                             </td>
@@ -626,30 +466,7 @@
                 </table>
             </div>
 
-            <div class="extra-summer-box" id="summerConfigBox">
-                <div class="extra-summer-title">☀️ 暑期課程特別配置艙 (Summer Options)</div>
-                <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap; font-size: 13px; padding-left: 8px;">
-                    <div>
-                        <b>1. 選擇報名週數：</b>
-                        <select id="summerWeeks" style="width: 150px; display: inline-block; border: 1px solid #1b3d6d; height: 30px; border-radius: 4px;" onchange="calculateTuition()">
-                            <option value="1">1 週課程 / 1 Week</option>
-                            <option value="2">2 週課程 / 2 Weeks</option>
-                            <option value="3">3 週 (享8折) / 3 Weeks</option>
-                            <option value="4">4 週 (享8折) / 4 Weeks</option>
-                            <option value="5">5 週 (享8折) / 5 Weeks</option>
-                            <option value="6">6 週 (享8折) / 6 Weeks</option>
-                        </select>
-                    </div>
-                    <div>
-                        <b>2. 加購下午英文複習班：</b>
-                        <label style="cursor: pointer; margin-left: 10px;"><input type="checkbox" id="summerPM" onchange="calculateTuition()"> 加購下午班 (1:30-4:30p.m.)</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="offer-box" id="calcPreview">
-                核心大腦即時計算中...
-            </div>
+            <div class="offer-box" id="calcPreview">核心大腦即時計算中...</div>
 
             <div class="section-title">補習班行政確認欄 Office Use Only</div>
             <div class="table-responsive-wrapper">
@@ -661,19 +478,19 @@
                             <th><span class="zh-title">付款方式</span><span class="en-title">Payment Method</span></th>
                             <td colspan="3">
                                 <div class="payment-inline-row">
-                                    <label><input type="radio" name="payment_method" value="現金" checked> 現金 Cash</label>
+                                    <label><input type="radio" name="payment_method" value="現金" checked onclick="updatePaymentMethodValue()"> 現金 Cash</label>
                                     <label style="display: flex; align-items: center; gap: 2px;">
-                                        <input type="radio" name="payment_method" value="銀行轉帳"> 銀行轉帳(後五碼)：
-                                        <input type="text" name="transfer_code" style="border: none; border-bottom: 1.5px solid #333; width: 50px; background: transparent; outline: none; text-align: center; font-size: 13px; height: 22px; padding: 0; margin-right: 8px;">
+                                        <input type="radio" id="pay_transfer_radio" name="payment_method" value="銀行轉帳" onclick="updatePaymentMethodValue()"> 銀行轉帳(後五碼)：
+                                        <input type="text" id="transfer_code" name="transfer_code" style="border: none; border-bottom: 1.5px solid #333; width: 60px; background: transparent; outline: none; text-align: center; font-size: 13px; height: 22px; padding: 0; margin-right: 8px;" oninput="updatePaymentMethodValue()">
                                     </label>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th><span class="zh-title">經辦人員</span><span class="en-title">Staff Name</span></th>
-                            <td><input type="text" name="staff_name" class="text-input" value="Joy"></td>
+                            <td><input type="text" id="staff_name" name="staff_name" class="text-input" value="Joy"></td>
                             <th><span class="zh-title">收據編號</span><span class="en-title">Receipt No.</span></th>
-                            <td><input type="text" name="receipt_no" class="text-input" placeholder="R-2026-XXXX"></td>
+                            <td><input type="text" id="receipt_no" name="receipt_no" class="text-input" placeholder="R-2026-XXXX"></td>
                             <th><span class="zh-title">教材發放狀況</span><span class="en-title">Material Status</span></th>
                             <td>
                                 <div class="radio-group">
@@ -687,7 +504,7 @@
             </div>
         </div>
 
-        <!-- ================= PAGE 2 ================= -->
+        <!-- PAGE 2 -->
         <div class="page page2">
             <h2 class="terms-header">報名條款與家長同意書<br><span style="font-size: 13.5px; font-weight: 500; color: var(--text-sub); display: block; margin-top: 4px;">Terms & Conditions (Bobby English School Policies)</span></h2>
             
@@ -700,64 +517,67 @@
             <div class="terms-list">
                 <div class="term-item">
                     <strong>1. 審閱權與退費規定 / Refund Policy：</strong><br>
-                    依據「桃園市短期補習班退費管理自治條例」規定辦理。家長攜回審閱期至少五日。開課前30日前退費者，退還全額；開課前1日至29日退費者，退還90%；開課後5日內要求退費者，退還80%；上課未逾全期1/3期間內要求退費者，退還50%；超過全期1/3學期者不予退費。教材發放後亦不予退還。<br>
-                    <span style="color: var(--text-sub); display: block; margin-top: 4px;">Refunds are processed in accordance with the "Taoyuan Short-term Cram School Refund Management Regulations." Parents have at least a 5-day contract review period. A 100% refund is issued if requested 30 days prior to the course start date; a 90% refund if requested 1 to 29 days prior; an 80% refund within the first 5 days of class; a 50% refund if requested after the 6th day but before completing 1/3 of the total course duration. No refunds will be issued after 1/3 of the course duration has passed. No refunds on textbook or material fees once distributed.</span>
+                    依據「桃園市短期補習班退費管理自治條例」規定辦理。家長攜回審閱期至少五日。開課前30日前退費者，退還全額；開課前1日至29日退費者，退還90%；開課後5日內要求退費者，退還80%；上課未逾全期1/3期間內要求退費者，退還50%；超過全期1/3學期者不予退費。教材發放後亦不予退還。
                 </div>
                 <div class="term-item">
                     <strong>2. 請假與補課 / Leave & Make-up Lessons：</strong><br>
-                    因事或病假缺席者，請於上課前兩小時透過官方 LINE 或電話完成請假。完成請假者，本班將提供一對一或小組補課、輔導。無故缺課者（曠課）不予補課與退費。<br>
-                    <span style="color: var(--text-sub); display: block; margin-top: 4px;">In case of sick leave or personal leave, please notify the school via our official LINE account or phone at least 2 hours before class. For validated absences, the school will arrange one-on-one or small-group make-up tutoring. No make-up lessons or refunds will be provided for unexcused absences (truancy).</span>
+                    因事或病假缺席者，請於上課前兩小時透過官方 LINE 或電話完成請假。完成請假者，本班將提供一對一或小組補課、輔導。無故缺課者（曠課）不予補課與退費。
                 </div>
                 <div class="term-item">
                     <strong>3. 安全與公共責任 / Safety & Public Liability Insurance：</strong><br>
-                    為維護學生安全，下課後請家長按時前來接送。本補習班公共安全設施、消防設備以及公共意外責任險均嚴格符合政府法令規範。<br>
-                    <span style="color: var(--text-sub); display: block; margin-top: 4px;">To ensure student safety, parents are requested to pick up their children on time after class. Our school's public safety facilities, fire safety equipment, and public liability insurance strictly comply with government laws and regulations.</span>
+                    為維護學生安全，下課後請家長按時前來接送。本補習班公共安全設施、消防設備以及公共意外責任險均嚴格符合政府法令規範。
                 </div>
                 <div class="term-item">
                     <strong>4. 肖像權合理授權 / Portrait Rights Authorization：</strong><br>
-                    家長同意本班在節慶活動、課堂成果中進行拍照或錄影，合理授權作為內部成果展示與官方推廣使用，且不損及學生名譽。<br>
-                    <span style="color: var(--text-sub); display: block; margin-top: 4px;">Parents agree to allow the school to take photos or videos during holiday activities and class presentations. This constitutes a rational authorization for internal displays and official promotional use, ensuring that student reputation is fully protected.</span>
+                    家長同意本班在節慶活動、課堂成果中進行拍照或錄影，合理授權作為內部成果展示與官方推廣使用，且不損及學生名譽。
                 </div>
-            </div>
-
-            <div class="agreement-text">
-                本人已詳細閱讀、理解並完全同意上述所有巴比美語短期補習服務條款。<br>
-                <span style="font-size: 11.5px; font-weight: 400; color: var(--text-sub); display: block; margin-top: 4px; font-style: italic;">I have read, understood, and fully agreed to all the terms and conditions of Bobby English School services stated above.</span>
             </div>
 
             <div class="signature-section">
                 <div class="signature-box">
-                    <div class="signature-row">
-                        <span>家長/監護人簽名 (Signature)</span>
-                        <input type="text" name="parent_signature" class="signature-input" required>
+                    <div class="sig-title">
+                        <span>家長/監護人電子簽名 (Parent Signature)</span>
+                        <button type="button" class="btn-clear-sig" onclick="clearCanvas('parentSigPad')">清除 / Clear</button>
                     </div>
-                    <div class="signature-row">
-                        <span>日期 Date</span>
-                        <input type="date" name="parent_sig_date" id="parentSigDate" class="signature-input" required>
+                    <div class="canvas-container" id="parentSigContainer">
+                        <canvas id="parentSigPad" class="sig-pad"></canvas>
+                    </div>
+                    <div class="sig-date-row">
+                        <span>簽署日期 Date：</span>
+                        <input type="date" name="parent_sig_date" id="parentSigDate" style="border: none; border-bottom: 1px solid #1b3d6d; background: transparent; font-size: 12px; padding: 2px 4px;" required>
                     </div>
                 </div>
 
                 <div class="signature-box">
-                    <div class="signature-row">
-                        <span>承辦老師簽章<br>(Staff Signature)</span>
-                        <input type="text" name="teacher_signature" class="signature-input" value="Joy">
+                    <div class="sig-title">
+                        <span>承辦老師簽章 (Staff Signature)</span>
+                        <button type="button" class="btn-clear-sig" onclick="clearCanvas('staffSigPad')">清除 / Clear</button>
                     </div>
-                    <div class="signature-row">
-                        <span>日期 Date</span>
-                        <input type="date" name="teacher_sig_date" id="teacherSigDate" class="signature-input">
+                    <div class="canvas-container" id="staffSigContainer">
+                        <canvas id="staffSigPad" class="sig-pad"></canvas>
+                    </div>
+                    <div class="sig-date-row">
+                        <span>簽署日期 Date：</span>
+                        <input type="date" name="staff_sig_date" id="staffSigDate" style="border: none; border-bottom: 1px solid #1b3d6d; background: transparent; font-size: 12px; padding: 2px 4px;">
                     </div>
                 </div>
             </div>
 
-            <div class="submit-btn-container">
+            <div class="submit-btn-container" id="submitBtnContainer">
                 <button type="submit" id="submitBtn" class="submit-btn">確認並送出報名表 / Submit Form</button>
             </div>
         </div>
     </form>
+
+    <div id="successScreen">
+        <div class="success-icon">🎉</div>
+        <h2 class="success-title">報名資料已成功傳送！</h2>
+        <p class="success-subtitle">謝謝您完成 Let's Go 1 課程的線上報名，我們非常期待與孩子一同踏上美語學習之旅！</p>
+        <button type="button" class="reload-btn" style="background-color:var(--uci-blue); color:#fff; border:none; padding:12px 30px; border-radius:20px; cursor:pointer;" onclick="window.location.reload()">重新填寫報名表 / Submit Another Form</button>
+    </div>
 </div>
 
 <script>
-// ===== 核心報名表對應資料庫 =====
 var courseDatabase = {
     "Let's Go 1": { 
         id: "Let's Go 1",
@@ -767,28 +587,155 @@ var courseDatabase = {
     }
 };
 
-// ==========================================
-// ⭐ 核心鎖定：Let's Go 1 獨立網頁艙
-// ==========================================
 var TARGET_COURSE = "Let's Go 1"; 
+var parentCanvas, staffCanvas, parentCtx, staffCtx;
+var isDrawingParent = false, isDrawingStaff = false;
+var PURE_GAS_URL = "https://script.google.com/macros/s/AKfycbwr4AAm42X6bvPwEbp8tPhyc0N3js3zhicgkD5YGrnk5EnKmeGakB7FUIcCH98glKrwVA/exec";
 
-// 頁面初始化自動綁定與運算
+function updatePaymentMethodValue() {
+    var transferRadio = document.getElementById('pay_transfer_radio');
+    var codeInput = document.getElementById('transfer_code');
+    if (transferRadio && codeInput) {
+        if (codeInput.value.trim() !== "") {
+            transferRadio.checked = true;
+            transferRadio.value = "銀行轉帳 (後五碼: " + codeInput.value.trim() + ")";
+        } else {
+            transferRadio.value = "銀行轉帳";
+        }
+    }
+}
+
+function loadRowDataIfPresent() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var rowIndex = urlParams.get('row');
+    var series = urlParams.get('series') || 'LetsGo';
+    var formType = urlParams.get('formType') || 'registration';
+    var autoPrint = urlParams.get('auto_print');
+
+    if (rowIndex) {
+        document.getElementById('loadingOverlay').style.display = 'flex';
+        var fetchUrl = PURE_GAS_URL + "?row=" + rowIndex + "&series=" + series + "&formType=" + formType;
+        
+        fetch(fetchUrl)
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            document.getElementById('loadingOverlay').style.display = 'none';
+            if (data && data.status === "success" && data.rowData) {
+                var row = data.rowData;
+                if (row[2]) document.getElementById('student_name_zh').value = row[2];
+                if (row[3]) document.getElementById('student_name_en').value = row[3];
+                if (row[4]) {
+                    var gRadios = document.querySelectorAll('input[name="gender"]');
+                    gRadios.forEach(function(r){ if(r.value === row[4]) r.checked = true; });
+                }
+                if (row[5]) document.getElementById('dob').value = row[5];
+                if (row[6]) document.getElementById('school_name').value = row[6];
+                if (row[7]) document.getElementById('grade_level').value = row[7];
+                if (row[8]) document.getElementById('parent_name').value = row[8];
+                if (row[9]) document.getElementById('relationship').value = row[9];
+                if (row[10]) document.getElementById('phone').value = row[10];
+                if (row[11]) document.getElementById('email').value = row[11];
+                if (row[12]) document.getElementById('line_id').value = row[12];
+                if (row[13]) document.getElementById('address').value = row[13];
+
+                if (row[16]) {
+                    var payVal = row[16].toString();
+                    var pRadios = document.querySelectorAll('input[name="payment_method"]');
+                    if (payVal.indexOf('轉帳') !== -1) {
+                        var transferRadio = document.getElementById('pay_transfer_radio');
+                        if (transferRadio) { transferRadio.checked = true; transferRadio.value = payVal; }
+                        var match = payVal.match(/\d+/);
+                        if (match && document.getElementById('transfer_code')) {
+                            document.getElementById('transfer_code').value = match[0];
+                        }
+                    } else {
+                        pRadios.forEach(function(r){ if(r.value === payVal) r.checked = true; });
+                    }
+                }
+
+                if (row[17] && row[17].indexOf('http') === 0) {
+                    document.getElementById('photoContainer').innerHTML = '<img src="' + row[17] + '" class="preview-img" alt="學員大頭照">';
+                }
+                if (row[18] && row[18].indexOf('http') === 0) {
+                    document.getElementById('parentSigContainer').innerHTML = '<img src="' + row[18] + '" class="sig-preview-img" alt="家長電子簽名">';
+                }
+                if (row[19] && row[19].indexOf('http') === 0) {
+                    document.getElementById('staffSigContainer').innerHTML = '<img src="' + row[19] + '" class="sig-preview-img" alt="經辦簽名">';
+                }
+
+                if (document.getElementById('submitBtnContainer')) {
+                    document.getElementById('submitBtnContainer').style.display = 'none';
+                }
+
+                if (autoPrint === 'true') { setTimeout(function() { window.print(); }, 800); }
+            }
+        })
+        .catch(function(err) {
+            document.getElementById('loadingOverlay').style.display = 'none';
+            console.log("Row-ID Fetch Error:", err);
+        });
+    }
+}
+
 window.onload = function() {
     document.getElementById('course_name_hidden').value = TARGET_COURSE;
-    document.getElementById('formSubject').value = "【巴比單一課程報名】" + TARGET_COURSE + " 報名通知";
-    
-    // 🚀 抬頭自動變魔術晶片：主標題與動態 Banner 自動連動
     document.getElementById('mainTitleDisplay').innerHTML = "私立巴比美語短期補習班 ｜ " + TARGET_COURSE + " 專屬智慧報名系統";
     document.getElementById('subTitleDisplay').innerHTML = "Bobby English School - " + TARGET_COURSE + " Enrollment Form";
     document.getElementById('dynamicBannerDisplay').innerHTML = TARGET_COURSE + " 專屬智慧報名系統";
-    
-    // 🎯 自動時光天線：自動帶入當天日期至家長與老師簽名處
+
     var today = new Date().toISOString().split('T')[0];
     if (document.getElementById('parentSigDate')) document.getElementById('parentSigDate').value = today;
-    if (document.getElementById('teacherSigDate')) document.getElementById('teacherSigDate').value = today;
+    if (document.getElementById('staffSigDate')) document.getElementById('staffSigDate').value = today;
 
+    initSignaturePads();
     calculateTuition();
+    loadRowDataIfPresent();
 };
+
+function initSignaturePads() {
+    parentCanvas = document.getElementById('parentSigPad');
+    staffCanvas = document.getElementById('staffSigPad');
+    if (parentCanvas) setupCanvas(parentCanvas);
+    if (staffCanvas) setupCanvas(staffCanvas);
+    if (parentCanvas) parentCtx = parentCanvas.getContext('2d');
+    if (staffCanvas) staffCtx = staffCanvas.getContext('2d');
+    if (parentCanvas) setupPadEvents(parentCanvas, parentCtx, function(drawing) { isDrawingParent = drawing; });
+    if (staffCanvas) setupPadEvents(staffCanvas, staffCtx, function(drawing) { isDrawingStaff = drawing; });
+}
+
+function setupCanvas(canvas) {
+    var rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width || 300;
+    canvas.height = rect.height || 120;
+}
+
+function setupPadEvents(canvas, ctx, setDrawingState) {
+    function resetCtxStyle() { ctx.strokeStyle = "#1b3d6d"; ctx.lineWidth = 2.5; ctx.lineCap = "round"; ctx.lineJoin = "round"; }
+    function getPos(e) {
+        var rect = canvas.getBoundingClientRect();
+        var clientX = e.clientX || (e.touches && e.touches[0].clientX);
+        var clientY = e.clientY || (e.touches && e.touches[0].clientY);
+        return { x: clientX - rect.left, y: clientY - rect.top };
+    }
+    canvas.addEventListener('mousedown', function(e) { setDrawingState(true); resetCtxStyle(); var pos = getPos(e); ctx.beginPath(); ctx.moveTo(pos.x, pos.y); });
+    canvas.addEventListener('mousemove', function(e) { if ((canvas.id === 'parentSigPad' && isDrawingParent) || (canvas.id === 'staffSigPad' && isDrawingStaff)) { var pos = getPos(e); ctx.lineTo(pos.x, pos.y); ctx.stroke(); } });
+    window.addEventListener('mouseup', function() { setDrawingState(false); });
+    canvas.addEventListener('touchstart', function(e) { setDrawingState(true); resetCtxStyle(); var pos = getPos(e); ctx.beginPath(); ctx.moveTo(pos.x, pos.y); }, { passive: true });
+    canvas.addEventListener('touchmove', function(e) { if ((canvas.id === 'parentSigPad' && isDrawingParent) || (canvas.id === 'staffSigPad' && isDrawingStaff)) { var pos = getPos(e); ctx.lineTo(pos.x, pos.y); ctx.stroke(); } }, { passive: true });
+    canvas.addEventListener('touchend', function() { setDrawingState(false); });
+}
+
+function clearCanvas(canvasId) {
+    var canvas = document.getElementById(canvasId);
+    if (canvas) { canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height); }
+}
+
+function isCanvasBlank(canvas) {
+    if (!canvas) return true;
+    var context = canvas.getContext('2d');
+    var pixelBuffer = new Uint32Array(context.getImageData(0, 0, canvas.width, canvas.height).data.buffer);
+    return !pixelBuffer.some(function(color) { return color !== 0; });
+}
 
 function calculateTuition() {
     try {
@@ -800,64 +747,56 @@ function calculateTuition() {
 
         if (courseDatabase[courseKey]) {
             var course = courseDatabase[courseKey];
-            
-            // 🎯 核心 UI 規範：兩行拆解去「班」字雙行呈現
             labelDisplay.innerHTML = "<div class='course-id'>" + course.id + "</div><div class='course-zh'>" + course.zhName + "</div>";
             document.getElementById('class_time').value = "每週一三五 1:30-3:30 PM";
             
             var discountRate = 1.0;
             var activeRadio = document.querySelector('input[name="discount_plan"]:checked');
-            if (activeRadio) discountRate = parseFloat(activeRadio.value);
+            if (activeRadio) {
+                discountRate = parseFloat(activeRadio.value);
+                document.getElementById('discount_plan_text').value = activeRadio.parentElement.innerText.trim();
+            }
 
             var tuitionTotal = course.price * course.lessons; // 620 * 51 = 31,620
             var materialsTotal = course.materials;           // 1,268
             var miscTotal = course.misc * course.lessons;     // 60 * 51 = 3,060
-            
-            // 全項目未折總計 = 31,620 + 1,268 + 3,060 = 35,948
             var subTotal = tuitionTotal + materialsTotal + miscTotal;
-            
-            // 🎯 核心修正：全項目（學費＋教材＋雜費）一律連動乘上折扣率並四捨五入！
             var finalTotal = Math.round(subTotal * discountRate);
 
-            // 🎯 後端 GAS 傳遞欄位自動扣算同等折扣，達到三表與後端 100% 絕對咬合！
             document.getElementById('sub_tuition').value = Math.round(tuitionTotal * discountRate);
             document.getElementById('sub_materials').value = Math.round(materialsTotal * discountRate);
             document.getElementById('sub_misc').value = Math.round(miscTotal * discountRate);
             
-            totalInput.value = "$" + finalTotal;
+            totalInput.value = "$" + finalTotal.toLocaleString();
             timeDisplay.innerHTML = course.time;
             
-            // 🎯 折扣顯示標籤修正：轉換為 85折, 8折，去除老朋友字樣
             var discountStr = (discountRate * 10).toString();
             if (discountRate === 1.0) discountStr = "10";
-            
             var discountText = discountRate === 1.0 ? "未套用額外優惠（維持原價）" : "套用 " + discountStr + " 折";
-            var discountLabel = discountRate === 0.8 ? " <span style='color:red;'>(享8折特惠)</span>" : "";
 
-            calcPreview.innerHTML = "📚 <b>" + courseKey + " 費用明細與折扣說明" + discountLabel + "</b>：<br>" +
+            calcPreview.innerHTML = "📚 <b>" + courseKey + " 費用明細與折扣說明</b>：<br>" +
                                     "基本學費：$" + course.price + " × " + course.lessons + "堂 = $" + tuitionTotal.toLocaleString() + " | " +
                                     "原價教材費：$" + materialsTotal.toLocaleString() + " | " +
                                     "學雜費：$" + course.misc + " × " + course.lessons + "堂 = $" + miscTotal.toLocaleString() + "<br>" +
                                     "👉 <b>全項目（學費＋教材＋雜費）" + discountText + "後實際總計：NT$ " + finalTotal.toLocaleString() + " 元</b>";
         }
-    } catch (err) {
-        console.error("Tuition calculation error resolved:", err);
-    }
+    } catch (err) { console.error("Tuition error:", err); }
 }
 
-function showImagePreview(input) {
+function processImageUpload(input) {
     var container = document.getElementById('photoContainer');
     var uploadText = document.getElementById('uploadText');
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
-            uploadText.style.display = 'none';
+            if (uploadText) uploadText.style.display = 'none';
             var oldImg = container.querySelector('.preview-img');
             if (oldImg) oldImg.remove();
             var img = document.createElement('img');
             img.src = e.target.result;
             img.className = 'preview-img';
             container.appendChild(img);
+            document.getElementById('student_photo_base64').value = e.target.result;
         };
         reader.readAsDataURL(input.files[0]);
     }
@@ -868,39 +807,39 @@ document.getElementById('enrollmentForm').addEventListener('submit', function(e)
     var form = this;
     var submitBtn = document.getElementById('submitBtn');
 
-    if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerText = "正在同步巴比核心雲端校務資料庫...";
+    if (isCanvasBlank(parentCanvas)) {
+        alert("⚠️ 請家長於下方進行電子簽名後再送出報名表喔！");
+        return;
     }
-    
-    var params = new URLSearchParams();
-    var baseUrl = window.location.origin + window.location.pathname;
-    var formElements = form.elements;
-    
-    for (var i = 0; i < formElements.length; i++) {
-        var el = formElements[i];
-        if (!el.name || el.type === 'file' || el.type === 'submit' || el.name.startsWith('_')) continue;
-        if (el.type === 'radio') {
-            if (el.checked) params.append(el.name, el.value);
-        } else {
-            if (el.value) params.append(el.value);
-        }
+
+    updatePaymentMethodValue();
+
+    if (parentCanvas) document.getElementById('parent_signature_base64').value = parentCanvas.toDataURL("image/png");
+    if (!isCanvasBlank(staffCanvas)) {
+        document.getElementById('staff_signature_base64').value = staffCanvas.toDataURL("image/png");
     }
-    params.append('auto_print', 'true');
-    document.getElementById('printLinkInput').value = baseUrl + '?' + params.toString();
+
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.innerText = "正在傳送資料至巴比核心雲端資料庫..."; }
     
-    var googleAppsScriptUrl = "https://script.google.com/macros/s/AKfycbwgH0UA-2abR3kDTfTzcruXpu9oNV9m-t2LeOMG7h-bDaB-RzcKxcYn-HhS8erTE41zAQ/exec";
-    
-    fetch(googleAppsScriptUrl, {
+    var formData = new FormData(form);
+    var object = {};
+    formData.forEach(function(value, key){ object[key] = value; });
+
+    fetch(PURE_GAS_URL, {
         method: 'POST',
-        body: new URLSearchParams(new FormData(form))
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(object)
     })
     .then(function() {
-        alert("🎉 巴比美語：單一課程專屬雲端連線登記成功！");
-        form.submit(); 
+        document.getElementById('enrollmentForm').style.display = 'none';
+        document.getElementById('successScreen').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     })
-    .catch(function() {
-        form.submit();
+    .catch(function(error) {
+        document.getElementById('enrollmentForm').style.display = 'none';
+        document.getElementById('successScreen').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 });
 </script>
