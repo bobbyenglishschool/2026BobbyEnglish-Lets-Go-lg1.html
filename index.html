@@ -221,6 +221,17 @@
             box-sizing: border-box;
         }
 
+        /* 🎯 讓日期輸入框的日曆圖示向左縮進，絕不碰觸右側邊框 */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            margin-right: 8px !important;
+            opacity: 0.75;
+            transition: opacity 0.2s;
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator:hover {
+            opacity: 1;
+        }
+
         .radio-group {
             display: flex;
             align-items: center;
@@ -340,7 +351,7 @@
             tr { display: table-row !important; }
         }
 
-        /* 📱 手機響應式：寬敞填寫黃金適應版 (解鎖高度，絕不壓框) */
+        /* 📱 手機響應式：寬敞填寫黃金適應版 (解鎖高度與邊界防護) */
         @media (max-width: 768px) {
             body { padding: 6px 0; }
             .page { padding: 16px 12px; }
