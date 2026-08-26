@@ -187,7 +187,7 @@
             height: 100%;
             outline: none;
             font-family: inherit;
-            font-size: 13px;
+            font-size: 13.5px;
             color: inherit;
             padding: 4px 8px;
             text-align: left;
@@ -213,7 +213,7 @@
             display: block; 
             line-height: normal;
             padding-right: 12px !important;
-            font-size: 11.5px !important;
+            font-size: 12px !important;
             letter-spacing: -0.2px;
             text-align: right !important;
             width: 100%;
@@ -336,20 +336,36 @@
             body { background-color: transparent; padding: 0; }
             .page-container { box-shadow: none; max-width: 100%; }
             .submit-btn-container, .btn-clear-sig, #loadingOverlay { display: none !important; }
-            table, th, td { border: 1px solid #1b3d6d !important; }
+            table, th, td { border: 1px solid #1b3d6d !important; display: table-cell !important; }
+            tr { display: table-row !important; }
         }
 
-        /* 📱 手機響應式防擠壓終極設定 */
+        /* 📱 手機響應式：寬敞填寫黃金適應版 (極致適應小螢幕) */
         @media (max-width: 768px) {
-            body { padding: 4px; }
+            body { padding: 6px 0; }
             .page { padding: 16px 12px; }
-            .header-section { flex-direction: column; align-items: center; text-align: center; }
-            .title-area { padding-right: 0; margin-bottom: 12px; }
             
-            table { width: 100% !important; min-width: 0 !important; table-layout: auto !important; }
-            th, td { padding: 6px 4px !important; font-size: 12px !important; }
-            th { width: 22% !important; }
+            .header-section { flex-direction: column; align-items: center; text-align: center; }
+            .title-area { padding-right: 0; margin-bottom: 14px; }
+            
+            /* ⚡ 核心適應：手機上讓表格動態轉為寬敞卡片式結構 */
+            .table-responsive-wrapper { overflow-x: visible !important; }
+            table { width: 100% !important; min-width: 0 !important; display: block !important; border: none !important; }
+            tbody { display: block !important; width: 100% !important; }
+            tr { display: flex !important; flex-wrap: wrap !important; width: 100% !important; margin-bottom: 12px; border: 1.5px solid var(--uci-blue) !important; border-radius: 8px; overflow: hidden; background: #fff; }
+            
+            th { display: block !important; width: 100% !important; background-color: #e6f0fa !important; text-align: left !important; padding: 6px 10px !important; border-bottom: 1px solid var(--uci-blue) !important; border-right: none !important; }
+            th span.zh-title { font-size: 13px !important; display: inline-block !important; margin-right: 6px; }
+            th span.en-title { font-size: 10.5px !important; display: inline-block !important; }
 
+            td { display: block !important; width: 100% !important; height: auto !important; min-height: 42px; padding: 6px 8px !important; border: none !important; border-bottom: 1px dashed #cbd5e1 !important; }
+            td:last-child { border-bottom: none !important; }
+
+            .text-input { font-size: 14px !important; padding: 6px 8px !important; background-color: #fafbfc; border-radius: 4px; border: 1px solid #cbd5e1 !important; }
+            .text-input:focus { background-color: #fff !important; border-color: var(--uci-blue) !important; }
+            
+            input[type="date"].text-input { text-align: left !important; }
+            
             .signature-section { flex-direction: column; gap: 15px; }
             .signature-box { width: 100%; }
         }
@@ -406,9 +422,9 @@
                     <tbody>
                         <tr>
                             <th><span class="zh-title">中文姓名</span><span class="en-title">Chinese Name</span></th>
-                            <td><input type="text" id="student_name_zh" name="student_name_zh" class="text-input" required></td>
+                            <td><input type="text" id="student_name_zh" name="student_name_zh" class="text-input" placeholder="請輸入學員中文姓名" required></td>
                             <th><span class="zh-title">英文姓名</span><span class="en-title">English Name</span></th>
-                            <td><input type="text" id="student_name_en" name="student_name_en" class="text-input" required></td>
+                            <td><input type="text" id="student_name_en" name="student_name_en" class="text-input" placeholder="e.g. Joy Chen" required></td>
                             <th><span class="zh-title">性別</span><span class="en-title">Gender</span></th>
                             <td>
                                 <div class="radio-group">
@@ -421,31 +437,31 @@
                             <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
                             <td><input type="date" id="dob" name="dob" class="text-input" required></td>
                             <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
-                            <td><input type="text" id="school_name" name="school_name" class="text-input"></td>
+                            <td><input type="text" id="school_name" name="school_name" class="text-input" placeholder="請填就讀國小/幼兒園"></td>
                             <th><span class="zh-title">年級</span><span class="en-title">Grade</span></th>
                             <td>
                                 <div style="display: flex; align-items: center; justify-content: flex-start; padding: 0 4px; height: 100%; white-space: nowrap;">
-                                    第 <input type="text" id="grade_level" name="grade_level" style="border: none; border-bottom: 1px solid #333; width: 40px; text-align: center; margin: 0 2px; background: transparent; outline: none;"> 年級
+                                    第 <input type="text" id="grade_level" name="grade_level" style="border: none; border-bottom: 1.5px solid #1b3d6d; width: 50px; text-align: center; margin: 0 4px; background: transparent; outline: none; font-weight: bold;"> 年級
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th><span class="zh-title">家長姓名</span><span class="en-title">Parent's Name</span></th>
-                            <td><input type="text" id="parent_name" name="parent_name" class="text-input" required></td>
+                            <td><input type="text" id="parent_name" name="parent_name" class="text-input" placeholder="請填家長全名" required></td>
                             <th><span class="zh-title">與學生關係</span><span class="en-title">Relationship</span></th>
-                            <td><input type="text" id="relationship" name="relationship" class="text-input" required></td>
+                            <td><input type="text" id="relationship" name="relationship" class="text-input" placeholder="如：父、母" required></td>
                             <th><span class="zh-title">聯絡電話</span><span class="en-title">Phone Number</span></th>
-                            <td><input type="tel" id="phone" name="phone" class="text-input" required></td>
+                            <td><input type="tel" id="phone" name="phone" class="text-input" placeholder="如：0912345678" required></td>
                         </tr>
                         <tr>
                             <th><span class="zh-title">電子信箱</span><span class="en-title">E-mail</span></th>
-                            <td colspan="3"><input type="email" id="email" name="email" class="text-input"></td>
+                            <td colspan="3"><input type="email" id="email" name="email" class="text-input" placeholder="接收開課與重要校務通知"></td>
                             <th><span class="zh-title">LINE ID</span><span class="en-title">LINE ID</span></th>
-                            <td><input type="text" id="line_id" name="line_id" class="text-input"></td>
+                            <td><input type="text" id="line_id" name="line_id" class="text-input" placeholder="方便課務聯繫"></td>
                         </tr>
                         <tr>
                             <th><span class="zh-title">通訊地址</span><span class="en-title">Mailing Address</span></th>
-                            <td colspan="5"><input type="text" id="address" name="address" class="text-input" required></td>
+                            <td colspan="5"><input type="text" id="address" name="address" class="text-input" placeholder="請填完整通訊地址" required></td>
                         </tr>
                     </tbody>
                 </table>
@@ -486,14 +502,14 @@
                     <tbody>
                         <tr>
                             <th><span class="zh-title">應繳總金額</span><span class="en-title">Total Amount</span></th>
-                            <td><input type="text" id="total_amount" name="total_amount" class="text-input" style="font-weight: bold; color: #c00; font-size: 15px;" placeholder="$" readonly></td>
+                            <td><input type="text" id="total_amount" name="total_amount" class="text-input" style="font-weight: bold; color: #c00; font-size: 16px;" placeholder="$" readonly></td>
                             <th><span class="zh-title">付款方式</span><span class="en-title">Payment Method</span></th>
                             <td colspan="3">
                                 <div class="payment-inline-row">
                                     <label><input type="radio" name="payment_method" value="現金" checked onclick="updatePaymentMethodValue()"> 現金 Cash</label>
                                     <label style="display: flex; align-items: center; gap: 2px;">
                                         <input type="radio" id="pay_transfer_radio" name="payment_method" value="銀行轉帳" onclick="updatePaymentMethodValue()"> 銀行轉帳(後五碼)：
-                                        <input type="text" id="transfer_code" name="transfer_code" style="border: none; border-bottom: 1.5px solid #333; width: 50px; background: transparent; outline: none; text-align: center; font-size: 12px; height: 22px; padding: 0;" oninput="updatePaymentMethodValue()">
+                                        <input type="text" id="transfer_code" name="transfer_code" style="border: none; border-bottom: 1.5px solid #333; width: 60px; background: transparent; outline: none; text-align: center; font-size: 13px; height: 22px; padding: 0;" oninput="updatePaymentMethodValue()">
                                     </label>
                                 </div>
                             </td>
