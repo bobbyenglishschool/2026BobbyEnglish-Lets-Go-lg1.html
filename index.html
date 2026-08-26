@@ -632,7 +632,24 @@ function loadRowDataIfPresent() {
                     var gRadios = document.querySelectorAll('input[name="gender"]');
                     gRadios.forEach(function(r){ if(r.value === row[4]) r.checked = true; });
                 }
-                if (row[5]) document.getElementById('dob').value = row[5];
+                if (row[5]) if (row[5]) {
+    var rawDob = row[5].toString();
+    var formattedDob = "";
+    if (rawDob.indexOf('T') !== -1) {
+        formattedDob = rawDob.split('T')[0];
+    } else if (rawDob.indexOf('/') !== -1) {
+        var parts = rawDob.split('/');
+        if (parts.length === 3) {
+            var y = parts[0];
+            var m = parts[1].padStart(2, '0');
+            var d = parts[2].padStart(2, '0');
+            formattedDob = y + "-" + m + "-" + d;
+        }
+    } else {
+        formattedDob = rawDob;
+    }
+    document.getElementById('dob').value = formattedDob;
+} = row[5];
                 if (row[6]) document.getElementById('school_name').value = row[6];
                 if (row[7]) document.getElementById('grade_level').value = row[7];
                 if (row[8]) document.getElementById('parent_name').value = row[8];
