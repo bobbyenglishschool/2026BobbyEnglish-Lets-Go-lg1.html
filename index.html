@@ -242,7 +242,7 @@
             padding-right: 12px;
             height: 100%;
             width: 100%;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
         }
 
         .payment-inline-row label { display: flex; align-items: center; gap: 4px; cursor: pointer; white-space: nowrap; }
@@ -338,6 +338,21 @@
             .submit-btn-container, .btn-clear-sig, #loadingOverlay { display: none !important; }
             table, th, td { border: 1px solid #1b3d6d !important; }
         }
+
+        /* 📱 手機響應式防擠壓終極設定 */
+        @media (max-width: 768px) {
+            body { padding: 4px; }
+            .page { padding: 16px 12px; }
+            .header-section { flex-direction: column; align-items: center; text-align: center; }
+            .title-area { padding-right: 0; margin-bottom: 12px; }
+            
+            table { width: 100% !important; min-width: 0 !important; table-layout: auto !important; }
+            th, td { padding: 6px 4px !important; font-size: 12px !important; }
+            th { width: 22% !important; }
+
+            .signature-section { flex-direction: column; gap: 15px; }
+            .signature-box { width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -409,8 +424,8 @@
                             <td><input type="text" id="school_name" name="school_name" class="text-input"></td>
                             <th><span class="zh-title">年級</span><span class="en-title">Grade</span></th>
                             <td>
-                                <div style="display: flex; align-items: center; justify-content: flex-start; padding: 0 8px; height: 100%;">
-                                    第 <input type="text" id="grade_level" name="grade_level" style="border: none; border-bottom: 1px solid #333; width: 50px; text-align: center; margin: 0 5px; background: transparent; outline: none;"> 年級
+                                <div style="display: flex; align-items: center; justify-content: flex-start; padding: 0 4px; height: 100%; white-space: nowrap;">
+                                    第 <input type="text" id="grade_level" name="grade_level" style="border: none; border-bottom: 1px solid #333; width: 40px; text-align: center; margin: 0 2px; background: transparent; outline: none;"> 年級
                                 </div>
                             </td>
                         </tr>
@@ -471,14 +486,14 @@
                     <tbody>
                         <tr>
                             <th><span class="zh-title">應繳總金額</span><span class="en-title">Total Amount</span></th>
-                            <td><input type="text" id="total_amount" name="total_amount" class="text-input" style="font-weight: bold; color: #c00; font-size: 16px;" placeholder="$" readonly></td>
+                            <td><input type="text" id="total_amount" name="total_amount" class="text-input" style="font-weight: bold; color: #c00; font-size: 15px;" placeholder="$" readonly></td>
                             <th><span class="zh-title">付款方式</span><span class="en-title">Payment Method</span></th>
                             <td colspan="3">
                                 <div class="payment-inline-row">
                                     <label><input type="radio" name="payment_method" value="現金" checked onclick="updatePaymentMethodValue()"> 現金 Cash</label>
                                     <label style="display: flex; align-items: center; gap: 2px;">
                                         <input type="radio" id="pay_transfer_radio" name="payment_method" value="銀行轉帳" onclick="updatePaymentMethodValue()"> 銀行轉帳(後五碼)：
-                                        <input type="text" id="transfer_code" name="transfer_code" style="border: none; border-bottom: 1.5px solid #333; width: 60px; background: transparent; outline: none; text-align: center; font-size: 13px; height: 22px; padding: 0; margin-right: 8px;" oninput="updatePaymentMethodValue()">
+                                        <input type="text" id="transfer_code" name="transfer_code" style="border: none; border-bottom: 1.5px solid #333; width: 50px; background: transparent; outline: none; text-align: center; font-size: 12px; height: 22px; padding: 0;" oninput="updatePaymentMethodValue()">
                                     </label>
                                 </div>
                             </td>
@@ -606,7 +621,6 @@ function updatePaymentMethodValue() {
     }
 }
 
-// 🎯 Aegis 核心升級：包含日期格式化轉換器之 Row-ID 自動還原腳本
 function loadRowDataIfPresent() {
     var urlParams = new URLSearchParams(window.location.search);
     var rowIndex = urlParams.get('row');
@@ -631,31 +645,29 @@ function loadRowDataIfPresent() {
                     gRadios.forEach(function(r){ if(r.value === row[4]) r.checked = true; });
                 }
 
-               // 🎯 終極防彈本地時區轉換器：只抓年月日，絕不被時區扣一天！
-if (row[5]) {
-    var rawDob = row[5].toString();
-    var formattedDob = "";
-    
-    // 如果帶有世界時間 T，先轉成台灣本地時間的 Date 物件
-    if (rawDob.indexOf('T') !== -1) {
-        var dObj = new Date(rawDob);
-        var y = dObj.getFullYear();
-        var m = String(dObj.getMonth() + 1).padStart(2, '0');
-        var d = String(dObj.getDate()).padStart(2, '0');
-        formattedDob = y + "-" + m + "-" + d;
-    } else if (rawDob.indexOf('/') !== -1) {
-        var parts = rawDob.split('/');
-        if (parts.length === 3) {
-            var y = parts[0];
-            var m = parts[1].padStart(2, '0');
-            var d = parts[2].padStart(2, '0');
-            formattedDob = y + "-" + m + "-" + d;
-        }
-    } else {
-        formattedDob = rawDob;
-    }
-    document.getElementById('dob').value = formattedDob;
-}
+                if (row[5]) {
+                    var rawDob = row[5].toString();
+                    var formattedDob = "";
+                    if (rawDob.indexOf('T') !== -1) {
+                        var dObj = new Date(rawDob);
+                        var y = dObj.getFullYear();
+                        var m = String(dObj.getMonth() + 1).padStart(2, '0');
+                        var d = String(dObj.getDate()).padStart(2, '0');
+                        formattedDob = y + "-" + m + "-" + d;
+                    } else if (rawDob.indexOf('/') !== -1) {
+                        var parts = rawDob.split('/');
+                        if (parts.length === 3) {
+                            var y = parts[0];
+                            var m = parts[1].padStart(2, '0');
+                            var d = parts[2].padStart(2, '0');
+                            formattedDob = y + "-" + m + "-" + d;
+                        }
+                    } else {
+                        formattedDob = rawDob;
+                    }
+                    document.getElementById('dob').value = formattedDob;
+                }
+
                 if (row[6]) document.getElementById('school_name').value = row[6];
                 if (row[7]) document.getElementById('grade_level').value = row[7];
                 if (row[8]) document.getElementById('parent_name').value = row[8];
