@@ -209,29 +209,6 @@
             padding: 4px 0;
         }
 
-        input[type="date"].text-input {
-            display: block; 
-            line-height: normal;
-            padding-right: 12px !important;
-            font-size: 12px !important;
-            letter-spacing: -0.2px;
-            text-align: right !important;
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-        }
-
-        /* 🎯 讓日期輸入框的日曆圖示向左縮進，絕不碰觸右側邊框 */
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            cursor: pointer;
-            margin-right: 8px !important;
-            opacity: 0.75;
-            transition: opacity 0.2s;
-        }
-        input[type="date"]::-webkit-calendar-picker-indicator:hover {
-            opacity: 1;
-        }
-
         .radio-group {
             display: flex;
             align-items: center;
@@ -351,7 +328,7 @@
             tr { display: table-row !important; }
         }
 
-        /* 📱 手機響應式：寬敞填寫黃金適應版 (解鎖高度與邊界防護) */
+        /* 📱 手機響應式排版 (解鎖高度與邊界防護) */
         @media (max-width: 768px) {
             body { padding: 6px 0; }
             .page { padding: 16px 12px; }
@@ -380,7 +357,7 @@
             }
             td:last-child { border-bottom: none !important; }
 
-            .text-input, input[type="date"].text-input { 
+            .text-input { 
                 height: 42px !important; 
                 line-height: normal !important; 
                 font-size: 14px !important; 
@@ -462,7 +439,7 @@
                         </tr>
                         <tr>
                             <th><span class="zh-title">出生日期</span><span class="en-title">Date of Birth</span></th>
-                            <td><input type="date" id="dob" name="dob" class="text-input" required></td>
+                            <td><input type="text" id="dob" name="dob" class="text-input" placeholder="例：2018/05/20" required></td>
                             <th><span class="zh-title">就讀學校</span><span class="en-title">School</span></th>
                             <td><input type="text" id="school_name" name="school_name" class="text-input" placeholder="請填就讀國小/幼兒園"></td>
                             <th><span class="zh-title">年級</span><span class="en-title">Grade</span></th>
@@ -762,7 +739,7 @@ function loadRowDataIfPresent() {
 window.onload = function() {
     document.getElementById('course_name_hidden').value = TARGET_COURSE;
     document.getElementById('mainTitleDisplay').innerHTML = "私立巴比美語短期補習班 ｜ " + TARGET_COURSE + " 專屬智慧報名系統";
-    document.getElementById('subTitleDisplay').innerHTML = "Bobby English School - " + TARGET_COURSE + " Enrollment Form";
+    document.getElementById('subTitleDisplay').innerHTML = "Bobby English School - Smart Course Enrollment Form";
     document.getElementById('dynamicBannerDisplay').innerHTML = TARGET_COURSE + " 專屬智慧報名系統";
 
     var today = new Date().toISOString().split('T')[0];
