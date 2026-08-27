@@ -36,6 +36,16 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* 🎨 提示文淡化屬性 (防範家長誤以為已填寫) */
+        ::placeholder {
+            color: #94a3b8 !important;
+            opacity: 0.75 !important;
+            font-style: italic !important;
+            font-weight: 400 !important;
+        }
+        ::-webkit-input-placeholder { color: #94a3b8 !important; opacity: 0.75 !important; font-style: italic !important; font-weight: 400 !important; }
+        :-ms-input-placeholder { color: #94a3b8 !important; opacity: 0.75 !important; font-style: italic !important; font-weight: 400 !important; }
+
         .page-container {
             max-width: 800px;
             margin: 0 auto;
@@ -445,7 +455,7 @@
                             <th><span class="zh-title">年級</span><span class="en-title">Grade</span></th>
                             <td>
                                 <div style="display: flex; align-items: center; justify-content: flex-start; padding: 0 4px; height: 100%; white-space: nowrap;">
-                                    第 <input type="text" id="grade_level" name="grade_level" style="border: none; border-bottom: 1.5px solid #1b3d6d; width: 50px; text-align: center; margin: 0 4px; background: transparent; outline: none; font-weight: bold;"> 年級
+                                    <input type="text" id="grade_level" name="grade_level" style="border: none; border-bottom: 1.5px solid #1b3d6d; width: 45px; text-align: center; margin: 0 2px; background: transparent; outline: none; font-weight: bold;" placeholder="如：3"> 年級
                                 </div>
                             </td>
                         </tr>
